@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>Larabook</title>
-	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 </head>
 <body>
@@ -13,6 +15,8 @@
 	@yield('content')
 </div>
 
-<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 </body>
 </html>

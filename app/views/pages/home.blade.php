@@ -11,7 +11,7 @@
 			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			<p>
-				<a class="btn btn-primary btn-lg" href="#">Sign Up!</a>
+				{{ link_to_route('register_path', 'Sign Up!', null, ['class' => 'btn btn-primary btn-lg']) }}
 			</p>
 		</div>
 	</div>
