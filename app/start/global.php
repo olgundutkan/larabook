@@ -53,6 +53,18 @@ App::error(function(Exception $exception, $code)
 
 /*
 |--------------------------------------------------------------------------
+| Laracasts Validation
+|--------------------------------------------------------------------------
+|
+*/
+
+App::error(function(Laracasts\Validation\FormValidationException $exception, $code)
+{
+	return Redirect::back()->withInput()->withErrors($exception->getErrors());
+});
+
+/*
+|--------------------------------------------------------------------------
 | Maintenance Mode Handler
 |--------------------------------------------------------------------------
 |
