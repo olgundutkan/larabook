@@ -33,6 +33,8 @@ class RegisterUserCommandHandler implements CommandHandler {
             $command->username, $command->email, $command->password
         );
 
+        $this->repository->save($user);
+
         return $user;
     }
 
