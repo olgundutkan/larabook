@@ -8,7 +8,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Larabook</a>
+			<a class="navbar-brand" href="{{ route('home') }}">Larabook</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -33,7 +33,8 @@
 							<li><a href="#">Action</a></li>
 							<li><a href="#">Another action</a></li>
 							<li><a href="#">Something else here</a></li>
-							<li><a href="#">Separated link</a></li>
+							<li class="divider"></li>
+							<li><a href="{{ route('logout_path') }}">Logout</a></li>
 						</ul>
 					</li>
 				@else
