@@ -1,7 +1,7 @@
 <?php
 
 Event::listen('Larabook.Registration.Events.UserRegistered', function($user){
-	dd('send a notification email');
+	// dd('send a notification email');
 });
 
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
