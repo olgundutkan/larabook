@@ -7,6 +7,6 @@ composer.lock
 .DS_Store
 Thumbs.db
 
-!.env.local.php
+!.env.sample.php
 node_modules
 tests/_output/*

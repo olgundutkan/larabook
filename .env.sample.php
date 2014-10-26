@@ -8,7 +8,7 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	'DB_DATABASE'  => 'larabook',
-	'DB_USERNAME'  => 'homestead',
-	'DB_PASSWORD'  => 'secret',
+	'DB_DATABASE'  => 'database',
+	'DB_USERNAME'  => 'username',
+	'DB_PASSWORD'  => 'password',
 );
