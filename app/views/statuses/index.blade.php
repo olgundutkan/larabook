@@ -13,7 +13,7 @@
 		</div>
 
 		<div class="form-group">
-			<div class="col-sm-2 col-offset-8">
+			<div class="col-sm-2 col-md-offset-10">
 				{{ Form::submit('Post Status', ['class' => 'btn btn-primary']) }}
 			</div>
 		</div>
