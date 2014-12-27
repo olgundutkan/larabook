@@ -5,13 +5,12 @@ namespace Larabook\Statuses;
 use Laracasts\Commander\CommandHandler;
 use Laracasts\Commander\Events\DispatchableTrait;
 
-
 class PublishStatusCommandHandler implements CommandHandler {
 
     use DispatchableTrait;
 
     /**
-     * @var statusRepository
+     * @var StatusRepository
      */
     protected $statusRepository;
 

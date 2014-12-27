@@ -1,5 +1,5 @@
 Larabook\Users\User:
-  username: $string$integer
+  username: $string
   email: $string$integer@example.com
   password: $string
   created_at: $date
@@ -11,4 +11,3 @@ Larabook\Statuses\Status:
   body: $text
   created_at: $date
   updated_at: $date
-

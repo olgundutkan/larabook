@@ -9,9 +9,8 @@ class PublishStatusCommand {
     public $userId;
 
     function __construct($body, $userId)
-    {        
+    {
         $this->body = $body;
-
         $this->userId = $userId;
     }
 

@@ -1,15 +1,13 @@
-<?php
-namespace Codeception\Module;
+<?php namespace Codeception\Module;
 
 use Laracasts\TestDummy\Factory as TestDummy;
 
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 
-class FunctionalHelper extends \Codeception\Module
-{
+class FunctionalHelper extends \Codeception\Module {
 
-	/**
+    /**
      * Prepare Larabook account, and log in.
      */
     public function signIn()
@@ -63,5 +61,4 @@ class FunctionalHelper extends \Codeception\Module
     {
         return TestDummy::create($model, $overrides);
     }
-	
 }

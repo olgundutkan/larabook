@@ -3,41 +3,35 @@
 namespace Larabook\Statuses;
 
 use Larabook\Statuses\Events\StatusWasPublished;
-
 use Laracasts\Commander\Events\EventGenerator;
 
-use Illuminate\Database\Eloquent\Model as Eloquent;
-
-class Status extends Eloquent
-{
+class Status extends \Eloquent {
 
     use EventGenerator;
 
     /**
-     * Which fields may be mass assigned?
+     * Fillable fields for a new status.
      *
      * @var array
      */
     protected $fillable = ['body'];
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'statuses';
+    /**
+     * Path to the presenter for a status.
+     *
+     * @var string
+     */
+    protected $presenter = 'Larabook\Statuses\StatusPresenter';
 
     /**
-     * A status belongs to a user
-     *
-     * @return mixed
+     * A status belongs to a user.
      */
     public function user()
     {
-        return $this->belongsTo('Larabook\Statuses\Status');
+        return $this->belongsTo('Larabook\Users\User');
     }
 
-	/**
+    /**
      * Publish a new status.
      *
      * @param $body
@@ -52,4 +46,12 @@ class Status extends Eloquent
         return $status;
     }
 
+    /**
+     * @return mixed
+     */
+    public function comments()
+    {
+        return $this->hasMany('Larabook\Statuses\Comment');
+    }
+    
 }
