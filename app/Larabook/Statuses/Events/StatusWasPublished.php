@@ -1,5 +1,6 @@
-<?php namespace Larabook\Statuses\Events;
+<?php 
 
+namespace Larabook\Statuses\Events;
 
 class StatusWasPublished {
 

@@ -9,40 +9,59 @@ use Laracasts\TestDummy\Factory as TestDummy;
 class FunctionalHelper extends \Codeception\Module
 {
 
-	public function signIn()
-	{
-		$email = 'foo@example.com';
-		$password = 'foo';
-		$this->haveAnAccount(compact('email', 'password'));
+	/**
+     * Prepare Larabook account, and log in.
+     */
+    public function signIn()
+    {
+        $email = 'foo@example.com';
+        $username = 'Foobar';
+        $password = 'foo';
 
-		$I = $this->getModule('Laravel4');
-		$I->amOnPage('/login');
-		$I->fillField('Email:', $email);
-		$I->fillField('Password:', $password);
-		$I->click('Sign In');
+        $this->haveAnAccount(compact('username', 'email', 'password'));
 
-	}
+        $I = $this->getModule('Laravel4');
 
-	public function postAStatuses($body)
-	{
-		$I = $this->getModule('Laravel4');
+        $I->amOnPage('/login');
+        $I->fillField('email', $email);
+        $I->fillField('password', $password);
+        $I->click('Sign In');
+    }
 
-		$I->fillField('status', $body);
+    /**
+     * Fill out the publish status form.
+     *
+     * @param $body
+     */
+    public function postAStatus($body)
+    {
+        $I = $this->getModule('Laravel4');
 
-		$I->click('Post Status');
+        $I->fillField('body', $body);
+        $I->click('Post Status');
+    }
 
-		// $this->have('Larabook\Statuses\Status', $overrides);
-	}
+    /**
+     * Create a Larabook user account in the database.
+     *
+     * @param array $overrides
+     * @return mixed
+     */
+    public function haveAnAccount($overrides = [])
+    {
+        return $this->have('Larabook\Users\User', $overrides);
+    }
 
-	public function haveAnAccount($overrides = [])
-	{
-		return $this->have('Larabook\Users\User', $overrides);
-	}
-
-	public function have($model, $overrides = [])
-	{
-		return TestDummy::create($model, $overrides);
-	}
-
+    /**
+     * Insert a dummy record into a database table.
+     *
+     * @param $model
+     * @param array $overrides
+     * @return mixed
+     */
+    public function have($model, $overrides = [])
+    {
+        return TestDummy::create($model, $overrides);
+    }
 	
 }

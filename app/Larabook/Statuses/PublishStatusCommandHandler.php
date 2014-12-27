@@ -6,7 +6,7 @@ use Laracasts\Commander\CommandHandler;
 use Laracasts\Commander\Events\DispatchableTrait;
 
 
-class PushStatusCommandHandler implements CommandHandler {
+class PublishStatusCommandHandler implements CommandHandler {
 
     use DispatchableTrait;
 
