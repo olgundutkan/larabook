@@ -1,6 +1,29 @@
 <?php
 
-class StatusesController extends \BaseController {
+use Larabook\Forms\StatusForm;
+
+use Larabook\Core\CommandBus;
+
+class StatusesController extends \BaseController 
+{
+	use CommandBus;
+
+	/**
+	 * Status Form Validation
+	 * @var array
+	 */
+	private $statusForm;
+
+	/**
+	 * constructor
+	 * @param StatusForm $statusForm 
+	 */
+	public function __construct(StatusForm $statusForm)
+	{
+		$this->beforeFilter('guest');
+
+		$this->statusForm = $statusForm;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -25,13 +48,13 @@ class StatusesController extends \BaseController {
 
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a new status.
 	 *
 	 * @return Response
 	 */
 	public function store()
 	{
-		//
+		$this->execute(new PushStatusCommand(Input::get('body')));
 	}
 
 
