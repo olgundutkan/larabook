@@ -28,13 +28,17 @@
 			<ul class="nav navbar-nav navbar-right">
 				@if($currentUser)
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $currentUser->username}} <b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img class="nav-gravatar" src="{{ $currentUser->present()->gravatar }}" alt="{{ $currentUser->username }}">
+							{{ $currentUser->username}} 
+							<b class="caret"></b>
+						</a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Action</a></li>
 							<li><a href="#">Another action</a></li>
 							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>
-							<li><a href="{{ route('logout_path') }}">Logout</a></li>
+							<li>{{ link_to_route('logout_path', 'Log out') }}</li>
 						</ul>
 					</li>
 				@else

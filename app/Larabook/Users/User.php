@@ -10,10 +10,11 @@ use Eloquent, Hash;
 
 use Laracasts\Commander\Events\EventGenerator;
 use Larabook\Registration\Events\UserRegistered;
+use Laracasts\Presenter\PresentableTrait;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-	use UserTrait, RemindableTrait, EventGenerator;
+	use UserTrait, RemindableTrait, EventGenerator, PresentableTrait;
 
     /**
      * Which fields may be mass assigned?
@@ -35,6 +36,13 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
+
+    /**
+     * Path to the presenter for a user
+     * 
+     * @var string
+     */
+    protected $presenter = 'Larabook\Users\UserPresenter';
 
     /**
      * Passwords must always be hashed.
