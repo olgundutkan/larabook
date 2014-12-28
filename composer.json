@@ -42,6 +42,7 @@
 	"minimum-stability": "stable",
 	"require-dev": {
 		"way/generators": "~3.0",
-		"codeception/codeception": "2.0.*dev"
+		"codeception/codeception": "2.0.*dev",
+		"fzaninotto/faker": "1.4.*"
 	}
 }

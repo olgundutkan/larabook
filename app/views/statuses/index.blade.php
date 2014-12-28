@@ -2,29 +2,24 @@
 
 @section('content')
 <div class="row">
-	<div class="col-md-10">
-	{{ Form::open(['route' => 'statuses_path', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'POST']) }}			
-		
-		<div class="form-group">
-			{{ Form::label('body', 'Status:', ['class' => 'col-sm-2 control-label', 'for' => 'status']) }}
-			<div class="col-sm-10">
-				{{ Form::textarea('body', null, ['class' => 'form-control']) }}
+	<div class="col-md-6 col-md-offset-3">
+	@include('layouts.partials.errors')
+	
+	<div class="status-post">
+		{{ Form::open(['route' => 'statuses_path', 'role' => 'form', 'method' => 'POST']) }}
+			
+			<div class="form-group">
+				{{ Form::textarea('body', null, ['class' => 'form-control', 'rows' => 3, 'placeholder' => "What's on your mind?"]) }}
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-sm-2 col-md-offset-10">
-				{{ Form::submit('Post Status', ['class' => 'btn btn-primary']) }}
+			<div class="form-group status-post-submit">
+				{{ Form::submit('Post Status', ['class' => 'btn btn-default btn-xs']) }}
 			</div>
-		</div>
-	{{ Form::close() }}
+		{{ Form::close() }}
 	</div>
-</div>
-<div class="row">
-	@foreach($statuses as $status)
-		<article>
-			{{ e($status->body) }}
-		</article>
-	@endforeach
+		@foreach($statuses as $status)
+			@include('statuses.partials.status')
+		@endforeach
+	</div>
 </div>
 @stop
