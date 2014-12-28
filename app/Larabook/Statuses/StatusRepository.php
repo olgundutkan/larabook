@@ -40,9 +40,7 @@ class StatusRepository {
      */
     public function save(Status $status, $userId)
     {
-        return User::findOrFail($userId)
-            ->statuses()
-            ->save($status);
+        return User::findOrFail($userId)->statuses()->save($status);
     }
 
     /**

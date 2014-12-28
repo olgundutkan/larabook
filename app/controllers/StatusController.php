@@ -64,7 +64,7 @@ class StatusController extends \BaseController {
 	 */
 	public function store()
 	{
-        //$this->publishStatusForm->validate(Input::only('body'));
+        $this->publishStatusForm->validate(Input::only('body'));
 
         $this->execute(new PublishStatusCommand(Input::get('body'), Auth::user()->id));
 
