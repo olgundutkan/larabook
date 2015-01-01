@@ -22,6 +22,11 @@ Route::get('statuses', ['as' => 'statuses_path', 'uses' => 'StatusesController@i
 Route::post('statuses', ['as' => 'statuses_path', 'uses' => 'StatusesController@store']);
 
 /**
+ * Comments
+ */
+Route::post('statuses/{id}/comments', ['as' => 'comment_path', 'uses' => 'CommentsController@store']);
+
+/**
  * Users
  */
 Route::get('users', ['as' => 'users_path', 'uses' => 'UsersController@index']);

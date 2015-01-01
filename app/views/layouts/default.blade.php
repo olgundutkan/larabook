@@ -22,6 +22,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$('#flash-overlay-modal').modal();
+
+	$('.comments__create-form').on('keydown', function(e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                $(this).submit();
+            }
+        });
 </script>
 </body>
 </html>

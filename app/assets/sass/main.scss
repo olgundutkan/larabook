@@ -60,7 +60,7 @@ body {
 
 .comments {
   margin-bottom: 5em;
-  }
+}
 
 .comments__comment {
   background: darken(white, 10%);
@@ -72,9 +72,9 @@ body {
 // Each individual status
 .status-media {
   border: 1px solid #E3E3E3;
+  border-bottom: none;
   background: white;
   padding: 1em;
-  margin-bottom: 2em;
 }
 
 // Users lists

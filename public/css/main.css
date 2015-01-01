@@ -53,9 +53,9 @@ body {
 
 .status-media {
   border: 1px solid #E3E3E3;
+  border-bottom: none;
   background: white;
-  padding: 1em;
-  margin-bottom: 2em; }
+  padding: 1em; }
 
 .users {
   margin-bottom: 3em; }
