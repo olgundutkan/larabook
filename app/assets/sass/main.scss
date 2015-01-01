@@ -1,16 +1,27 @@
 body {
-  padding-top: 70px;
+  padding-top: 80px;
+  background-color: rgb(240, 240, 240);
+  font-family: 'Roboto', sans-serif;
 }
 
 .container h1:first-of-type {
-	margin-top: 0;
+  margin-top: 0;
 }
-.nav-gravatar{
-	float: left;
-	position: relative;
-	top:-6px;
-	left: -8px;
-	border: 1px slolid #555;
+
+.page-header {
+  text-align: center;
+  margin-bottom: 1em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid #ddd;
+}
+
+// Navbar
+.nav-gravatar {
+  float: left;
+  position: relative;
+  top: -6px;
+  left: -10px;
+  border: 1px solid rgb(238, 238, 238);
 }
 
 // The form to publish a new status.
@@ -22,6 +33,7 @@ body {
 
   textarea {
     border: none;
+
     &:focus {
       box-shadow: none;
     }
@@ -40,10 +52,40 @@ body {
   }
 }
 
+.comments__create-form textarea {
+  border: 1px solid #e3e3e3;
+  border-top: none;
+  border-radius: 0;
+}
+
+.comments {
+  margin-bottom: 5em;
+  }
+
+.comments__comment {
+  background: darken(white, 10%);
+  margin-top: 0;
+  border: 1px solid darken(white, 15%);
+  border-bottom: 1px solid #e3e3e3;
+}
+
 // Each individual status
 .status-media {
   border: 1px solid #E3E3E3;
   background: white;
   padding: 1em;
   margin-bottom: 2em;
+}
+
+// Users lists
+.users {
+  margin-bottom: 3em;
+}
+
+.user-block {
+  text-align: center;
+}
+
+.user-block .media-object {
+  margin: auto;
 }

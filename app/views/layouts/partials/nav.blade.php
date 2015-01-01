@@ -8,33 +8,24 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="{{ route('home') }}">Larabook</a>
+			<a class="navbar-brand" href="{{ Auth::check() ? route('statuses_path') : route('home') }}">Larabook</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Link</a></li>
+				<li>{{ link_to_route('users_path', 'Browse Users') }}</li>
 				<li><a href="#">Link</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li><a href="#">Separated link</a></li>
-					</ul>
-				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				@if($currentUser)
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<img class="nav-gravatar" src="{{ $currentUser->present()->gravatar }}" alt="{{ $currentUser->username }}">
-							{{ $currentUser->username}} 
+							{{ $currentUser->username }} 
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
+							<li>{{ link_to_route('profile_path', 'Your Profile', $currentUser->username) }}</li>
 							<li><a href="#">Another action</a></li>
 							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>

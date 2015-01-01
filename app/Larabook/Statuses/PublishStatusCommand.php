@@ -1,17 +1,16 @@
-<?php 
+<?php
 
 namespace Larabook\Statuses;
 
-class PublishStatusCommand {
-
+class PublishStatusCommand
+{
+    
     public $body;
-
+    
     public $userId;
-
-    function __construct($body, $userId)
-    {
+    
+    function __construct($body, $userId) {
         $this->body = $body;
         $this->userId = $userId;
     }
-
 }
