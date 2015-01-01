@@ -1,3 +1,5 @@
+[![Build Status](https://magnum.travis-ci.com/olgundutkan/larabook.svg?token=PNPcTbdv6x11jYpvRSaF)](https://magnum.travis-ci.com/olgundutkan/larabook)
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
