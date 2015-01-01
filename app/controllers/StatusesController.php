@@ -28,7 +28,7 @@ class StatusesController extends \BaseController
         
         $this->statusRepository = $statusRepository;
         
-        $this->beforeFilter('Auth');
+        $this->beforeFilter('auth');
     }
     
     /**

@@ -14,7 +14,6 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
 				<li>{{ link_to_route('users_path', 'Browse Users') }}</li>
-				<li><a href="#">Link</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				@if($currentUser)
