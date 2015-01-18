@@ -15,5 +15,7 @@ class RegisterUserCommand
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
+        $this->activated = false;
+        $this->activation_code = get_random_string(42, true, 'users', 'activation_code');
     }
 }

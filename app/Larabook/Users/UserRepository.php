@@ -44,6 +44,16 @@ class UserRepository
     public function findById($id) {
         return User::findOrFail($id);
     }
+
+    /**
+     * Find a user by activation code
+     * 
+     * @param  string $activation_code 
+     * @return mixed                  
+     */
+    public function findByActivationCode($activation_code) {
+        return User::whereActivationCode($activation_code)->firstOrFail();
+    }
     
     /**
      * Follow a Larabook user.

@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'log',
+	'driver' => 'mandrill',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'olgundutkan@gmail.com', 'name' => 'Olgun DUTKAN'),
+	'from' => array('address' => getenv('FROM_EMAIL_ADDRESS'), 'name' => getenv('FROM_NAME')),
 
 	/*
 	|--------------------------------------------------------------------------

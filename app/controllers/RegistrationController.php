@@ -42,9 +42,7 @@ class RegistrationController extends BaseController
         
         $user = $this->execute(RegisterUserCommand::class);
         
-        Auth::login($user);
-        
-        Flash::overlay('Glad to have you as a new Larabook member!');
+        Flash::overlay('The activation e-mail has been sent. Please check your e-mail!');
         
         return Redirect::home();
     }

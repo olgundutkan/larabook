@@ -34,7 +34,7 @@ class RegisterUserCommandHandler implements CommandHandler
      * @return mixed
      */
     public function handle($command) {
-        $user = User::register($command->username, $command->email, $command->password);
+        $user = User::register($command->username, $command->email, $command->password, $command->activated, $command->activation_code);
         
         $this->repository->save($user);
         

@@ -15,7 +15,7 @@ class UsersController extends \BaseController
      */
     function __construct(UserRepository $userRepository) {
         $this->userRepository = $userRepository;
-        $this->beforeFilter('auth');
+        $this->beforeFilter('auth', ['except' => ['getActivate']]);
     }
     
     /**
@@ -39,5 +39,23 @@ class UsersController extends \BaseController
         $user = $this->userRepository->findByUsername($username);
         
         return View::make('users.show')->withUser($user);
+    }
+    
+    /**
+     * User activation
+     * @param  string $activation_code 
+     * @return mixed                  
+     */
+    public function getActivate($activation_code) {
+        $user = $this->userRepository->findByActivationCode($activation_code);
+        //TODO: refactor
+        $user->activated = true;
+        $user->activation_code = null;
+       
+        $user->save();
+
+        Flash::message('Account activated! You can now login with credential.');
+        // TODO: Translation ->with('success', Lang::get('user.informations.user_activated'))
+        return Redirect::route('login_path');
     }
 }

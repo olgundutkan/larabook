@@ -42,3 +42,8 @@ Route::delete('follows/{id}', ['as' => 'follow_path', 'uses' => 'FollowsControll
  * Password
  */
 Route::controller('password', 'RemindersController');
+
+/**
+ * Get Activate
+ */
+Route::get('activate/{activationCode}',['as' => 'activation_path', 'uses' => 'UsersController@getActivate']);

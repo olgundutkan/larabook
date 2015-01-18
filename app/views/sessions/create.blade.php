@@ -15,15 +15,19 @@
                 <!-- Password Form Input -->
                 <div class="form-group">
                     {{ Form::label('password', 'Password:') }}
+                    {{ link_to('password/remind', 'Forgotten Password?', ['class' => 'pull-right']) }}
                     {{ Form::password('password', ['class' => 'form-control', 'required' => 'required']) }}
                 </div>
 
-                <!-- Sign In Input -->
-                <div class="form-group">
-                    {{ Form::submit('Sign In', ['class' => 'btn btn-primary']) }}
+                <div class="form-group pull-left">
+                    <label class="checkbox-inline">
+                        {{ Form::checkbox('remember_me', '1', false) }} Remember me
+                    </label>
                 </div>
-                <div class="form-group">
-                    {{ link_to('password/remind', 'Reset Your Password') }}
+
+                <!-- Sign In Input -->
+                <div class="form-group pull-right">
+                    {{ Form::submit('Sign In', ['class' => 'btn btn-primary']) }}
                 </div>
             {{ Form::close() }}
         </div>

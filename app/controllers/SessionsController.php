@@ -30,11 +30,10 @@ class SessionsController extends \BaseController
      * @return Response
      */
     public function store() {
-        $formData = Input::only('email', 'password');
         
-        $this->signInForm->validate($formData);
+        $this->signInForm->validate($input = Input::all());
         
-        if (!Auth::attempt($formData)) {
+        if (!Auth::attempt(['email' => $input['email'], 'password' => $input['password'], 'activated' => 1], isset($input['remember_me']))) {
             Flash::message('We were unable to sign you in. Please check your credentials and try again!');
             
             return Redirect::back()->withInput();
