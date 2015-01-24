@@ -10,7 +10,7 @@
                     @include ('users.partials.avatar', ['size' => 70])
 
                     <h4 class="user-block-username">
-                        {{ link_to_route('profile_path', $user->username, $user->username) }}
+                        {{ link_to_route('profile_path', e($user->username), $user->username) }}
                     </h4>
                 </div>
             @endforeach

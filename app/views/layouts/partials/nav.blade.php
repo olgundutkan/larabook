@@ -19,12 +19,12 @@
 				@if($currentUser)
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img class="nav-gravatar" src="{{ $currentUser->present()->gravatar }}" alt="{{ $currentUser->username }}">
-							{{ $currentUser->username }} 
+							<img class="nav-gravatar" src="{{ e($currentUser->present()->gravatar) }}" alt="{{ e($currentUser->username) }}">
+							{{ e($currentUser->username) }} 
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li>{{ link_to_route('profile_path', 'Your Profile', $currentUser->username) }}</li>
+							<li>{{ link_to_route('profile_path', 'Your Profile', e($currentUser->username)) }}</li>
 							<li><a href="#">Another action</a></li>
 							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>
