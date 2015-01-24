@@ -16,7 +16,7 @@
 				<li>{{ link_to_route('users_path', 'Browse Users') }}</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				@if($currentUser)
+				@if(isset($currentUser) && $currentUser)
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<img class="nav-gravatar" src="{{ e($currentUser->present()->gravatar) }}" alt="{{ e($currentUser->username) }}">
