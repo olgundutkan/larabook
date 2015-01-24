@@ -12,9 +12,11 @@
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			@if(Auth::check())
 			<ul class="nav navbar-nav">
 				<li>{{ link_to_route('users_path', 'Browse Users') }}</li>
 			</ul>
+			@endif
 			<ul class="nav navbar-nav navbar-right">
 				@if(isset($currentUser) && $currentUser)
 					<li class="dropdown">
