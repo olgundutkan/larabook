@@ -4,7 +4,7 @@
     </div>
 
     <div class="media-body">
-        <h4 class="media-heading">{{ e($comment->owner->username) }}</h4>
+        <h4 class="media-heading">{{ link_to_route('profile_path', e($comment->owner->username), e($currentUser->username)) }}</h4>
 
         {{ e($comment->body) }}
     </div>
