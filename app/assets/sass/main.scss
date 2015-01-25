@@ -89,3 +89,13 @@ body {
 .user-block .media-object {
   margin: auto;
 }
+
+// Subjects
+.subject-panel > .dropdown {
+  margin: 10px 15px;
+}
+.subject-panel .dropdown > .dropdown-menu {
+  left: initial;
+  right: 0px;
+  border-radius: 2px;
+}

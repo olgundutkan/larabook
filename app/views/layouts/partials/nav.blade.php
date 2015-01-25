@@ -15,6 +15,7 @@
 			@if(Auth::check())
 			<ul class="nav navbar-nav">
 				<li>{{ link_to_route('users_path', 'Browse Users') }}</li>
+				<li>{{ link_to_route('subjects_path', 'Subjects') }}</li>
 			</ul>
 			@endif
 			<ul class="nav navbar-nav navbar-right">
@@ -27,7 +28,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>{{ link_to_route('profile_path', 'Your Profile', e($currentUser->username)) }}</li>
-							<li><a href="#">Another action</a></li>
+							<li>{{ link_to_route('subjects_path', 'Subject Create') }}</li>
 							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>
 							<li>{{ link_to_route('logout_path', 'Log out') }}</li>

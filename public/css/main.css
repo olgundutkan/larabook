@@ -9,7 +9,7 @@ body {
 .page-header {
   text-align: center;
   margin-bottom: 1em;
-  padding-bottom: 0.5em;
+  padding-bottom: .5em;
   border-bottom: 1px solid #ddd; }
 
 .nav-gravatar {
@@ -30,7 +30,7 @@ body {
       box-shadow: none; }
   .status-post .status-post-submit {
     border-top: 1px solid #E9E9E9;
-    padding: 0.5em 1em;
+    padding: .5em 1em;
     margin-bottom: 0;
     overflow: hidden;
     background: #FDFCFC; }
@@ -65,3 +65,11 @@ body {
 
 .user-block .media-object {
   margin: auto; }
+
+.subject-panel > .dropdown {
+  margin: 10px 15px; }
+
+.subject-panel .dropdown > .dropdown-menu {
+  left: initial;
+  right: 0px;
+  border-radius: 2px; }

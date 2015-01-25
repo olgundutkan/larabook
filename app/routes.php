@@ -47,3 +47,9 @@ Route::controller('password', 'RemindersController');
  * Get Activate
  */
 Route::get('activate/{activationCode}',['as' => 'activation_path', 'uses' => 'UsersController@getActivate']);
+
+/**
+ * Subjects
+ */
+Route::get('subjects', ['as' => 'subjects_path', 'uses' => 'SubjectsController@index']);
+Route::post('subjects', ['as' => 'subjects_path', 'uses' => 'SubjectsController@store']);
