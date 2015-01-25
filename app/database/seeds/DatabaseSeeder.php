@@ -9,7 +9,8 @@ class DatabaseSeeder extends Seeder
 	 */
 	protected $tables = [
 		'users',
-		'statuses'
+		'statuses',
+		'locations'
 	];
 
 	/**
@@ -19,7 +20,8 @@ class DatabaseSeeder extends Seeder
 	 */
 	protected $seeders = [
 		'UsersTableSeeder',
-		'StatusesTableSeeder'
+		'StatusesTableSeeder',
+		'LocationsTableSeeder'
 	];
 
 	/**

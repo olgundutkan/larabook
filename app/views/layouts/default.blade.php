@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+	@yield('stylesheet')
 </head>
 <body>
 
@@ -23,6 +24,8 @@
 <script src="https://code.jquery.com/jquery.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="{{ asset('js/jquery-ui.js') }}"></script>
+@yield('script')
 <script type="text/javascript">
 	$('#flash-overlay-modal').modal();
 
