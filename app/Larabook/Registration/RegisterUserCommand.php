@@ -5,12 +5,9 @@ namespace Larabook\Registration;
 class RegisterUserCommand
 {
     
-    public $username;
-    
-    public $email;
-    
-    public $password;
-
+    public $username;    
+    public $email;    
+    public $password;    
     public $first_name;
     public $last_name;
     public $gender;

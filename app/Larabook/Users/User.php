@@ -83,7 +83,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     public static function register($username, $email, $password, $first_name, $last_name, $gender, $dob, $country_id, $state_id, $city_id, $school_department, $is_commercial, $language_id, $activated, $activation_code) {
         $user = new static (compact('username', 'email', 'password', 'first_name', 'last_name', 'gender', 'dob', 'country_id', 'state_id', 'city_id', 'school_department', 'is_commercial', 'language_id', 'activated', 'activation_code'));
-        
+
         $user->raise(new UserHasRegistered($user));
         
         return $user;
@@ -117,5 +117,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     public function setDobAttribute($dob) {
         $this->attributes['dob'] = Carbon::createFromFormat('d/m/Y', $dob);
+    }
+
+    /**
+     * A user belongs to many roles
+     * @return mixed 
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('Larabook\Roles\Role', 'roles_users');
+    }
+
+    public function setRolesAttribute($roles)
+    {
+        $this->roles()->sync((array) $roles);
     }
 }

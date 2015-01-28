@@ -76,4 +76,13 @@ class UserRepository
     public function unfollow($userIdToUnfollow, User $user) {
         return $user->followedUsers()->detach($userIdToUnfollow);
     }
+
+    /**
+     * Add User group a larabook user
+     * @param integer $groupId 
+     * @param User   $user    
+     */
+    public function setUserGroup($groupId, User $user) {
+        return $user->roles = $groupId;
+    }
 }
