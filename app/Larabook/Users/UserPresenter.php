@@ -38,4 +38,12 @@ class UserPresenter extends Presenter
         
         return "{$count} {$plural}";
     }
+
+    /**
+     * @return string 
+     */
+    public function birthday()
+    {
+        return $this->dob->format('d/m/Y');
+    }
 }

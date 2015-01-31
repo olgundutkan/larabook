@@ -31,6 +31,8 @@ Route::post('statuses/{id}/comments', ['as' => 'comment_path', 'uses' => 'Commen
  */
 Route::get('users', ['as' => 'users_path', 'uses' => 'UsersController@index']);
 Route::get('@{username}', ['as' => 'profile_path', 'uses' => 'UsersController@show']);
+Route::get('@{username}/edit', ['as' => 'profile_path.edit', 'uses' => 'UsersController@edit']);
+Route::put('@{username}/edit', ['as' => 'profile_path.update', 'uses' => 'UsersController@update']);
 
 /**
  * Follows

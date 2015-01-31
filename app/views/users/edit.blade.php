@@ -7,11 +7,11 @@
 @section('content')
 <div class="row">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<h1>Register!</h1>
+		<h1>User Edit</h1>
 
 		@include('layouts.partials.errors')
 
-		{{ Form::open(['route' => 'register_path', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
+		{{ Form::model($user, ['route' => ['profile_path.update', $user->username], 'class' => '', 'role' => 'form', 'method' => 'PUT']) }}
 			
 			<div class="form-group">
 				{{ Form::label('username', 'Username:', ['for' => 'username']) }}
@@ -21,16 +21,6 @@
 			<div class="form-group">
 				{{ Form::label('email', 'Email:', ['for' => 'email']) }}
 				{{ Form::text('email', null, ['id' => 'email', 'class' => 'form-control']) }}
-			</div>
-
-			<div class="form-group">
-				{{ Form::label('password', 'Password:', ['for' => 'password']) }}
-				{{ Form::password('password', ['id' => 'password', 'class' => 'form-control']) }}
-			</div>
-
-			<div class="form-group">
-				{{ Form::label('password_confirmation', 'Password Confirmation:', ['for' => 'password_confirmation']) }}
-				{{ Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control']) }}
 			</div>
 
 			<div class="form-group">
@@ -52,22 +42,22 @@
 
 			<div class="form-group">
 				{{ Form::label('dob', 'Date of Birth:', ['for' => 'dob']) }}
-				{{ Form::text('dob', null, ['id' => 'dob', 'class' => 'form-control']) }}
+				{{ Form::text('dob', $user->present()->birthday, ['id' => 'dob', 'class' => 'form-control']) }}
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('country', 'Country:', ['for' => 'country']) }}
-				{{ Form::select('country', $countries, null, ['id' => 'country', 'class' => 'form-control']) }}
+				{{ Form::select('country', $countries, $user->country_id, ['id' => 'country', 'class' => 'form-control']) }}
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('state', 'State:', ['for' => 'state']) }}
-				{{ Form::select('state', $states, null, ['id' => 'state', 'class' => 'form-control']) }}
+				{{ Form::select('state', $states, $user->state_id, ['id' => 'state', 'class' => 'form-control']) }}
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('city', 'City:', ['for' => 'city']) }}
-				{{ Form::select('city', $cities, null, ['id' => 'city', 'class' => 'form-control']) }}
+				{{ Form::select('city', $cities, $user->city_id, ['id' => 'city', 'class' => 'form-control']) }}
 			</div>
 
 			<div class="form-group">
@@ -82,7 +72,7 @@
 
 			<div class="form-group">
 				{{ Form::label('language', 'Language:', ['for' => 'language']) }}
-				{{ Form::select('language', ['1' => 'English', '2' => 'Turkish'], null, ['id' => 'language', 'class' => 'language']) }}
+				{{ Form::select('language', ['1' => 'English', '2' => 'Turkish'], $user->language_id, ['id' => 'language', 'class' => 'language']) }}
 			</div>
 
 			<div class="form-group">

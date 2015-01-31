@@ -52,6 +52,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      * @var array
      */
     protected $hidden = array('password', 'remember_token');
+
+    /**
+     * The attributes dates
+     * @var array
+     */
+    protected $dates = ['dob'];
     
     /**
      * Passwords must always be hashed.
@@ -116,6 +122,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      * @param $password
      */
     public function setDobAttribute($dob) {
+        // TODO:: carbon format set to senttings
         $this->attributes['dob'] = Carbon::createFromFormat('d/m/Y', $dob);
     }
 

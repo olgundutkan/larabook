@@ -19,6 +19,10 @@
                     @foreach ($user->followers as $follower)
                         @include ('users.partials.avatar', ['size' => 25, 'user' => $follower])
                     @endforeach
+
+                    @if ($user->is($currentUser))
+                        <a href="{{ route('profile_path.edit', $user->username) }}" class="btn btn-default">Edit</a>
+                    @endif
                 </div>
             </div>
         </div>
