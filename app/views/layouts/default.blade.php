@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Larabook</title>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/main.min.css') }}">
 	@yield('stylesheet')
 </head>
 <body>
@@ -21,10 +19,8 @@
 	@yield('content')
 </div>
 
-<script src="https://code.jquery.com/jquery.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="{{ asset('js/jquery-ui.js') }}"></script>
+<script src="{{ asset('js/main.min.js') }}"></script>
 @yield('script')
 <script type="text/javascript">
 	$('#flash-overlay-modal').modal();

@@ -152,6 +152,8 @@ class GroupsController extends \BaseController
         $user->groups()->attach([$group->id]);
 
         $user->save();
+
+        Flash::success('Join the group.');
         
         return Redirect::route('groups.index');
     }
@@ -165,6 +167,8 @@ class GroupsController extends \BaseController
         $user->groups()->detach([$group->id]);
 
         $user->save();
+
+        Flash::success('Quit the group.');
         
         return Redirect::route('groups.index');
     }

@@ -10,3 +10,8 @@ Thumbs.db
 !.env.sample.php
 node_modules
 tests/_output/*
+
+/public/css
+/public/js
+/public/fonts
+/public/img
