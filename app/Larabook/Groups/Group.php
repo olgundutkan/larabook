@@ -26,7 +26,7 @@ class Group extends \Eloquent
     /**
      * A status belongs to a user.
      */
-    public function user() {
-        return $this->belongsToMany('Larabook\Users\User', 'group_users');
+    public function users() {
+        return $this->belongsToMany('Larabook\Users\User', 'groups_users')->withPivot('is_owner');
     }
 }

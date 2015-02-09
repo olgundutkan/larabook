@@ -23,7 +23,7 @@ use Laracasts\Presenter\PresentableTrait;
 class User extends Eloquent implements UserInterface, RemindableInterface
 {
     
-    use UserTrait, RemindableTrait, EventGenerator, PresentableTrait, FollowableTrait;
+    use UserTrait, RemindableTrait, EventGenerator, PresentableTrait, FollowableTrait, GroupableTrait;
     
     /**
      * Which fields may be mass assigned?
@@ -138,5 +138,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public function setRolesAttribute($roles)
     {
         $this->roles()->sync((array) $roles);
+    }
+
+    /**
+     * A user belongs to many group
+     * @return mixed 
+     */
+    public function groups()
+    {
+        return $this->belongsToMany('Larabook\Groups\Group', 'groups_users')->withPivot('is_owner');
+    }
+
+    public function setGroupsAttribute($groups)
+    {
+        $this->groups()->sync((array) $groups);
     }
 }

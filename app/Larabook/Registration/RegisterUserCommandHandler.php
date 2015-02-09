@@ -43,7 +43,7 @@ class RegisterUserCommandHandler implements CommandHandler
         // TODO:: refactoring
         $userRole = Role::where('name', 'User')->firstOrFail();
 
-        $this->repository->setUserGroup($userRole->id, $user);
+        $this->repository->setUserRole($userRole->id, $user);
         
         $this->dispatchEventsFor($user);
         

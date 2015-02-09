@@ -35,6 +35,13 @@ Route::get('@{username}/edit', ['as' => 'profile_path.edit', 'uses' => 'UsersCon
 Route::put('@{username}/edit', ['as' => 'profile_path.update', 'uses' => 'UsersController@update']);
 
 /**
+ * Groups
+ */
+Route::resource('groups', 'GroupsController');
+Route::post('groups/{id}/join', ['as' => 'join_the_group_path', 'uses' => 'GroupsController@joinTheGroup']);
+Route::post('groups/{id}/quit', ['as' => 'quit_the_group_path', 'uses' => 'GroupsController@quitTheGroup']);
+
+/**
  * Follows
  */
 Route::post('follows', ['as' => 'follows_path', 'uses' => 'FollowsController@store']);

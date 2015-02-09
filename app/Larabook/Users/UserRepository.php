@@ -78,11 +78,11 @@ class UserRepository
     }
 
     /**
-     * Add User group a larabook user
-     * @param integer $groupId 
+     * Add User role a larabook user
+     * @param integer $roleId 
      * @param User   $user    
      */
-    public function setUserGroup($groupId, User $user) {
-        return $user->roles = $groupId;
+    public function setUserRole($roleId, User $user) {
+        return $user->roles = $roleId;
     }
 }
