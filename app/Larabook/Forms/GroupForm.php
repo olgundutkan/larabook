@@ -35,4 +35,14 @@ class GroupForm extends FormValidator
     	return $this->validate($input);
 	}
 
+	public function validForPostStatus(array $input)
+	{
+		$post_status_rules = [
+	        'body'		=> 'required'
+	    ];
+
+		$this->rules = $post_status_rules;
+    	return $this->validate($input);
+	}
+
 }

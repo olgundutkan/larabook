@@ -2,6 +2,8 @@
 
 use Larabook\Groups\Group;
 
+use Larabook\Statuses\Status;
+
 use Larabook\Forms\GroupForm;
 
 class GroupsController extends \BaseController
@@ -76,9 +78,11 @@ class GroupsController extends \BaseController
      * @param  int  $id
      * @return Response
      */
-    public function show($id) {
+    public function show($slug) {
         
-        //
+        $group = Group::whereSlug($slug)->firstOrFail();
+
+        return View::make('groups.show', compact('group'));
         
     }
     
@@ -173,5 +177,35 @@ class GroupsController extends \BaseController
         Flash::success('Quit the group.');
         
         return Redirect::route('groups.index');
+    }
+
+    public function postStatus($id)
+    {
+        $this->groupForm->validForPostStatus($input = Input::only('body'));
+
+        $group = Group::findOrFail($id);
+
+        $user = Auth::user();
+
+        if (!$user->inGroup($group->id)) {
+            
+            Flash::error('Not included in this group.');
+
+            return Redirect::back();
+        }
+
+        $status = new Status;
+
+        $status->group_id = $group->id;
+
+        $status->user_id = $user->id;
+
+        $status->body = $input['body'];
+
+        $status->save();
+
+        Flash::success('Your status has been updated.');
+        
+        return Redirect::route('groups.show', $group->slug);
     }
 }

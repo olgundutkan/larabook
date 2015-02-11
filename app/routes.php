@@ -40,6 +40,7 @@ Route::put('@{username}/edit', ['as' => 'profile_path.update', 'uses' => 'UsersC
 Route::resource('groups', 'GroupsController');
 Route::post('groups/{id}/join', ['as' => 'join_the_group_path', 'uses' => 'GroupsController@joinTheGroup']);
 Route::post('groups/{id}/quit', ['as' => 'quit_the_group_path', 'uses' => 'GroupsController@quitTheGroup']);
+Route::post('groups/{id}/statuses', ['as' => 'group_statuses_path', 'uses' => 'GroupsController@postStatus']);
 
 /**
  * Follows

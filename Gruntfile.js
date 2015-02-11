@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                       './vendor/bower_components/font-awesome/css/font-awesome.css', 
                       './vendor/bower_components/bootstrap-timepicker/css/bootstrap-timepicker.css',
                       './vendor/bower_components/bootstrap-datepicker/css/datepicker.css',
-                      './app/assets/sass/main.scss',
+                      './app/assets/css/main.css',
                       ],
                 dest: './public/css/main.css'
             },

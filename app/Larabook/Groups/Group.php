@@ -29,4 +29,13 @@ class Group extends \Eloquent
     public function users() {
         return $this->belongsToMany('Larabook\Users\User', 'groups_users')->withPivot('is_owner');
     }
+
+    /**
+     * A group has many statuses.
+     *
+     * @return mixed
+     */
+    public function statuses() {
+        return $this->hasMany('Larabook\Statuses\Status')->latest();
+    }
 }

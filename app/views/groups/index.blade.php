@@ -15,7 +15,7 @@
             <tbody>
                 @forelse($groups as $group)
                     <tr>
-                        <td>{{ e($group->name) }}</td>
+                        <td>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }}</td>
                         <td>{{ e($group->created_at) }}</td>
                         <td>{{ e($group->updated_at) }}</td>
                         <td>

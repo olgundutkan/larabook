@@ -33,6 +33,13 @@ class Status extends \Eloquent
     public function user() {
         return $this->belongsTo('Larabook\Users\User');
     }
+
+    /**
+     * A status belongs to a group.
+     */
+    public function group() {
+        return $this->belongsTo('Larabook\Groups\Group');
+    }
     
     /**
      * Publish a new status.
