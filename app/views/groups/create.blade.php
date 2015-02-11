@@ -16,6 +16,10 @@
 				{{ Form::label('name', 'Group Name:', ['for' => 'name']) }}
 				{{ Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) }}
 			</div>
+			<div class="form-group">
+				{{ Form::label('slug', 'Slug:', ['for' => 'slug']) }}
+				{{ Form::text('slug', null, ['id' => 'slug', 'class' => 'form-control']) }}
+			</div>
 
 			<div class="form-group">
 				{{ Form::submit('Create Group!', ['class' => 'btn btn-primary']) }}
@@ -26,4 +30,11 @@
 @stop
 
 @section('script')
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        $("#name").slugger({
+            slugInput: $("#slug")
+        });
+    });
+</script>
 @stop

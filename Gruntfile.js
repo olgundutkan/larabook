@@ -13,6 +13,7 @@ module.exports = function(grunt) {
                       './vendor/bower_components/jquery-ui/jquery-ui.js',                      
                       './vendor/bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js', 
                       './vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
+                      './app/assets/js/jquery.slugger.js',
                       './vendor/bower_components/jquery-ujs/src/rails.js', 
                       ],
                 dest: './public/js/main.js'

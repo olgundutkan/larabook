@@ -12,8 +12,27 @@ class GroupForm extends FormValidator
      *
      * @var array
      */
-    protected $rules = [
-        'name' 	=> 'required',
-    ];
+    protected $rules = [];
+
+    public function validForCreate(array $input)
+	{
+		$create_rules = [
+	        'name'		=> 'required',
+	        'slug'		=> 'required|unique:groups',
+	    ];
+		$this->rules = $create_rules;
+    	return $this->validate($input);
+	}
+
+	public function validForUpdate($id, array $input)
+	{
+		$update_rules = [
+	        'name'		=> 'required',
+	        'slug'		=> 'required|unique:groups,slug,'.$id,
+	    ];
+
+		$this->rules = $update_rules;
+    	return $this->validate($input);
+	}
 
 }

@@ -14,7 +14,7 @@ class Group extends \Eloquent
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'slug'];
     
     /**
      * Path to the presenter for a status.

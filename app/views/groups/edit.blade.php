@@ -18,6 +18,11 @@
 			</div>
 
 			<div class="form-group">
+				{{ Form::label('slug', 'Slug:', ['for' => 'slug']) }}
+				{{ Form::text('slug', $group->slug, ['id' => 'slug', 'class' => 'form-control']) }}
+			</div>
+
+			<div class="form-group">
 				{{ Form::submit('Update Group!', ['class' => 'btn btn-primary']) }}
 			</div>
 		{{ Form::close() }}
@@ -26,4 +31,11 @@
 @stop
 
 @section('script')
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        $("#name").slugger({
+            slugInput: $("#slug")
+        });
+    });
+</script>
 @stop

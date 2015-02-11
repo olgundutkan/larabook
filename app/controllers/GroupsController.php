@@ -53,11 +53,12 @@ class GroupsController extends \BaseController
      */
     public function store() {
         
-        $this->groupForm->validate($input = Input::only('name'));
+        $this->groupForm->validForCreate($input = Input::only('name', 'slug'));
         
         $group = new Group;
 
         $group->name = $input['name'];
+        $group->slug = $input['slug'];
 
         $group->save();
 
@@ -103,11 +104,12 @@ class GroupsController extends \BaseController
      */
     public function update($id) {
         
-        $this->groupForm->validate($input = Input::only('name'));
+        $this->groupForm->validForUpdate($id, $input = Input::only('name', 'slug'));
 
         $group = Group::findOrFail($id);
 
         $group->name = $input['name'];
+        $group->slug = $input['slug'];
 
         $group->save();
 
