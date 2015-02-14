@@ -22,7 +22,7 @@ class GroupsController extends \BaseController
     function __construct(GroupForm $groupForm) {
         $this->groupForm = $groupForm;
         
-        //$this->beforeFilter('guest');
+        $this->beforeFilter('auth');
     }
     
     /**

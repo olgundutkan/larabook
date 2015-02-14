@@ -27,9 +27,14 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>{{ link_to_route('profile_path', 'Your Profile', e($currentUser->username)) }}</li>
+							@if($currentUser->hasRole('Admin'))
 							<li class="divider"></li>
 							<li>{{ link_to_route('groups.create', 'Create Group') }}</li>
 							<li>{{ link_to_route('groups.index', 'Manage Groups') }}</li>
+							<li class="divider"></li>
+							<li>{{ link_to_route('manage.users.create', 'Add User') }}</li>
+							<li>{{ link_to_route('manage.users.index', 'Manage Users') }}</li>
+							@endif
 							<li class="divider"></li>
 							<li>{{ link_to_route('logout_path', 'Log out') }}</li>
 						</ul>
