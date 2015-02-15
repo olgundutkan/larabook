@@ -18,6 +18,6 @@ class UserMailer extends Mailer
         
         $data = ['activation_code' => $user->activation_code];
         
-        return $this->sendTo($user, $subject, $view, $data);
+        return $this->sendTo($user->email, $subject, $view, $data);
     }
 }

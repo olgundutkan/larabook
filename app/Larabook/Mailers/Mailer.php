@@ -28,10 +28,10 @@ abstract class Mailer
      * @param   $data
      *
      */
-    public function sendTo($user, $subject, $view, $data = []) {
+    public function sendTo($emails, $subject, $view, $data = []) {
         
-        $this->mail->queue($view, $data, function ($message) use ($user, $subject) {
-            $message->to($user->email)->subject($subject);
+        $this->mail->queue($view, $data, function ($message) use ($emails, $subject) {
+            $message->to($emails)->subject($subject);
         });
     }
 }
