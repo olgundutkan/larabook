@@ -82,7 +82,7 @@
 
 			<div class="form-group">
 				{{ Form::label('language', 'Language:', ['for' => 'language']) }}
-				{{ Form::select('language', ['1' => 'English', '2' => 'Turkish'], null, ['id' => 'language', 'class' => 'language']) }}
+				{{ Form::select('language', ['1' => 'English', '2' => 'Turkish'], 1, ['id' => 'language', 'class' => 'language']) }}
 			</div>
 
 			<div class="form-group">

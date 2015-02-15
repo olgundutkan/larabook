@@ -2,7 +2,7 @@
 
 namespace Larabook\Mailers;
 
-use Mail;
+use Illuminate\Mail\Mailer as Mail;
 
 abstract class Mailer
 {
@@ -30,7 +30,7 @@ abstract class Mailer
      */
     public function sendTo($user, $subject, $view, $data = []) {
         
-        Mail::queue($view, $data, function ($message) use ($user, $subject) {
+        $this->mail->queue($view, $data, function ($message) use ($user, $subject) {
             $message->to($user->email)->subject($subject);
         });
     }
