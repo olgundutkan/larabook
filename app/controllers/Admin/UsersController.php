@@ -45,7 +45,7 @@ class UsersController extends BaseController
      * @param UserForm       $userForm
      * @param RegistrationForm $registrationForm
      */
-    function __construct(UserRepository $userRepository, UserForm $userForm, RoleRepository $roleRepository, RegistrationForm $registrationForm) {
+    public function __construct(UserRepository $userRepository, UserForm $userForm, RoleRepository $roleRepository, RegistrationForm $registrationForm) {
         parent::__construct();
 
         $this->userRepository = $userRepository;

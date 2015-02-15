@@ -1,25 +1,25 @@
 <?php
 
-namespace Larabook\Roles;
+namespace Larabook\Locations;
 
 use Laracasts\Commander\CommandHandler;
 
 use Laracasts\Commander\Events\DispatchableTrait;
 
-class RoleCommandHandler implements CommandHandler
+class LocationCommandHandler implements CommandHandler
 {
     
     use DispatchableTrait;
     
     /**
-     * @var RoleRepository
+     * @var LocationRepository
      */
     protected $repository;
     
     /**
-     * @param RoleRepository $repository
+     * @param LocationRepository $repository
      */
-    function __construct(RoleRepository $repository) {
+    function __construct(LocationRepository $repository) {
         $this->repository = $repository;
     }
     
@@ -30,12 +30,12 @@ class RoleCommandHandler implements CommandHandler
      * @return mixed
      */
     public function handle($command) {
-        if (isset($command->id)) {
+        if (isset($command->id)) {            
             $role = $this->repository->findById($command->id);
             $role->name = $command->name;
-            $role->description = $command->description;            
+            $role->parent_id = $command->parent_id;
         } else {
-            $role = Role::register($command->name, $command->description);
+            $role = Location::register($command->name, $command->parent_id);
         }        
         
         $this->repository->save($role);

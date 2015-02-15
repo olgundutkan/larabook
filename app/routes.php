@@ -65,6 +65,8 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Controllers\Admin', 'before'
 	Route::resource('users', 'UsersController');
 	// Roles
 	Route::resource('roles', 'RolesController', ['except' => 'show']);
+	// Users
+	Route::resource('locations', 'LocationsController', ['except' => 'create']);
 	// Settings
 	Route::resource('settings', 'SettingsController',['only' =>['index', 'edit', 'update']]);
 

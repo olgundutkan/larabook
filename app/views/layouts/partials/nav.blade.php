@@ -37,6 +37,8 @@
 							<li class="divider"></li>
 							<li>{{ link_to_route('manage.users.create', 'Add User') }}</li>
 							<li>{{ link_to_route('manage.users.index', 'Manage Users') }}</li>
+							<li class="divider"></li>
+							<li>{{ link_to_route('manage.locations.index', 'Locations') }}</li>
 							@endif
 							<li class="divider"></li>
 							<li>{{ link_to_route('logout_path', 'Log out') }}</li>

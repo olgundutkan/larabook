@@ -2,24 +2,48 @@
 
 namespace Larabook\Locations;
 
-use Laracasts\Presenter\PresentableTrait;
-
 class Location extends \Eloquent
 {
     
-    use PresentableTrait;
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'locations';
     
     /**
      * Fillable fields for a new status.
      *
      * @var array
      */
-    protected $fillable = ['locations'];
+    protected $fillable = ['name', 'parent_id'];
     
     /**
-     * Path to the presenter for a status.
+     * Register a new location
      *
-     * @var string
+     * @param $name
+     * @param $parent_id
+     * @return Role
      */
-    protected $presenter = 'Larabook\Locations\LocationPresenter';
+    public static function register($name, $parent_id) {
+        $location = new static (compact('name', 'parent_id'));
+        return $location;
+    }
+
+    /**
+     * A location has one parent
+     * @return mixed 
+     */
+    public function parent() {
+        return $this->hasOne('Larabook\Locations\Location', 'id', 'parent_id');
+    }
+
+    /**
+     * A location has many children
+     * @return mixed 
+     */
+    public function children() {
+        return $this->hasMany('Larabook\Locations\Location', 'parent_id', 'id');
+    }
 }
