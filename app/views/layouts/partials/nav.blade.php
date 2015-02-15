@@ -32,6 +32,9 @@
 							<li>{{ link_to_route('groups.create', 'Create Group') }}</li>
 							<li>{{ link_to_route('groups.index', 'Manage Groups') }}</li>
 							<li class="divider"></li>
+							<li>{{ link_to_route('manage.roles.create', 'Create Role') }}</li>
+							<li>{{ link_to_route('manage.roles.index', 'Manage Role') }}</li>
+							<li class="divider"></li>
 							<li>{{ link_to_route('manage.users.create', 'Add User') }}</li>
 							<li>{{ link_to_route('manage.users.index', 'Manage Users') }}</li>
 							@endif

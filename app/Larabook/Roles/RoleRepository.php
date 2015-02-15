@@ -12,26 +12,26 @@ class RoleRepository
      * @return mixed
      */
     public function save(Role $role) {
-        $user->save();
+        $role->save();
     }
     
     /**
-     * Get a array list of all roles.
+     * Get all roles.
      *
      * @param int $howMany
      * @return mixed
      */
-    public function getToArrayList() {
-        return Role::lists('name', 'id');
+    public function getAll() {
+        return Role::all();
     }
 
     /**
-     * Find a user by their id.
+     * Find a role by their id.
      *
      * @param $id
      * @return mixed
      */
     public function findById($id) {
-        return User::findOrFail($id);
+        return Role::findOrFail($id);
     }
 }
