@@ -44,6 +44,6 @@ class UserPresenter extends Presenter
      */
     public function birthday()
     {
-        return $this->dob->format('d/m/Y');
+        return is_null($this->dob) ? null : $this->dob->format('d/m/Y');
     }
 }

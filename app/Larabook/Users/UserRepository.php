@@ -85,4 +85,14 @@ class UserRepository
     public function setUserRole($roleId, User $user) {
         return $user->roles = $roleId;
     }
+
+    /**
+     * Destroy a user
+     *
+     * @param User $user
+     * @return mixed
+     */
+    public function delete(User $user) {
+        $user->delete();
+    }
 }
