@@ -2,7 +2,7 @@
 
 namespace Larabook\Mailers;
 
-use Illuminate\Mail\Mailer as Mail;
+use Mail;
 
 abstract class Mailer
 {
