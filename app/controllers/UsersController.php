@@ -65,7 +65,7 @@ class UsersController extends \BaseController
         $user = $this->userRepository->findByUsername($username);
 
         if ($user->username !== Auth::user()->username) {
-            throw new UserAuthenticationException("User Not Found!", 1);            
+            throw new UserAuthenticationException("User Not Found!", 1);
         }
         // TODO : refactoring  and must be modified
         $countries = Location::where('parent_id', 0)->lists('name', 'id');

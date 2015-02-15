@@ -1,8 +1,12 @@
 <?php
 
+namespace Controllers\Admin;
+
 use Laracasts\Commander\CommanderTrait;
 
-class BaseController extends Controller
+use Theme, View, Auth;
+
+class BaseController extends \Controller
 {
     use CommanderTrait;
 

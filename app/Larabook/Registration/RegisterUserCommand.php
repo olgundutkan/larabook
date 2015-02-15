@@ -19,7 +19,7 @@ class RegisterUserCommand
     public $is_commercial;
     public $language_id;
     
-    function __construct($username, $email, $password, $first_name, $last_name, $gender, $dob, $country, $state, $city, $school_department, $is_commercial, $language) {
+    function __construct($username, $email, $password, $first_name, $last_name, $gender, $dob, $country, $state, $city, $school_department, $language, $is_commercial = false) {
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;

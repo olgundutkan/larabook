@@ -57,3 +57,18 @@ Route::controller('password', 'RemindersController');
  * Get Activate
  */
 Route::get('activate/{activationCode}',['as' => 'activation_path', 'uses' => 'UsersController@getActivate']);
+
+// Admin routes
+Route::group(['prefix' => 'manage', 'namespace' => 'Controllers\Admin', 'before' => 'hasRole:Admin'], function()
+{
+	// Users
+	Route::resource('users', 'UsersController');
+	// Roles
+	Route::resource('roles', 'RolesController', ['except' => 'show']);
+	// Users
+	Route::resource('locations', 'LocationsController', ['except' => 'create']);
+	// Settings
+	Route::resource('settings', 'SettingsController',['only' =>['index', 'edit', 'update']]);
+
+	Route::resource('pages', 'PagesController');
+});

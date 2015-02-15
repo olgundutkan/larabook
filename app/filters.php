@@ -83,8 +83,22 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
-	if (Session::token() != Input::get('_token'))
+	if (Session::token() !== Input::get('_token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+/*
+|--------------------------------------------------------------------------
+| Role Based Access Filter
+|--------------------------------------------------------------------------
+|
+*/
+Route::filter('hasRole', function($route, $request, $parameters) {
+    $allowedRoles = explode(',', $parameters);
+    if (Auth::check() && Auth::user()->hasRoles($allowedRoles)) {
+        return;
+    }
+    return Redirect::home();
 });

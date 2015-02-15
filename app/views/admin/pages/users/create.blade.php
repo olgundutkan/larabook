@@ -7,11 +7,11 @@
 @section('content')
 <div class="row">
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-		<h1>Register!</h1>
+		<h1>Add New User</h1>
 
 		@include('layouts.partials.errors')
 
-		{{ Form::open(['route' => 'register_path', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
+		{{ Form::open(['route' => 'manage.users.store', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
 			
 			<div class="form-group">
 				{{ Form::label('username', 'Username:', ['for' => 'username']) }}

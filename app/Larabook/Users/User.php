@@ -23,7 +23,7 @@ use Laracasts\Presenter\PresentableTrait;
 class User extends Eloquent implements UserInterface, RemindableInterface
 {
     
-    use UserTrait, RemindableTrait, EventGenerator, PresentableTrait, FollowableTrait, GroupableTrait;
+    use UserTrait, RemindableTrait, EventGenerator, PresentableTrait, FollowableTrait, GroupableTrait, RoleTrait;
     
     /**
      * Which fields may be mass assigned?
@@ -124,20 +124,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     public function setDobAttribute($dob) {
         // TODO:: carbon format set to senttings
         $this->attributes['dob'] = Carbon::createFromFormat('d/m/Y', $dob);
-    }
-
-    /**
-     * A user belongs to many roles
-     * @return mixed 
-     */
-    public function roles()
-    {
-        return $this->belongsToMany('Larabook\Roles\Role', 'roles_users');
-    }
-
-    public function setRolesAttribute($roles)
-    {
-        $this->roles()->sync((array) $roles);
     }
 
     /**
