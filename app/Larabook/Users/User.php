@@ -119,11 +119,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     /**
      * Date Of Birth must always be date format.
      *
-     * @param $password
+     * @param $dob
      */
     public function setDobAttribute($dob) {
         // TODO:: carbon format set to senttings
         $this->attributes['dob'] = Carbon::createFromFormat('d/m/Y', $dob);
+    }
+
+    /**
+     * Date Of Birth must always be date format.
+     *
+     * @param $dob
+     */
+    public function getDobAttribute() {
+        // TODO:: carbon format set to senttings
+        return is_null($this->dob) ? null : $this->dob->format('d/m/Y');
     }
 
     /**
