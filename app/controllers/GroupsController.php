@@ -206,6 +206,6 @@ class GroupsController extends \BaseController
 
         Flash::success('Your status has been updated.');
         
-        return Redirect::route('groups.show', $group->slug);
+        return Redirect::back();
     }
 }

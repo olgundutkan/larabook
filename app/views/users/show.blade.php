@@ -32,10 +32,6 @@
                 @include ('users.partials.follow-form')
             @endif
 
-            @if ($user->is($currentUser))
-                @include ('statuses.partials.publish-status-form')
-            @endif
-
             @include ('statuses.partials.statuses', ['statuses' => $user->statuses])
         </div>
     </div>

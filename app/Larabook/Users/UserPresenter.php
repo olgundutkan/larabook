@@ -23,8 +23,8 @@ class UserPresenter extends Presenter
      * @return string
      */
     public function followerCount() {
-        $count = $this->entity->followers()->count();
-        $plural = str_plural('Follower', $count);
+        $count = $this->entity->followers()->count() + $this->entity->followedUsers()->count();
+        $plural = str_plural('Mate', $count);
         
         return "{$count} {$plural}";
     }
@@ -34,7 +34,7 @@ class UserPresenter extends Presenter
      */
     public function statusCount() {
         $count = $this->entity->statuses()->count();
-        $plural = str_plural('Status', $count);
+        $plural = str_plural('Post', $count);
         
         return "{$count} {$plural}";
     }

@@ -8,7 +8,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="{{ Auth::check() ? route('statuses_path') : route('home') }}">Larabook</a>
+			<a class="navbar-brand" href="{{ Auth::check() ? route('dashboard_path') : route('home') }}">Larabook</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -35,7 +35,6 @@
 							<li>{{ link_to_route('manage.roles.create', 'Create Role') }}</li>
 							<li>{{ link_to_route('manage.roles.index', 'Manage Role') }}</li>
 							<li class="divider"></li>
-							<li>{{ link_to_route('manage.users.create', 'Add User') }}</li>
 							<li>{{ link_to_route('manage.users.index', 'Manage Users') }}</li>
 							<li class="divider"></li>
 							<li>{{ link_to_route('manage.locations.index', 'Locations') }}</li>
