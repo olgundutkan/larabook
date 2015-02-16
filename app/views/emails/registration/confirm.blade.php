@@ -17,7 +17,7 @@
 			<div class="col-sm-12">
 				<h1>Welcome To Social Network</h1>
 				{{-- // TODO: translation --}}
-				{{ link_to_route('activation_path', 'Activation', [$activation_code], ['class' => 'btn btn-primary']) }}
+				<a class="btn btn-primary" href="{{ URL::route('activation_path', $activation_code) }}">Activation</a>
 			</div>
 		</div>
 	</div>
