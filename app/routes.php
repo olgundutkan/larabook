@@ -3,6 +3,11 @@
 Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
 /**
+ * Dashboard
+ */
+Route::get('dashboard', ['as' => 'dashboard_path', 'uses' => 'DashboardController@index']);
+
+/**
 * Register
 */
 Route::get('register', ['as' => 'register_path', 'uses' => 'RegistrationController@create']);

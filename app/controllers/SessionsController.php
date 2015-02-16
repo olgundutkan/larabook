@@ -41,7 +41,7 @@ class SessionsController extends \BaseController
         
         Flash::message('Welcome back!');
         
-        return Redirect::intended('statuses');
+        return Redirect::intended('dashboard');
     }
     
     /**
