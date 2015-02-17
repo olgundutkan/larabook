@@ -119,11 +119,11 @@
 
 			if (privacy) {
 				$("input[name="+input+"]").val(true);
-				$(this).text('not be seen');
+				$(this).text('be seen');
 				$(this).data('privacy', false);
 			} else {				
 				$("input[name="+input+"]").val(false);
-				$(this).text('be seen');
+				$(this).text('not be seen');
 				$(this).data('privacy', true);
 			}
 	    });
