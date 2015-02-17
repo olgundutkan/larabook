@@ -1,7 +1,6 @@
 @extends('layouts.default')
 
 @section('stylesheet')
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/datepicker.css') }}">
 @stop
 
 @section('content')
@@ -94,7 +93,6 @@
 @stop
 
 @section('script')
-	<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 	<script>
 		$(function() {
 			$( "#dob" ).datepicker({

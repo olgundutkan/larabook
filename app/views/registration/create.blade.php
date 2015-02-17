@@ -1,7 +1,6 @@
 @extends('layouts.default')
 
 @section('stylesheet')
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/datepicker.css') }}">
 @stop
 
 @section('content')
@@ -16,11 +15,14 @@
 			<div class="form-group">
 				{{ Form::label('username', 'Username:', ['for' => 'username']) }}
 				{{ Form::text('username', null, ['id' => 'username', 'class' => 'form-control']) }}
+				<span class="help-block">Will be seen at Social Network</span>
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('email', 'Email:', ['for' => 'email']) }}
 				{{ Form::text('email', null, ['id' => 'email', 'class' => 'form-control']) }}
+				{{ Form::hidden('is_visible_email', false) }}
+				<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_email" data-privacy="true">not be seen</a> at Social Network</span>
 			</div>
 
 			<div class="form-group">
@@ -36,11 +38,15 @@
 			<div class="form-group">
 				{{ Form::label('first_name', 'First Name:', ['for' => 'first_name']) }}
 				{{ Form::text('first_name', null, ['id' => 'first_name', 'class' => 'form-control']) }}
+				{{ Form::hidden('is_visible_first_name', false) }}
+				<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_first_name" data-privacy="true">not be seen</a> at Social Network</span>
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('last_name', 'Last Name:', ['for' => 'last_name']) }}
 				{{ Form::text('last_name', null, ['id' => 'last_name', 'class' => 'form-control']) }}
+				{{ Form::hidden('is_visible_last_name', false) }}
+				<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_last_name" data-privacy="true">not be seen</a> at Social Network</span>
 			</div>
 
 			<div class="form-group">
@@ -48,11 +54,15 @@
 				{{ Form::radio('gender', 'not_specified', true) }} Not Specified
 				{{ Form::radio('gender', 'male', false) }} Male
 				{{ Form::radio('gender', 'female', false) }} Female
+				{{ Form::hidden('is_visible_gender', false) }}
+				<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_gender" data-privacy="true">not be seen</a> at Social Network</span>
 			</div>
 
 			<div class="form-group">
 				{{ Form::label('dob', 'Date of Birth:', ['for' => 'dob']) }}
 				{{ Form::text('dob', null, ['id' => 'dob', 'class' => 'form-control']) }}
+				{{ Form::hidden('is_visible_dob', false) }}
+				<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_dob" data-privacy="true">not be seen</a> at Social Network</span>
 			</div>
 
 			<div class="form-group">
@@ -94,12 +104,28 @@
 @stop
 
 @section('script')
-	<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
 	<script>
 		$(function() {
 			$( "#dob" ).datepicker({
 				format: 'dd/mm/yyyy'
 			});
 		});
+		$('.privacy').click(function() {
+	    	var input = $(this).data('input');
+			var privacy = $(this).data('privacy');
+			console.log(input);
+			console.log(privacy);
+
+
+			if (privacy) {
+				$("input[name="+input+"]").val(true);
+				$(this).text('not be seen');
+				$(this).data('privacy', false);
+			} else {				
+				$("input[name="+input+"]").val(false);
+				$(this).text('be seen');
+				$(this).data('privacy', true);
+			}
+	    });
 	</script>
 @stop
