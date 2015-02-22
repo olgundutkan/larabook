@@ -126,6 +126,7 @@ return array(
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 		'Larabook\Providers\EventServiceProvider',
+		'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider'
 	),
 
 	/*

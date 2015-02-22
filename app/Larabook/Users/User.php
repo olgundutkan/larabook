@@ -20,17 +20,21 @@ use Hash, \Carbon\Carbon;
 
 use Laracasts\Presenter\PresentableTrait;
 
-class User extends Eloquent implements UserInterface, RemindableInterface
+use Codesleeve\Stapler\ORM\StaplerableInterface;
+
+use Codesleeve\Stapler\ORM\EloquentTrait;
+
+class User extends Eloquent implements UserInterface, RemindableInterface, StaplerableInterface
 {
     
-    use UserTrait, RemindableTrait, EventGenerator, PresentableTrait, FollowableTrait, GroupableTrait, RoleTrait;
+    use UserTrait, RemindableTrait, EventGenerator, PresentableTrait, FollowableTrait, GroupableTrait, RoleTrait, EloquentTrait;
     
     /**
      * Which fields may be mass assigned?
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'first_name', 'last_name', 'gender', 'dob', 'country_id', 'state_id', 'city_id', 'school_department', 'is_commercial', 'language_id', 'activated', 'activation_code'];
+    protected $fillable = ['username', 'email', 'password', 'first_name', 'last_name', 'gender', 'dob', 'country_id', 'state_id', 'city_id', 'school_department', 'is_commercial', 'language_id', 'activated', 'activation_code', 'profile_picture'];
     
     /**
      * The database table used by the model.
@@ -58,6 +62,23 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      * @var array
      */
     protected $dates = ['dob'];
+
+    /**
+     * User profile photo update AWS S3 bucket
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = array()) {
+        // TODO:: add the Queue ?
+        $this->hasAttachedFile('profile_picture', [
+            'styles' => [
+                'medium' => '300x300',
+                'thumb' => '100x100'
+            ],
+            'storage' => 's3',
+        ]);
+
+        parent::__construct($attributes);
+    }
     
     /**
      * Passwords must always be hashed.
@@ -92,8 +113,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      * @param $password
      * @return User
      */
-    public static function register($username, $email, $password, $first_name, $last_name, $gender, $dob, $country_id, $state_id, $city_id, $school_department, $is_commercial, $language_id, $activated, $activation_code) {
-        $user = new static (compact('username', 'email', 'password', 'first_name', 'last_name', 'gender', 'dob', 'country_id', 'state_id', 'city_id', 'school_department', 'is_commercial', 'language_id', 'activated', 'activation_code'));
+    public static function register($username, $email, $password, $title, $first_name, $last_name, $gender, $dob, $country_id, $state_id, $city_id, $school_department, $groups, $language_id, $is_commercial, $profile_picture, $activated, $activation_code) {
+        $user = new static (compact('username', 'email', 'password', 'title', 'first_name', 'last_name', 'gender', 'dob', 'country_id', 'state_id', 'city_id', 'school_department', 'groups', 'language_id', 'is_commercial', 'profile_picture', 'activated', 'activation_code'));
 
         $user->raise(new UserHasRegistered($user));
         

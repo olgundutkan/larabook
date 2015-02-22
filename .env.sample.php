@@ -38,4 +38,12 @@ return array(
 	
 	'RECAPTCHA_SITE_KEY'	=> 'site',
 	'RECAPTCHA_SECRET_KEY'	=> 'secret',
+
+	/**
+	 * AWS S3
+	 */
+	'AWS_S3_KEY'    => 'key',
+	'AWS_S3_SECRET' => 'secret',
+	'AWS_S3_REGION' => 'region',
+	'AWS_S3_BUCKET' => 'bucket',
 );

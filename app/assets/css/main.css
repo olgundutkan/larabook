@@ -78,3 +78,8 @@ body {
 .user-block .media-object {
     margin: auto;
 }
+
+.req {
+    margin-left: 5px;
+    color: #DB6464;
+}

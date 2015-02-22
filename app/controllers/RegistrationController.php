@@ -45,6 +45,7 @@ class RegistrationController extends BaseController
      * @return string
      */
     public function store() {
+        
         $this->registrationForm->validForRegistration(Input::all());
         
         $user = $this->execute(RegisterUserCommand::class);

@@ -13,6 +13,7 @@ module.exports = function(grunt) {
                       './vendor/bower_components/jquery-ui/jquery-ui.js',                      
                       './vendor/bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js', 
                       './vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
+                      './vendor/bower_components/bootstrap-fileinput/js/fileinput.min.js',
                       './app/assets/js/jquery.slugger.js',
                       './vendor/bower_components/jquery-ujs/src/rails.js', 
                       ],
@@ -27,6 +28,7 @@ module.exports = function(grunt) {
                       './vendor/bower_components/font-awesome/css/font-awesome.css', 
                       './vendor/bower_components/bootstrap-timepicker/css/bootstrap-timepicker.css',
                       './vendor/bower_components/bootstrap-datepicker/css/datepicker.css',
+                      './vendor/bower_components/bootstrap-fileinput/css/fileinput.min.css',
                       './app/assets/css/main.css',
                       ],
                 dest: './public/css/main.css'

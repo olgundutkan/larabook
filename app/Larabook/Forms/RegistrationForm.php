@@ -19,18 +19,22 @@ class RegistrationForm extends FormValidator
     public function validForRegistration(array $input)
     {
         $registrationRules = [
-            'username'          => 'required|unique:users',
-            'email'             => 'required|email|unique:users',
-            'password'          => 'required|confirmed',
-            'first_name'        => 'required',
-            'last_name'         => 'required',
-            'gender'            => 'required',
-            'dob'               => 'required|date_format:d/m/Y',
-            'country'           => 'required|in:' . implode(',', Location::lists('id')), // TODO::
-            'state'             => 'required|in:' . implode(',', Location::lists('id')), // TODO::
-            'city'              => 'required|in:' . implode(',', Location::lists('id')), // TODO::
-            'school_department' => 'required',
-            'language'          => 'required|in:1,2', // TODO::
+            'username'             => 'required|regex:/^([a-zA-Z0-9-_.ğĞçÇşŞüÜöÖıİ ])+$/i|unique:users',
+            'email'                => 'required|email|unique:users',
+            'password'             => 'required|min:6|confirmed',
+            'title'                => 'regex:/^([a-zA-Z0-9.ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'first_name'           => 'required|regex:/^([a-zA-Z0-9ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'last_name'            => 'required|regex:/^([a-zA-Z0-9ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'gender'               => 'required|in:not_specified,male,female',
+            'dob'                  => 'required|date_format:d/m/Y', // TODO::
+            'country'              => 'required|in:' . implode(',', Location::lists('id')), // TODO::
+            'state'                => 'required|in:' . implode(',', Location::lists('id')), // TODO::
+            'city'                 => 'required|in:' . implode(',', Location::lists('id')), // TODO::
+            'school_department'    => 'required|regex:/^([a-zA-Z0-9-_.ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'language'             => 'required|in:1,2', // TODO::
+            'groups'               => '',
+            'profile_picture'      => 'mimes:jpeg,jpg,bmp,png', // TODO:: file size,
+            'terms_and_conditions' => 'accepted'
         ];
 
         $this->rules = $registrationRules;
