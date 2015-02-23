@@ -32894,7 +32894,13 @@ var tooltip = $.widget( "ui.tooltip", {
     }
   };
 
-}).call(this);;(function($, undefined) {
+}).call(this);;$(document).ready(function(e) {
+    $('.language .dropdown-menu').find('a').click(function(e) {
+        e.preventDefault();
+        var concept = $(this).data('original-title');
+        $('.language span#language-concept').text(concept);
+    });
+});;(function($, undefined) {
 
 /**
  * Unobtrusive scripting adapter for jQuery

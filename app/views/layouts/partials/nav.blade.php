@@ -8,7 +8,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="{{ Auth::check() ? route('dashboard_path') : route('home') }}">Larabook</a>
+			<a class="navbar-brand" href="{{ route('home') }}">Larabook</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -44,8 +44,18 @@
 						</ul>
 					</li>
 				@else
-					<li>{{ link_to_route('register_path', 'Register') }}</li>
-					<li>{{ link_to_route('login_path', 'Login') }}</li>
+					<li class="dropdown language">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							Language: <span id="language-concept"></span>
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li role="presentation"><a data-original-title="British English" role="menuitem" href="#" data-lang-code="en-gb" >English UK</a></li>
+							<li role="presentation"><a data-original-title="French" role="menuitem" href="#" data-lang-code="fr" >Français</a></li>
+							<li role="presentation"><a data-original-title="Portuguese" role="menuitem" href="#" data-lang-code="pt" >Português</a></li>
+							<li role="presentation"><a data-original-title="Türkçe" role="menuitem" href="#" data-lang-code="tr" >Türkçe</a></li>
+						</ul>
+					</li>
 				@endif
 			</ul>
 		</div><!-- /.navbar-collapse -->

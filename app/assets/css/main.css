@@ -83,3 +83,6 @@ body {
     margin-left: 5px;
     color: #DB6464;
 }
+.panel .panel-heading, .panel .panel-footer {
+ background-color:#ffffff;
+}

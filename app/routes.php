@@ -1,11 +1,16 @@
 <?php
 
-Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
+// TODO:: is it right?
+if (!Auth::check()) {
+	Route::get('/', ['as' => 'home', 'uses' => 'SessionsController@create']);
+} else {
 
 /**
  * Dashboard
  */
-Route::get('dashboard', ['as' => 'dashboard_path', 'uses' => 'DashboardController@index']);
+Route::get('/', ['as' => 'home', 'uses' => 'DashboardController@index']);
+
+}
 
 /**
 * Register

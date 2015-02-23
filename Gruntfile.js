@@ -15,6 +15,7 @@ module.exports = function(grunt) {
                       './vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
                       './vendor/bower_components/bootstrap-fileinput/js/fileinput.min.js',
                       './app/assets/js/jquery.slugger.js',
+                      './app/assets/js/main.js',
                       './vendor/bower_components/jquery-ujs/src/rails.js', 
                       ],
                 dest: './public/js/main.js'
