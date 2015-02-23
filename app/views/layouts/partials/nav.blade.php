@@ -12,11 +12,17 @@
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			@if(Auth::check())
-			<ul class="nav navbar-nav">
-				<li>{{ link_to_route('users_path', 'Browse Users') }}</li>
-			</ul>
-			@endif
+			<div class="col-sm-6 col-md-6">
+				<form class="navbar-form" role="search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search" name="q">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+						</div>
+					</div>
+				</form>
+			</div>
+
 			<ul class="nav navbar-nav navbar-right">
 				@if(isset($currentUser) && $currentUser)
 					<li class="dropdown">
@@ -57,6 +63,10 @@
 						</ul>
 					</li>
 				@endif
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>{{ link_to('about-us', 'About Us') }}</li>
+				<li>{{ link_to('terms-conditioins', 'Terms & Conditioins') }}</li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div>

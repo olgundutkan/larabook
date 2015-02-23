@@ -36,9 +36,20 @@ class RegisterUserCommandHandler implements CommandHandler
      */
     public function handle($command) {
         $user = User::register($command->username, $command->email, $command->password, $command->title, $command->first_name, $command->last_name, $command->gender, $command->dob, $command->country_id, $command->state_id, $command->city_id, $command->school_department, $command->groups, $command->language_id, $command->is_commercial, 
-        $command->profile_picture, $command->activated, $command->activation_code);
+        $command->profile_picture, $command->activated, $command->activation_code, $command->is_visible_email, $command->is_visible_title, $command->is_visible_first_name, $command->is_visible_last_name, $command->is_visible_gender, $command->is_visible_dob);
         
         $this->repository->save($user);
+
+        // TODO:: başka bir methoda taşı
+        $privacy = $user->privacy();
+
+        $privacy->email      = $command->is_visible_email;
+        $privacy->title      = $command->is_visible_title;
+        $privacy->first_name = $command->is_visible_first_name;
+        $privacy->last_name  = $command->is_visible_last_name;
+        $privacy->gender     = $command->is_visible_gender;
+        $privacy->dob        = $command->is_visible_dob;
+        $user->privacy()->save($privacy);
         
         // TODO:: refactoring
         $userRole = Role::where('name', 'User')->firstOrFail();

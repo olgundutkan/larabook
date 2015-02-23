@@ -1,9 +1,9 @@
-<article class="media status-media">
+<article class="media">
     <div class="pull-left">
         @include ('users.partials.avatar', ['user' => $status->user, 'class' => 'status-media-object'])
     </div>
 
-    <div class="media-body status-media-body">
+    <div class="media-body">
         <h4 class="media-heading status-media-heading">{{ link_to_route('profile_path', e($status->user->username), e($status->user->username)) }}</h4>
         <p><small class="status-media-time">{{ e($status->present()->timeSincePublished()) }}</small></p>
 
@@ -22,7 +22,7 @@
 @endif
 
 @unless ($status->comments->isEmpty())
-    <div class="comments">
+    <div class="comments-body">
         @foreach ($status->comments as $comment)
             @include ('statuses.partials.comment')
         @endforeach

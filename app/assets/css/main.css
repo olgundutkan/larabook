@@ -86,3 +86,7 @@ body {
 .panel .panel-heading, .panel .panel-footer {
  background-color:#ffffff;
 }
+
+.status-body, .comments-body{
+    border-bottom: 1px solid #ddd;
+}

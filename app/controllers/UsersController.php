@@ -92,6 +92,7 @@ class UsersController extends \BaseController
         
         $user->username          = $input['username'];
         $user->email             = $input['email'];
+        $user->title             = $input['title'];
         $user->first_name        = $input['first_name'];
         $user->last_name         = $input['last_name'];
         $user->gender            = $input['gender'];
@@ -102,6 +103,8 @@ class UsersController extends \BaseController
         $user->school_department = $input['school_department'];
         $user->is_commercial     = isset($input['is_commercial']) ? true : false;
         $user->language_id       = $input['language'];
+        $user->profile_picture   = Input::file('profile_picture');
+        $user->groups            = $input['groups'];
 
         $user->save();
 

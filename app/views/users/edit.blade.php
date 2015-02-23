@@ -107,12 +107,6 @@
 			{{ Form::label('groups', 'Choose Group:', ['for' => 'groups', 'class' => 'control-label']) }}
 			{{ Form::select('groups[]', ['1' => 'Group 1', '2' => 'Group 2', '3' => 'Group 3'], 1, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
 		</div>
-
-		<div class="form-group">
-			{{ Form::checkbox('terms_and_conditions', true, false, ['id' => 'terms-and-conditions', 'class' => 'control-label']) }}
-			<!-- Link trigger modal -->
-			I have read and agree to <a href="javascript:void(0);" data-toggle="modal" data-target="#terms-and-conditions-modal">terms and conditions</a>.
-		</div>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 		<div class="form-group">
@@ -126,27 +120,10 @@
 	<div class="clearfix"></div>
 	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<div class="form-group">
-			{{ Form::submit('Sign Up!', ['class' => 'btn btn-primary']) }}
+			{{ Form::submit('Update!', ['class' => 'btn btn-primary']) }}
 		</div>
 	</div>
 	{{ Form::close() }}
-</div>
-<!-- Modal -->
-<div class="modal fade" id="terms-and-conditions-modal" tabindex="-1" role="dialog" aria-labelledby="terms-and-conditions" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="terms-and-conditions">TERMS AND CONDITIONS</h4>
-			</div>
-			<div class="modal-body">
-				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
 </div>
 @stop
 

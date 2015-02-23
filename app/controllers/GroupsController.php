@@ -169,6 +169,8 @@ class GroupsController extends \BaseController
         $group = Group::findOrFail($id);
 
         $user = Auth::user();
+
+        // TODO:: kullanıcının gruptaki yorumları ve postları silinecek
         
         $user->groups()->detach([$group->id]);
 
