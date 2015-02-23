@@ -41,12 +41,12 @@ class RegisterUserCommandHandler implements CommandHandler
         $this->repository->save($user);
 
         // TODO:: başka bir methoda taşı
-        $user->privacy->email      = $command->is_visible_email;
-        $user->privacy->title      = $command->is_visible_title;
-        $user->privacy->first_name = $command->is_visible_first_name;
-        $user->privacy->last_name  = $command->is_visible_last_name;
-        $user->privacy->gender     = $command->is_visible_gender;
-        $user->privacy->dob        = $command->is_visible_dob;
+        $user->privacy->email      = $command->is_visible_email ? true : false;
+        $user->privacy->title      = $command->is_visible_title ? true : false;
+        $user->privacy->first_name = $command->is_visible_first_name ? true : false;
+        $user->privacy->last_name  = $command->is_visible_last_name ? true : false;
+        $user->privacy->gender     = $command->is_visible_gender ? true : false;
+        $user->privacy->dob        = $command->is_visible_dob ? true : false;
         $user->privacy->save();
         
         // TODO:: refactoring
