@@ -39,19 +39,6 @@ class RegisterUserCommandHandler implements CommandHandler
         $command->profile_picture, $command->activated, $command->activation_code, $command->is_visible_email, $command->is_visible_title, $command->is_visible_first_name, $command->is_visible_last_name, $command->is_visible_gender, $command->is_visible_dob);
         
         $this->repository->save($user);
-        echo '<pre>';
-        print_r ($command->is_visible_email ? true : 'false');
-echo '<pre>';
-        print_r ($command->is_visible_title ? true : 'false');
-echo '<pre>';
-        print_r ($command->is_visible_first_name ? true : 'false');
-echo '<pre>';
-        print_r ($command->is_visible_last_name ? true : 'false');
-echo '<pre>';
-        print_r ($command->is_visible_gender ? true : 'false');
-echo '<pre>';
-        print_r ($command->is_visible_dob ? true : 'false');
-        exit();
 
         // TODO:: başka bir methoda taşı
         $user->privacy->email      = $command->is_visible_email ? true : false;
