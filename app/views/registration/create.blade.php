@@ -173,9 +173,6 @@
 		$('.privacy').click(function() {
 	    	var input = $(this).data('input');
 			var privacy = $(this).data('privacy');
-			console.log(input);
-			console.log(privacy);
-
 
 			if (privacy) {
 				$("input[name="+input+"]").val(true);

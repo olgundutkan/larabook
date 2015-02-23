@@ -41,15 +41,13 @@ class RegisterUserCommandHandler implements CommandHandler
         $this->repository->save($user);
 
         // TODO:: başka bir methoda taşı
-        $privacy = $user->privacy();
-
-        $privacy->email      = $command->is_visible_email;
-        $privacy->title      = $command->is_visible_title;
-        $privacy->first_name = $command->is_visible_first_name;
-        $privacy->last_name  = $command->is_visible_last_name;
-        $privacy->gender     = $command->is_visible_gender;
-        $privacy->dob        = $command->is_visible_dob;
-        $user->privacy()->save($privacy);
+        $user->privacy->email      = $command->is_visible_email;
+        $user->privacy->title      = $command->is_visible_title;
+        $user->privacy->first_name = $command->is_visible_first_name;
+        $user->privacy->last_name  = $command->is_visible_last_name;
+        $user->privacy->gender     = $command->is_visible_gender;
+        $user->privacy->dob        = $command->is_visible_dob;
+        $user->privacy->save();
         
         // TODO:: refactoring
         $userRole = Role::where('name', 'User')->firstOrFail();

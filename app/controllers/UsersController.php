@@ -90,6 +90,7 @@ class UsersController extends \BaseController
         // TODO:: refactoring
         //$user = $this->execute(UserProfileUpdateCommand::class);
         
+        
         $user->username          = $input['username'];
         $user->email             = $input['email'];
         $user->title             = $input['title'];
@@ -107,6 +108,15 @@ class UsersController extends \BaseController
         $user->groups            = $input['groups'];
 
         $user->save();
+
+        // TODO:: başka bir methoda taşı
+        $user->privacy->email      = $input['is_visible_email'] ? true : false;
+        $user->privacy->title      = $input['is_visible_title'] ? true : false;
+        $user->privacy->first_name = $input['is_visible_first_name'] ? true : false;
+        $user->privacy->last_name  = $input['is_visible_last_name'] ? true : false;
+        $user->privacy->gender     = $input['is_visible_gender'] ? true : false;
+        $user->privacy->dob        = $input['is_visible_dob'] ? true : false;
+        $user->privacy->save();
 
         Flash::success('Your profile has been successfully updated!');
         
