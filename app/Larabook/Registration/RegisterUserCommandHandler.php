@@ -52,7 +52,6 @@ class RegisterUserCommandHandler implements CommandHandler
         $privacy->gender     = !empty($command->is_visible_gender) OR $command->is_visible_gender  ? true : false;
         $privacy->dob        = !empty($command->is_visible_dob) OR $command->is_visible_dob  ? true : false;
         
-        $user->privacy()->save($privacy);
         
         // TODO:: refactoring
         $userRole = Role::where('name', 'User')->firstOrFail();
