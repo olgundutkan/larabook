@@ -43,13 +43,16 @@ class RegisterUserCommandHandler implements CommandHandler
         //dd(empty($command->is_visible_email) OR $command->is_visible_email  ? true : false);
 
         // TODO:: başka bir methoda taşı
-        $user->privacy()->email      = !empty($command->is_visible_email) OR $command->is_visible_email  ? true : false;
-        $user->privacy()->title      = !empty($command->is_visible_title) OR $command->is_visible_title  ? true : false;
-        $user->privacy()->first_name = !empty($command->is_visible_first_name) OR $command->is_visible_first_name  ? true : false;
-        $user->privacy()->last_name  = !empty($command->is_visible_last_name) OR $command->is_visible_last_name  ? true : false;
-        $user->privacy()->gender     = !empty($command->is_visible_gender) OR $command->is_visible_gender  ? true : false;
-        $user->privacy()->dob        = !empty($command->is_visible_dob) OR $command->is_visible_dob  ? true : false;
-        $user->privacy()->save();
+        $privacy = $user->privacy();
+
+        $privacy->email      = !empty($command->is_visible_email) OR $command->is_visible_email  ? true : false;
+        $privacy->title      = !empty($command->is_visible_title) OR $command->is_visible_title  ? true : false;
+        $privacy->first_name = !empty($command->is_visible_first_name) OR $command->is_visible_first_name  ? true : false;
+        $privacy->last_name  = !empty($command->is_visible_last_name) OR $command->is_visible_last_name  ? true : false;
+        $privacy->gender     = !empty($command->is_visible_gender) OR $command->is_visible_gender  ? true : false;
+        $privacy->dob        = !empty($command->is_visible_dob) OR $command->is_visible_dob  ? true : false;
+        
+        $user->privacy()->save($privacy);
         
         // TODO:: refactoring
         $userRole = Role::where('name', 'User')->firstOrFail();
