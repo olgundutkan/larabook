@@ -51,6 +51,8 @@ class RegisterUserCommandHandler implements CommandHandler
         $privacy->last_name  = !empty($command->is_visible_last_name) OR $command->is_visible_last_name  ? true : false;
         $privacy->gender     = !empty($command->is_visible_gender) OR $command->is_visible_gender  ? true : false;
         $privacy->dob        = !empty($command->is_visible_dob) OR $command->is_visible_dob  ? true : false;
+
+        $privacy->save();
         
         
         // TODO:: refactoring
