@@ -102,7 +102,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
 
     public function privacy()
     {
-        return $this->belongsTo('Larabook\Privacies\Privacy', 'id', 'user_id');
+        return $this->hasOne('Larabook\Privacies\Privacy', 'user_id', 'id');
     }
     
     /**
