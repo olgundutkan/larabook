@@ -11,6 +11,8 @@ use Larabook\Roles\Role;
 
 use Laracasts\Commander\Events\DispatchableTrait;
 
+use Larabook\Privacies\Privacy;
+
 class RegisterUserCommandHandler implements CommandHandler
 {
     
@@ -43,8 +45,9 @@ class RegisterUserCommandHandler implements CommandHandler
         //dd(empty($command->is_visible_email) OR $command->is_visible_email  ? true : false);
 
         // TODO:: başka bir methoda taşı
-        $privacy = new $user->privacy();
+        $privacy = new Privacy;
 
+        $privacy->user_id   = $user->id;
         $privacy->email      = !empty($command->is_visible_email) OR $command->is_visible_email  ? true : false;
         $privacy->title      = !empty($command->is_visible_title) OR $command->is_visible_title  ? true : false;
         $privacy->first_name = !empty($command->is_visible_first_name) OR $command->is_visible_first_name  ? true : false;
