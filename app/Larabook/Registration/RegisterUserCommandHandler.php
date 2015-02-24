@@ -43,7 +43,7 @@ class RegisterUserCommandHandler implements CommandHandler
         //dd(empty($command->is_visible_email) OR $command->is_visible_email  ? true : false);
 
         // TODO:: başka bir methoda taşı
-        $privacy = $user->privacy();
+        $privacy = $user->privacy;
 
         $privacy->email      = !empty($command->is_visible_email) OR $command->is_visible_email  ? true : false;
         $privacy->title      = !empty($command->is_visible_title) OR $command->is_visible_title  ? true : false;
