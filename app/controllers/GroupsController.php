@@ -161,7 +161,7 @@ class GroupsController extends \BaseController
 
         Flash::success('Join the group.');
         
-        return Redirect::route('groups.index');
+        return Redirect::route('home');
     }
 
     public function quitTheGroup($id)
@@ -178,7 +178,7 @@ class GroupsController extends \BaseController
 
         Flash::success('Quit the group.');
         
-        return Redirect::route('groups.index');
+        return Redirect::route('home');
     }
 
     public function postStatus($id)
