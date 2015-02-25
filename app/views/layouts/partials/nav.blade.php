@@ -25,6 +25,8 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				@if(isset($currentUser) && $currentUser)
+					<li>{{ link_to_route('home', 'Main Page') }}</li>
+					<li>{{ link_to_route('profile_path', 'My Profile', e($currentUser->username)) }}</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<img class="nav-gravatar" src="{{ e($currentUser->present()->gravatar) }}" alt="{{ e($currentUser->username) }}">
@@ -50,6 +52,8 @@
 						</ul>
 					</li>
 				@else
+					<li>{{ link_to('about-us', 'About Us') }}</li>
+					<li>{{ link_to('terms-conditioins', 'Terms & Conditioins') }}</li>
 					<li class="dropdown language">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							Language: <span id="language-concept"></span>
@@ -63,10 +67,6 @@
 						</ul>
 					</li>
 				@endif
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li>{{ link_to('about-us', 'About Us') }}</li>
-				<li>{{ link_to('terms-conditioins', 'Terms & Conditioins') }}</li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div>

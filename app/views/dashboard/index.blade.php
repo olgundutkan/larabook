@@ -10,7 +10,7 @@
     <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>Groups!</h4>
+                Groups!
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -24,7 +24,7 @@
                         <tbody>
                             @forelse($groups as $group)
                                 <tr>
-                                    <td>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }}</td>
+                                    <td>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</td>
                                     <td>
                                         @if($currentUser->inGroup($group->id))
                                             <a href="{{ route('quit_the_group_path', $group->id) }}" data-method="post" data-confirm=""><i class="fa fa-minus-square-o"></i> Quit</a>
@@ -50,19 +50,30 @@
     </div>
     <div class="col-xs-8 col-sm-8 col-md-6 col-lg-6">
         @if(isset($currentUser) && $currentUser)
-            @forelse($currentUser->groups as $group)
+            @if($currentUser->groups->count())
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    @foreach($currentUser->groups as $group)
                     <div class="panel panel-default">
-                        <div class="panel-heading">{{ e($group->name) }}</div>
-                        <div class="panel-body status-body">
-                            @if ($currentUser->inGroup($group->id))
-                                @include ('groups.partials.publish-status-form')
-                            @endif
+                        <div class="panel-heading" role="tab" id="heading-{{ $group->id }}">
+                            <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $group->id }}" aria-expanded="true" aria-controls="collapse-{{ $group->id }}">
+                            {{ e($group->name) }} </a>
+                            </h4>
                         </div>
-                        @include ('groups.partials.statuses', ['statuses' => $group->statuses])
+                        <div id="collapse-{{ $group->id }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-{{ $group->id }}">
+                            <div class="panel-body status-body">
+                                @if ($currentUser->inGroup($group->id))
+                                    @include ('groups.partials.publish-status-form')
+                                @endif
+                            </div>
+                            @include ('groups.partials.statuses', ['statuses' => $group->statuses])
+                        </div>
                     </div>
-            @empty
+                    @endforeach
+                </div>
+            @else
                 <p>No group found</p>
-            @endforelse
+            @endif
         @endif
     </div>
     <div class="hidden-xs hidden-sm col-md-3 col-lg-3">
@@ -73,9 +84,23 @@
                     <img src="{{ $currentUser->profile_picture->url('medium') }}" class="img-responsive" alt="{{ $currentUser->username }}">
                 </a>
                 <h4 class="text-center">{{ link_to_route('profile_path', e($currentUser->username), $currentUser->username) }}</h4>
+                <div class="col-md-4 text-center">
+                    {{ e($currentUser->present()->followerCount) }}
+                </div>
+                <div class="col-md-4 text-center">
+                    {{ e($currentUser->present()->statusCount) }}
+                </div>
+                <div class="col-md-4 text-center">
+                </div>
+            </div>
+            @endif
+        </div>
+        <div class="panel panel-default">
+            @if(isset($currentUser) && $currentUser)
+            <div class="panel-body">
                 <ul class="list-group">
-                    <li class="list-group-item">{{ e($currentUser->present()->followerCount) }}</li>
-                    <li class="list-group-item">{{ e($currentUser->present()->statusCount) }}</li> 
+                    <li class="list-group-item">{{ link_to('about-us', 'About Us') }}</li>
+                    <li class="list-group-item">{{ link_to('terms-conditioins', 'Terms & Conditioins') }}</li> 
                 </ul>
             </div>
             @endif
