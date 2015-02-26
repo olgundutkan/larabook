@@ -23,6 +23,16 @@ class PageRepository
     public function getAllPage() {
         return Page::all();
     }
+
+    /**
+     * Get page
+     * @param  string $slug 
+     * @return mixed
+     */
+    public function getPageBySlug($slug)
+    {
+        return Page::where('slug', $slug)->where('status', 'live')->firstOrFail();
+    }
     
     /**
      * Find a location by their id.

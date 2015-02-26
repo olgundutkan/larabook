@@ -82,3 +82,5 @@ Route::group(['prefix' => 'manage', 'namespace' => 'Controllers\Admin', 'before'
 
 	Route::resource('pages', 'PagesController');
 });
+
+Route::get('{slug}', 'PagesController@getPage');

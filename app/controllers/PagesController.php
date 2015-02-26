@@ -1,8 +1,27 @@
 <?php
 
+use Larabook\Pages\PageRepository;
+
 class PagesController extends \BaseController
 {
-    public function home() {
-        return View::make('pages.home');
+	/**
+     * @var PageRepository
+     */
+    protected $pageRepository;
+
+    /**
+     * @param PageRepository $pageRepository      
+     */
+    public function __construct(PageRepository $pageRepository)
+    {
+        parent::__construct();
+
+        $this->pageRepository = $pageRepository;
+    }
+
+    public function getPage($slug) {
+        $page = $this->pageRepository->getPageBySlug($slug);
+        
+        return View::make('pages.pages.show', compact('page'));
     }
 }
