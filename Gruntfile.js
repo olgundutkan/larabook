@@ -60,6 +60,10 @@ module.exports = function(grunt) {
                     { src: './vendor/bower_components/bootstrap/dist/fonts/**',
                       dest: './public/fonts/',
                       expand: true, flatten: true, filter: 'isFile' },
+                    { cwd: './vendor/bower_components/ckeditor/',
+                      src: ['**'],
+                      dest: './public/js/ckeditor/',
+                      expand: true }
                 ]
             }
         }

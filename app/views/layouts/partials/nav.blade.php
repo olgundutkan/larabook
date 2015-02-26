@@ -45,6 +45,8 @@
 							<li class="divider"></li>
 							<li>{{ link_to_route('manage.users.index', 'Manage Users') }}</li>
 							<li class="divider"></li>
+							<li>{{ link_to_route('manage.pages.index', 'Manage Pages') }}</li>
+							<li class="divider"></li>
 							<li>{{ link_to_route('manage.locations.index', 'Locations') }}</li>
 							@endif
 							<li class="divider"></li>
