@@ -5,9 +5,9 @@
 	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 		<h1>Create Role!</h1>
 
-		@include('layouts.partials.errors')
+		@include('frontend.layouts.partials.errors')
 
-		{{ Form::open(['route' => 'manage.roles.store', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
+		{{ Form::open(['route' => 'admin.roles.store', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
 			
 			<div class="form-group">
 				{{ Form::label('name', 'Name:', ['for' => 'name']) }}

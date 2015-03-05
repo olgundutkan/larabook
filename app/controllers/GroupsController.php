@@ -20,6 +20,8 @@ class GroupsController extends \BaseController
      * @param GroupForm $groupForm
      */
     function __construct(GroupForm $groupForm) {
+        parent::__construct();
+        
         $this->groupForm = $groupForm;
         
         $this->beforeFilter('auth');
@@ -34,7 +36,7 @@ class GroupsController extends \BaseController
 
     	$groups = Group::all();
 
-    	return View::make('groups.index', compact('groups'));
+    	return View::make('frontend::pages.groups.index', compact('groups'));
     }
     
     /**
@@ -82,7 +84,7 @@ class GroupsController extends \BaseController
         
         $group = Group::whereSlug($slug)->firstOrFail();
 
-        return View::make('groups.show', compact('group'));
+        return View::make('frontend::pages.groups.show', compact('group'));
         
     }
     

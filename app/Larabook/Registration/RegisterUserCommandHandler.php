@@ -37,26 +37,9 @@ class RegisterUserCommandHandler implements CommandHandler
      * @return mixed
      */
     public function handle($command) {
-        $user = User::register($command->username, $command->email, $command->password, $command->title, $command->first_name, $command->last_name, $command->gender, $command->dob, $command->country_id, $command->state_id, $command->city_id, $command->school_department, $command->groups, $command->language_id, $command->is_commercial, 
-        $command->profile_picture, $command->activated, $command->activation_code, $command->is_visible_email, $command->is_visible_title, $command->is_visible_first_name, $command->is_visible_last_name, $command->is_visible_gender, $command->is_visible_dob);
+        $user = User::register($command->username, $command->email, $command->password, $command->groups, $command->activated, $command->activation_code);
         
-        $this->repository->save($user);
-
-        //dd(empty($command->is_visible_email) OR $command->is_visible_email  ? true : false);
-
-        // TODO:: başka bir methoda taşı
-        $privacy = new Privacy;
-
-        $privacy->user_id   = $user->id;
-        $privacy->email      = !empty($command->is_visible_email) OR $command->is_visible_email  ? true : false;
-        $privacy->title      = !empty($command->is_visible_title) OR $command->is_visible_title  ? true : false;
-        $privacy->first_name = !empty($command->is_visible_first_name) OR $command->is_visible_first_name  ? true : false;
-        $privacy->last_name  = !empty($command->is_visible_last_name) OR $command->is_visible_last_name  ? true : false;
-        $privacy->gender     = !empty($command->is_visible_gender) OR $command->is_visible_gender  ? true : false;
-        $privacy->dob        = !empty($command->is_visible_dob) OR $command->is_visible_dob  ? true : false;
-
-        $privacy->save();
-        
+        $this->repository->save($user);        
         
         // TODO:: refactoring
         $userRole = Role::where('name', 'User')->firstOrFail();

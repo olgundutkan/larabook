@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <h1>Edit Location</h1>
-            {{ Form::open(['route' => ['manage.locations.update', $location->id], 'class' => '', 'role' => 'form', 'method' => 'PUT']) }}
+            {{ Form::open(['route' => ['admin.locations.update', $location->id], 'class' => '', 'role' => 'form', 'method' => 'PUT']) }}
                 <div class="form-group">
                     {{ Form::label('parent_id', 'Parent:', ['for' => 'parent_id']) }}
                     {{ Form::select('parent_id', $parents, $location->parent_id, ['id' => 'parent_id', 'class' => 'form-control']) }}

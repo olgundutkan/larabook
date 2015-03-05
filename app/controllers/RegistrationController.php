@@ -4,7 +4,7 @@ use Larabook\Forms\RegistrationForm;
 
 use Larabook\Registration\RegisterUserCommand;
 
-use Larabook\Locations\Location;
+use Larabook\Groups\GroupsRepository;
 
 class RegistrationController extends BaseController
 {
@@ -18,11 +18,15 @@ class RegistrationController extends BaseController
      * Constructor
      *
      * @param RegistrationForm $registrationForm
+     * @param GroupsRepository $groupsRepository
      */
-    function __construct(RegistrationForm $registrationForm) {
-        $this->registrationForm = $registrationForm;
-        
+    function __construct(RegistrationForm $registrationForm, GroupsRepository $groupsRepository) {
+        parent::__construct();
+
         $this->beforeFilter('guest');
+        
+        $this->registrationForm = $registrationForm;
+        $this->groupsRepository = $groupsRepository;
     }
     
     /**
@@ -31,12 +35,10 @@ class RegistrationController extends BaseController
      * @return Response
      */
     public function create() {
-        // TODO : refactoring  and must be modified
-        $countries = Location::where('parent_id', 0)->lists('name', 'id');
-        $states = Location::whereIn('parent_id', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])->lists('name', 'id');
-        $cities = Location::whereIn('parent_id', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20])->lists('name', 'id');
 
-        return View::make('registration.create', compact('countries', 'states', 'cities'));
+        $groups = $this->groupsRepository->getList('name', 'id');
+
+        return View::make('frontend::pages.registration.create', compact('groups'));
     }
     
     /**
@@ -49,6 +51,8 @@ class RegistrationController extends BaseController
         $this->registrationForm->validForRegistration(Input::all());
         
         $user = $this->execute(RegisterUserCommand::class);
+
+        $user->groups = Input::get('groups');
         
         Flash::overlay('The activation e-mail has been sent. Please check your e-mail!');
         

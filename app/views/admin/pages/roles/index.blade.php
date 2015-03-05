@@ -18,8 +18,8 @@
                     <tr>
                         <td>{{ e($role->name) }}</td>
                         <td>
-                            <a href="{{ route('manage.roles.edit', e($role->id)) }}"><i class="fa fa-pencil"></i> Edit</a>
-                            <a href="{{ route('manage.roles.destroy', e($role->id)) }}" data-method="delete" data-confirm="Are you sure ?"><i class="fa fa-trash"></i> Delete</a>
+                            <a href="{{ route('admin.roles.edit', e($role->id)) }}"><i class="fa fa-pencil"></i> Edit</a>
+                            <a href="{{ route('admin.roles.destroy', e($role->id)) }}" data-method="delete" data-confirm="Are you sure ?"><i class="fa fa-trash"></i> Delete</a>
                         </td>
                     </tr>
                 @endforeach

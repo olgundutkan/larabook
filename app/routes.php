@@ -69,10 +69,14 @@ Route::controller('password', 'RemindersController');
 Route::get('activate/{activationCode}',['as' => 'activation_path', 'uses' => 'UsersController@getActivate']);
 
 // Admin routes
-Route::group(['prefix' => 'manage', 'namespace' => 'Controllers\Admin', 'before' => 'hasRole:Admin'], function()
+Route::group(['prefix' => 'admin', 'namespace' => 'Controllers\Admin', 'before' => 'hasRole:Admin'], function()
 {
+	//Dashboard
+	Route::get('/', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
 	// Users
 	Route::resource('users', 'UsersController');
+	// Groups
+	Route::resource('groups', 'GroupsController');
 	// Roles
 	Route::resource('roles', 'RolesController', ['except' => 'show']);
 	// Users

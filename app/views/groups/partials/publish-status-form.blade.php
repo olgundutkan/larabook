@@ -1,4 +1,4 @@
-@include('layouts.partials.errors')
+@include('frontend.layouts.partials.errors')
 
 <div class="status-post">
     {{ Form::open(['route' => ['group_statuses_path', $group->id]]) }}

@@ -7,7 +7,9 @@ class BaseController extends Controller
     use CommanderTrait;
 
     public function __construct()
-    {        
+    {
+        Theme::set('frontend');
+        
         $this->beforeFilter('csrf', ['on' => array('post', 'put', 'patch', 'delete')]);
     }
     

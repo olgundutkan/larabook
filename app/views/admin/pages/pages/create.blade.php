@@ -1,12 +1,14 @@
-@extends('layouts.default')
+@extends('admin.layouts.default')
 
 @section('content')
+<div class="row">
+    <div class="col-md-12">
 <div class="panel panel-default">
-    {{ Form::open(['route' => 'manage.pages.store', 'role' => 'form', 'class' => 'form-horizontal form-bordered', 'method' => 'POST']) }}
+    {{ Form::open(['route' => 'admin.pages.store', 'role' => 'form', 'class' => 'form-horizontal form-bordered', 'method' => 'POST']) }}
     <div class="panel-heading clearfix">
         <h4 class="panel-title pull-left">Add New Page</h4>
         <div class="pull-right">
-            <a href="{{ route('manage.pages.index') }}" title="" data-toggle="tooltip" type="button" class="btn btn-white tooltips" data-original-title="Back"><i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a href="{{ route('admin.pages.index') }}" title="" data-toggle="tooltip" type="button" class="btn btn-white tooltips" data-original-title="Back"><i class="glyphicon glyphicon-chevron-left"></i></a>
         </div>
     </div>
     <div class="panel-body">
@@ -51,11 +53,13 @@
     </div><!-- panel-footer -->
     {{ Form::close() }}
 </div><!-- panel -->
+</div>
+</div>
 @stop
 
 @section('script')
-    <script src="{{ asset('js/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('js/ckeditor/adapters/jquery.js') }}"></script>
+    <script src="{{ Theme::asset('js/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ Theme::asset('js/ckeditor/adapters/jquery.js') }}"></script>
     <script type="text/javascript">
         jQuery(document).ready(function(){
             // CKEditor

@@ -18,14 +18,14 @@
                     <tr>
                         <td>
                             @if($child->children->count())
-                                <a href="{{ route('manage.locations.show', $child->id) }}">{{ e($child->name) }}</a>
+                                <a href="{{ route('admin.locations.show', $child->id) }}">{{ e($child->name) }}</a>
                             @else
                             {{ e($child->name) }}
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('manage.locations.edit', $child->id) }}"><i class="fa fa-pencil"></i> Edit</a>
-                            <a href="{{ route('manage.locations.destroy', $child->id) }}" data-method="delete" data-confirm="Are you sure ?"><i class="fa fa-trash"></i> Delete</a>
+                            <a href="{{ route('admin.locations.edit', $child->id) }}"><i class="fa fa-pencil"></i> Edit</a>
+                            <a href="{{ route('admin.locations.destroy', $child->id) }}" data-method="delete" data-confirm="Are you sure ?"><i class="fa fa-trash"></i> Delete</a>
                         </td>
                     </tr>
                 @endforeach
@@ -35,7 +35,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <h1>Create New Location</h1>
-            {{ Form::open(['route' => 'manage.locations.store', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
+            {{ Form::open(['route' => 'admin.locations.store', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
                 {{ Form::hidden('parent_id', $location->id) }}
                 <div class="form-group">
                     {{ Form::label('name', 'Name:', ['for' => 'name']) }}

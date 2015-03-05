@@ -4,6 +4,8 @@ namespace Larabook\Users;
 
 use Laracasts\Presenter\Presenter;
 
+use Theme;
+
 class UserPresenter extends Presenter
 {
     
@@ -45,5 +47,10 @@ class UserPresenter extends Presenter
     public function birthday()
     {
         return is_null($this->dob) ? null : $this->dob->format('d/m/Y');
+    }
+
+    public function profilePicture($size)
+    {
+        return $this->profile_picture_file_name ? $this->profile_picture->url($size) : Theme::asset('img/user128x128.png');
     }
 }

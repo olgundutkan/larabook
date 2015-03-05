@@ -24,6 +24,8 @@ class StatusesController extends \BaseController
      * @param StatusRepository $statusRepository
      */
     function __construct(PublishStatusForm $publishStatusForm, StatusRepository $statusRepository) {
+        parent::__construct();
+        
         $this->publishStatusForm = $publishStatusForm;
         
         $this->statusRepository = $statusRepository;
@@ -39,7 +41,7 @@ class StatusesController extends \BaseController
     public function index() {
         $statuses = $this->statusRepository->getFeedForUser(Auth::user());
         
-        return View::make('statuses.index', compact('statuses'));
+        return View::make('frontend::pages.statuses.index', compact('statuses'));
     }
     
     /**

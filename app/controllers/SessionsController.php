@@ -10,6 +10,9 @@ class SessionsController extends \BaseController
      * @param SignInForm $signInForm
      */
     public function __construct(SignInForm $signInForm) {
+        
+        parent::__construct();
+
         $this->beforeFilter('guest', ['except' => 'destroy']);
         
         $this->signInForm = $signInForm;
@@ -21,7 +24,7 @@ class SessionsController extends \BaseController
      * @return Response
      */
     public function create() {
-        return View::make('sessions.create');
+        return View::make('frontend::pages.sessions.create');
     }
     
     /**

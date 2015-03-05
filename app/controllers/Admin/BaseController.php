@@ -11,7 +11,9 @@ class BaseController extends \Controller
     use CommanderTrait;
 
     public function __construct()
-    {        
+    {
+        Theme::set('admin');
+        
         $this->beforeFilter('csrf', ['on' => array('post', 'put', 'patch', 'delete')]);
     }
     

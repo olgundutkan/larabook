@@ -126,7 +126,8 @@ return array(
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 		'Larabook\Providers\EventServiceProvider',
-		'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider'
+		'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider',
+		'Larabook\Theme\ThemeServiceProvider',
 	),
 
 	/*
@@ -193,7 +194,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Flash'			  => 'Laracasts\Flash\Flash'
+		'Flash'			  => 'Laracasts\Flash\Flash',
+		'Theme'           => 'Larabook\Theme\ThemeFacade',
 
 	),
 

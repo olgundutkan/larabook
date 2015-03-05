@@ -22,6 +22,6 @@ class PagesController extends \BaseController
     public function getPage($slug) {
         $page = $this->pageRepository->getPageBySlug($slug);
         
-        return View::make('pages.show', compact('page'));
+        return View::make('frontend::pages.pages.show', compact('page'));
     }
 }

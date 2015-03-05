@@ -1,6 +1,6 @@
 <article class="media">
     <div class="pull-left">
-        @include ('users.partials.avatar', ['user' => $status->user, 'class' => 'status-media-object'])
+        @include ('frontend.pages.users.partials.avatar', ['user' => $status->user, 'class' => 'status-media-object'])
     </div>
 
     <div class="media-body">
@@ -24,7 +24,7 @@
 @unless ($status->comments->isEmpty())
     <div class="comments-body">
         @foreach ($status->comments as $comment)
-            @include ('statuses.partials.comment')
+            @include ('frontend.pages.statuses.partials.comment')
         @endforeach
     </div>
 @endunless

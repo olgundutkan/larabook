@@ -26,6 +26,9 @@ class UsersController extends \BaseController
      * @param UserForm       $userForm       
      */
     function __construct(UserRepository $userRepository, UserForm $userForm) {
+        
+        parent::__construct();
+        
         $this->beforeFilter('auth', ['except' => ['getActivate']]);
         $this->userRepository = $userRepository;
         $this->userProfileForm = $userForm;
@@ -39,7 +42,7 @@ class UsersController extends \BaseController
     public function index() {
         $users = $this->userRepository->getPaginated();
         
-        return View::make('users.index')->withUsers($users);
+        return View::make('frontend::pages.users.index')->withUsers($users);
     }
     
     /**
@@ -51,7 +54,7 @@ class UsersController extends \BaseController
     public function show($username) {
         $user = $this->userRepository->findByUsername($username);
         
-        return View::make('users.show')->withUser($user);
+        return View::make('frontend::pages.users.show')->withUser($user);
     }
 
     /**
@@ -72,7 +75,7 @@ class UsersController extends \BaseController
         $states = Location::whereIn('parent_id', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])->lists('name', 'id');
         $cities = Location::whereIn('parent_id', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20])->lists('name', 'id');
 
-        return View::make('users.edit', compact('countries', 'states', 'cities'))->withUser($user);
+        return View::make('frontend::pages.users.edit', compact('countries', 'states', 'cities'))->withUser($user);
     }
 
     public function update($username)

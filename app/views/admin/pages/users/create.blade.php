@@ -10,7 +10,7 @@
 
 		@include('layouts.partials.errors')
 
-		{{ Form::open(['route' => 'manage.users.store', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
+		{{ Form::open(['route' => 'admin.users.store', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
 			
 			<div class="form-group">
 				{{ Form::label('username', 'Username:', ['for' => 'username']) }}

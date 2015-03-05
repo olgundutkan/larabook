@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('admin.layouts.default')
 
 @section('stylesheet')
 @stop
@@ -8,9 +8,9 @@
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <h1>User Edit</h1>
 
-        @include('layouts.partials.errors')
+        @include('admin.layouts.partials.errors')
 
-        {{ Form::model($user, ['route' => ['manage.users.update', $user->username], 'class' => '', 'role' => 'form', 'method' => 'PUT']) }}
+        {{ Form::model($user, ['route' => ['admin.users.update', $user->username], 'class' => '', 'role' => 'form', 'method' => 'PUT']) }}
             
             <div class="form-group">
                 {{ Form::label('username', 'Username:', ['for' => 'username']) }}

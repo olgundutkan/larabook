@@ -26,4 +26,14 @@ class GroupsRepository
     public function findById($id) {
         return Group::findOrFail($id);
     }
+
+    public function getList($col1, $col2)
+    {
+        return Group::lists($col1, $col2);
+    }
+
+    public function getAll()
+    {
+        return Group::all();
+    }
 }

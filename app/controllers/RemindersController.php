@@ -2,6 +2,14 @@
 
 class RemindersController extends \BaseController
 {
+    /**
+     * Constructor
+     */
+    function __construct() {
+
+        parent::__construct();
+
+    }
     
     /**
      * Display the password reminder view.
@@ -9,7 +17,7 @@ class RemindersController extends \BaseController
      * @return Response
      */
     public function getRemind() {
-        return View::make('password.remind');
+        return View::make('frontend::pages.password.remind');
     }
     
     /**
@@ -43,7 +51,7 @@ class RemindersController extends \BaseController
     public function getReset($token = null) {
         if (is_null($token)) App::abort(404);
         
-        return View::make('password.reset')->with('token', $token);
+        return View::make('frontend::pages.password.reset')->with('token', $token);
     }
     
     /**

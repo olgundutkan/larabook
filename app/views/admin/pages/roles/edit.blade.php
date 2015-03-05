@@ -7,7 +7,7 @@
 
 		@include('layouts.partials.errors')
 
-		{{ Form::open(['route' => ['manage.roles.update', $role->id], 'class' => '', 'role' => 'form', 'method' => 'PUT']) }}
+		{{ Form::open(['route' => ['admin.roles.update', $role->id], 'class' => '', 'role' => 'form', 'method' => 'PUT']) }}
 			
 			<div class="form-group">
 				{{ Form::label('name', 'Name:', ['for' => 'name']) }}

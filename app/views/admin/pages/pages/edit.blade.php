@@ -6,11 +6,11 @@
 
 @section('content')
 <div class="panel panel-default">
-    {{ Form::model($page, ['route' => ['manage.pages.update', $page->id], 'role' => 'form', 'class' => 'form-horizontal form-bordered', 'method' => 'PUT']) }}
+    {{ Form::model($page, ['route' => ['admin.pages.update', $page->id], 'role' => 'form', 'class' => 'form-horizontal form-bordered', 'method' => 'PUT']) }}
     <div class="panel-heading clearfix">
         <h4 class="panel-title pull-left">Edit Page</h4>
         <div class="pull-right">
-            <a href="{{ route('manage.pages.index') }}" title="" data-toggle="tooltip" type="button" class="btn btn-white tooltips" data-original-title="Back"><i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a href="{{ route('admin.pages.index') }}" title="" data-toggle="tooltip" type="button" class="btn btn-white tooltips" data-original-title="Back"><i class="glyphicon glyphicon-chevron-left"></i></a>
         </div>
     </div>
     <div class="panel-body panel-body-nopadding">
