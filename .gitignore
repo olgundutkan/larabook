@@ -12,3 +12,5 @@ Thumbs.db
 !.env.sample.php
 node_modules
 tests/_output/*
+/public/themes/
+/node_modules
