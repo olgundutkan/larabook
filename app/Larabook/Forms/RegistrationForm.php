@@ -22,8 +22,6 @@ class RegistrationForm extends FormValidator
             'username'             => 'required|regex:/^([a-zA-Z0-9-_.ğĞçÇşŞüÜöÖıİ ])+$/i|unique:users',
             'email'                => 'required|email|unique:users',
             'password'             => 'required|min:6|confirmed',
-            
-            'groups'               => '',
             'terms_and_conditions' => 'accepted'
         ];
 

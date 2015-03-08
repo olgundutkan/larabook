@@ -113,8 +113,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
      * @param $password
      * @return User
      */
-    public static function register($username, $email, $password, $groups, $activated, $activation_code) {
-        $user = new static (compact('username', 'email', 'password', 'groups', 'activated', 'activation_code'));
+    public static function register($username, $email, $password, $activated, $activation_code) {
+        $user = new static (compact('username', 'email', 'password', 'activated', 'activation_code'));
 
         $user->raise(new UserHasRegistered($user));
         

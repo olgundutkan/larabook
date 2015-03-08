@@ -44,11 +44,6 @@
 					{{ Form::label('password_confirmation', 'Password Confirmation:', ['for' => 'password_confirmation', 'class' => 'control-label']) }}<span class="req">*</span>
 					{{ Form::password('password_confirmation', ['id' => 'password_confirmation', 'class' => 'form-control']) }}
 				</div>
-				
-				<div class="form-group">
-					{{ Form::label('groups', 'Choose Group:', ['for' => 'groups', 'class' => 'control-label']) }}
-					{{ Form::select('groups[]', $groups, null, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
-				</div>
 
 				<div class="form-group">
 					{{ Form::checkbox('terms_and_conditions', true, false, ['id' => 'terms-and-conditions', 'class' => 'control-label']) }}

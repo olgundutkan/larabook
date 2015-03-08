@@ -108,10 +108,10 @@ class UsersController extends \BaseController
         $user->is_commercial     = isset($input['is_commercial']) ? true : false;
         $user->language_id       = $input['language'];
         $user->profile_picture   = Input::file('profile_picture');
-        $user->groups            = $input['groups'];
+        //$user->groups            = $input['groups'];
 
         $user->save();
-
+        /*
         // TODO:: başka bir methoda taşı
         $user->privacy->email      = $input['is_visible_email'] ? true : false;
         $user->privacy->title      = $input['is_visible_title'] ? true : false;
@@ -120,7 +120,7 @@ class UsersController extends \BaseController
         $user->privacy->gender     = $input['is_visible_gender'] ? true : false;
         $user->privacy->dob        = $input['is_visible_dob'] ? true : false;
         $user->privacy->save();
-
+        */
         Flash::success('Your profile has been successfully updated!');
         
         return Redirect::route('profile_path', $user->username);

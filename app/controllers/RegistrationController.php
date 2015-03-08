@@ -4,8 +4,6 @@ use Larabook\Forms\RegistrationForm;
 
 use Larabook\Registration\RegisterUserCommand;
 
-use Larabook\Groups\GroupsRepository;
-
 class RegistrationController extends BaseController
 {
     
@@ -18,15 +16,13 @@ class RegistrationController extends BaseController
      * Constructor
      *
      * @param RegistrationForm $registrationForm
-     * @param GroupsRepository $groupsRepository
      */
-    function __construct(RegistrationForm $registrationForm, GroupsRepository $groupsRepository) {
+    function __construct(RegistrationForm $registrationForm) {
         parent::__construct();
 
         $this->beforeFilter('guest');
         
         $this->registrationForm = $registrationForm;
-        $this->groupsRepository = $groupsRepository;
     }
     
     /**
@@ -35,8 +31,6 @@ class RegistrationController extends BaseController
      * @return Response
      */
     public function create() {
-
-        $groups = $this->groupsRepository->getList('name', 'id');
 
         return View::make('frontend::pages.registration.create', compact('groups'));
     }
@@ -51,8 +45,6 @@ class RegistrationController extends BaseController
         $this->registrationForm->validForRegistration(Input::all());
         
         $user = $this->execute(RegisterUserCommand::class);
-
-        $user->groups = Input::get('groups');
         
         Flash::overlay('The activation e-mail has been sent. Please check your e-mail!');
         

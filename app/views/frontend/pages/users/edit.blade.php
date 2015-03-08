@@ -27,7 +27,7 @@
 		<div class="form-group">
 			{{ Form::label('email', 'Email:', ['for' => 'email', 'class' => 'control-label']) }}<span class="req">*</span>
 			{{ Form::email('email', null, ['id' => 'email', 'class' => 'form-control']) }}
-			{{ Form::hidden('is_visible_email', $user->privacy->email) }}
+			{{ Form::hidden('is_visible_email', $user->privacy ? $user->privacy->email : false) }}
 			<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_email" data-privacy="true">not be seen</a> at Social Network</span>
 		</div>
 
@@ -44,21 +44,21 @@
 		<div class="form-group">
 			{{ Form::label('title', 'Title:', ['for' => 'title', 'class' => 'control-label']) }}
 			{{ Form::text('title', null, ['id' => 'title', 'class' => 'form-control']) }}
-			{{ Form::hidden('is_visible_title', $user->privacy->title) }}
+			{{ Form::hidden('is_visible_title', $user->privacy ? $user->privacy->title : false) }}
 			<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_title" data-privacy="true">not be seen</a> at Social Network</span>
 		</div>
 
 		<div class="form-group">
 			{{ Form::label('first_name', 'First Name:', ['for' => 'first_name', 'class' => 'control-label']) }}<span class="req">*</span>
 			{{ Form::text('first_name', null, ['id' => 'first_name', 'class' => 'form-control']) }}
-			{{ Form::hidden('is_visible_first_name', $user->privacy->first_name) }}
+			{{ Form::hidden('is_visible_first_name', $user->privacy ? $user->privacy->first_name : false) }}
 			<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_first_name" data-privacy="true">not be seen</a> at Social Network</span>
 		</div>
 
 		<div class="form-group">
 			{{ Form::label('last_name', 'Last Name:', ['for' => 'last_name', 'class' => 'control-label']) }}<span class="req">*</span>
 			{{ Form::text('last_name', null, ['id' => 'last_name', 'class' => 'form-control']) }}
-			{{ Form::hidden('is_visible_last_name', $user->privacy->last_name) }}
+			{{ Form::hidden('is_visible_last_name', $user->privacy ? $user->privacy->last_name : false) }}
 			<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_last_name" data-privacy="true">not be seen</a> at Social Network</span>
 		</div>
 
@@ -67,14 +67,14 @@
 			{{ Form::radio('gender', 'not_specified', true) }} Not Specified
 			{{ Form::radio('gender', 'male', false) }} Male
 			{{ Form::radio('gender', 'female', false) }} Female
-			{{ Form::hidden('is_visible_gender', $user->privacy->gender) }}
+			{{ Form::hidden('is_visible_gender', $user->privacy ? $user->privacy->gender : false) }}
 			<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_gender" data-privacy="true">not be seen</a> at Social Network</span>
 		</div>
 
 		<div class="form-group">
 			{{ Form::label('dob', 'Date of Birth:', ['for' => 'dob', 'class' => 'control-label']) }}<span class="req">*</span>
 			{{ Form::text('dob', $user->present()->birthday, ['id' => 'dob', 'class' => 'form-control']) }}
-			{{ Form::hidden('is_visible_dob', $user->privacy->dob) }}
+			{{ Form::hidden('is_visible_dob', $user->privacy ? $user->privacy->dob : false) }}
 			<span class="help-block">Will <a href="javascript:void(0)" class="privacy" data-input="is_visible_dob" data-privacy="true">not be seen</a> at Social Network</span>
 		</div>
 
@@ -105,7 +105,7 @@
 		
 		<div class="form-group">
 			{{ Form::label('groups', 'Choose Group:', ['for' => 'groups', 'class' => 'control-label']) }}
-			{{ Form::select('groups[]', ['1' => 'Group 1', '2' => 'Group 2', '3' => 'Group 3'], 1, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
+			{{ Form::select('groups[]', ['1' => 'Group 1', '2' => 'Group 2', '3' => 'Group 3'], null, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
 		</div>
 	</div>
 	<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
