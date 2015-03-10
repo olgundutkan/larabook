@@ -55,8 +55,6 @@ class UserCreateCommandHandler implements CommandHandler
         $userRole = Role::where('name', 'User')->firstOrFail();
         
         $this->repository->setUserRole($userRole->id, $user);
-
-        $this->repository->setUserPrivacy($user, ['first_name' => $command->is_visible_first_name, 'last_name' => $command->is_visible_last_name, 'gender' => $command->is_visible_gender, 'email' => $command->is_visible_email, 'title' => $command->is_visible_title, 'dob' => $command->is_visible_dob,]);
         
         $this->dispatchEventsFor($user);
         

@@ -16,6 +16,8 @@ use Larabook\Forms\UserForm;
 
 use Larabook\Users\UserCreateCommand;
 
+use Larabook\Privacies\Privacy;
+
 use View, Auth, Input, Flash, Redirect;
 
 class UsersController extends BaseController
@@ -98,9 +100,22 @@ class UsersController extends BaseController
      * @return Response
      */
     public function store() {
-        $this->userForm->validForAdminCreate(Input::all());
+        $this->userForm->validForAdminCreate($input = Input::all());
         
         $user = $this->execute(UserCreateCommand::class);
+
+        $privacy = new Privacy;
+
+        $privacy->user_id = $user->id;
+
+        $privacy->first_name = $input['is_visible_first_name'] ? true : false;
+        $privacy->last_name = $input['is_visible_last_name'] ? true : false;
+        $privacy->gender = $input['is_visible_gender'] ? true : false;
+        $privacy->email = $input['is_visible_email'] ? true : false;
+        $privacy->title = $input['is_visible_title'] ? true : false;
+        $privacy->dob = $input['is_visible_dob'] ? true : false;
+
+        $privacy->save();
         
         Flash::success('User Succesfully created.');
         

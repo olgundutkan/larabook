@@ -34,7 +34,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password', 'first_name', 'last_name', 'gender', 'dob', 'country_id', 'state_id', 'city_id', 'school_department', 'is_commercial', 'language_id', 'activated', 'activation_code', 'profile_picture'];
+    protected $fillable = ['username', 'email', 'password', 'title', 'first_name', 'last_name', 'gender', 'dob', 'country_id', 'state_id', 'city_id', 'school_department', 'is_commercial', 'language_id', 'activated', 'activation_code', 'profile_picture'];
     
     /**
      * The database table used by the model.

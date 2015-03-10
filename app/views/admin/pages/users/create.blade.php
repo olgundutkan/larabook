@@ -6,7 +6,7 @@
 @section('content')
 <div class="row">
 <div class="col-lg-12">
-{{ Form::open(['route' => 'admin.users.store', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
+{{ Form::open(['route' => 'admin.users.store', 'files' => true, 'role' => 'form', 'method' => 'POST']) }}
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4 class="panel-title pull-left">Add New User</h4>
@@ -138,11 +138,11 @@
 				var input = $(this).data('input');
 				var privacy = $(this).data('privacy');
 				if ($("input[name="+input+"]").val() > 0) {
-					$("input[name="+input+"]").val(true);
+					$("input[name="+input+"]").val(1);
 					$(this).text('be seen');
 					$(this).data('privacy', false);
 				} else {
-					$("input[name="+input+"]").val(false);
+					$("input[name="+input+"]").val(0);
 					$(this).text('not be seen');
 					$(this).data('privacy', true);
 				}
@@ -153,11 +153,11 @@
 			var privacy = $(this).data('privacy');
 
 			if (privacy) {
-				$("input[name="+input+"]").val(true);
+				$("input[name="+input+"]").val(1);
 				$(this).text('be seen');
 				$(this).data('privacy', false);
 			} else {				
-				$("input[name="+input+"]").val(false);
+				$("input[name="+input+"]").val(0);
 				$(this).text('not be seen');
 				$(this).data('privacy', true);
 			}

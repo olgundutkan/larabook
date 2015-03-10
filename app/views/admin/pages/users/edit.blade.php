@@ -104,7 +104,7 @@
         
         <div class="form-group">
             {{ Form::label('groups', 'Choose Group:', ['for' => 'groups', 'class' => 'control-label']) }}
-            {{ Form::select('groups[]', ['1' => 'Group 1', '2' => 'Group 2', '3' => 'Group 3'], null, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
+            {{ Form::select('groups[]', $groups, null, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
         </div>
         <div class="form-group">
             {{ Form::label('language', 'Language:', ['for' => 'language', 'class' => 'control-label']) }}

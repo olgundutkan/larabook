@@ -1,5 +1,4 @@
 <?php
-
 namespace Larabook\Users;
 
 use Larabook\Privacies\Privacy;
@@ -46,12 +45,12 @@ class UserRepository
     public function findById($id) {
         return User::findOrFail($id);
     }
-
+    
     /**
      * Find a user by activation code
-     * 
-     * @param  string $activation_code 
-     * @return mixed                  
+     *
+     * @param  string $activation_code
+     * @return mixed
      */
     public function findByActivationCode($activation_code) {
         return User::whereActivationCode($activation_code)->firstOrFail();
@@ -78,42 +77,16 @@ class UserRepository
     public function unfollow($userIdToUnfollow, User $user) {
         return $user->followedUsers()->detach($userIdToUnfollow);
     }
-
+    
     /**
      * Add User role a larabook user
-     * @param integer $roleId 
-     * @param User   $user    
+     * @param integer $roleId
+     * @param User   $user
      */
     public function setUserRole($roleId, User $user) {
         return $user->roles = $roleId;
     }
-
-    /**
-     * Add Privacy a larabook user
-     * @param integer $roleId 
-     * @param User   $user    
-     */
-    public function setUserPrivacy(User $user, array $confidentiality) {
-
-        $privacy = new Privacy;
-
-        $privacy->user_id = $user->id;
-        
-        $privacy->first_name = isset($confidentiality['first_name']) ? $confidentiality['first_name'] : false;
-
-        $privacy->last_name = isset($confidentiality['last_name']) ? $confidentiality['first_name'] : false;
-
-        $privacy->gender = isset($confidentiality['gender']) ? $confidentiality['first_name'] : false;
-
-        $privacy->email = isset($confidentiality['email']) ? $confidentiality['first_name'] : false;
-
-        $privacy->title = isset($confidentiality['title']) ? $confidentiality['first_name'] : false;
-
-        $privacy->dob = isset($confidentiality['dob']) ? $confidentiality['first_name'] : false;
-
-        return $privacy->save();
-    }
-
+    
     /**
      * Destroy a user
      *
