@@ -13,7 +13,8 @@ module.exports = function(grunt) {
                       './vendor/bower_components/jquery-ui/jquery-ui.js',
                       './vendor/bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js', 
                       './vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
-                      
+                      './app/assets/backend/js/jquery.slugger.js',
+                      './vendor/bower_components/jquery-ujs/src/rails.js', 
                       './app/assets/backend/js/metisMenu.js',
                       './app/assets/backend/js/sb-admin-2.js'
                       ],
@@ -38,12 +39,8 @@ module.exports = function(grunt) {
             backend: {
                 src: ['./vendor/bower_components/bootstrap/dist/css/bootstrap.css',
                       './vendor/bower_components/jquery-ui/themes/smoothness/jquery-ui.css',
-                      './vendor/bower_components/font-awesome/css/font-awesome.css', 
-                      /*
-                      './app/assets/admin/css/zabuto_calendar.css',
-                      './app/assets/admin/css/jquery.gritter.css',
-                      './app/assets/admin/css/lineicons/style.css',
-                      */
+                      './vendor/bower_components/font-awesome/css/font-awesome.css',
+                      './app/assets/backend/css/style.css',
                       './app/assets/backend/css/metisMenu.css',
                       './app/assets/backend/css/sb-admin-2.css',
                       ],

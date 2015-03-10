@@ -1,27 +1,33 @@
-@extends('layouts.default')
-
-@section('token')
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta name="csrf-param" content="_token" />
-@stop
+@extends('admin.layouts.default')
 
 @section('content')
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <h1>Edit Location</h1>
-            {{ Form::open(['route' => ['admin.locations.update', $location->id], 'class' => '', 'role' => 'form', 'method' => 'PUT']) }}
-                <div class="form-group">
-                    {{ Form::label('parent_id', 'Parent:', ['for' => 'parent_id']) }}
-                    {{ Form::select('parent_id', $parents, $location->parent_id, ['id' => 'parent_id', 'class' => 'form-control']) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::label('name', 'Name:', ['for' => 'name']) }}
-                    {{ Form::text('name', $location->name, ['id' => 'name', 'class' => 'form-control']) }}
-                </div>
-                <div class="form-group">
-                    {{ Form::submit('Update!', ['class' => 'btn btn-primary']) }}
-                </div>
-            {{ Form::close() }}
+<div class="row">
+<div class="col-lg-12">
+{{ Form::open(['route' => ['admin.locations.update', $location->id], 'class' => '', 'role' => 'form', 'method' => 'PUT']) }}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title pull-left">Edit Location</h4>
+        <div class="pull-right">
+            <a href="{{ route('admin.locations.index') }}" type="button" class="btn btn-default tooltips" data-toggle="tooltip" data-placement="top" title="Add New Group"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        @include('admin.layouts.partials.errors')
+        <div class="form-group">
+            {{ Form::label('parent-id', 'Parent:', ['for' => 'parent_id']) }}
+            {{ Form::select('parent_id', $locations, $location->parent_id, ['id' => 'parent-id', 'class' => 'form-control']) }}
+        </div>
+        <div class="form-group">
+            {{ Form::label('location_name', 'Location Name:', ['for' => 'location_name']) }}
+            {{ Form::text('location_name', $location->name, ['id' => 'new-location-name', 'class' => 'form-control']) }}
         </div>
     </div>
+    <div class="panel-footer">
+        <div class="form-group">
+            {{ Form::submit('Update Location!', ['class' => 'btn btn-primary']) }}
+        </div>
+    </div>
+</div>
+{{ Form::close() }}
 @stop

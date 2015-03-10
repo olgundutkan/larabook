@@ -14,6 +14,11 @@ class LocationRepository
     public function save(Location $location) {
         $location->save();
     }
+
+    public function getAllLocations()
+    {
+        return Location::all();
+    }
     
     /**
      * Get all countries.
@@ -52,5 +57,17 @@ class LocationRepository
      */
     public function findById($id) {
         return Location::findOrFail($id);
+    }
+
+    public function getList($col1, $col2)
+    {
+        return Location::lists($col1, $col2);
+    }
+
+    public function updateRecord($id, $location_name, $parent_id = false)
+    {
+        $location = $this->findById($id);
+        
+        return $location->update(['name' => $location_name, 'parent_id' => $parent_id]);
     }
 }

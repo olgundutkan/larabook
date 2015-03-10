@@ -11,8 +11,6 @@ use Larabook\Roles\Role;
 
 use Laracasts\Commander\Events\DispatchableTrait;
 
-use Larabook\Privacies\Privacy;
-
 class RegisterUserCommandHandler implements CommandHandler
 {
     
@@ -45,6 +43,8 @@ class RegisterUserCommandHandler implements CommandHandler
         $userRole = Role::where('name', 'User')->firstOrFail();
         
         $this->repository->setUserRole($userRole->id, $user);
+
+        $this->repository->setUserPrivacy($user, []);
         
         $this->dispatchEventsFor($user);
         

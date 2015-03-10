@@ -6,15 +6,15 @@ use Larabook\Users\UserRepository;
 
 use Larabook\Roles\RoleRepository;
 
+use Larabook\Groups\GroupRepository;
+
 use Larabook\Users\Exceptions\UserAuthenticationException;
 
 use Larabook\Locations\Location;
 
 use Larabook\Forms\UserForm;
 
-use Larabook\Forms\RegistrationForm;
-
-use Larabook\Registration\RegisterUserCommand;
+use Larabook\Users\UserCreateCommand;
 
 use View, Auth, Input, Flash, Redirect;
 
@@ -36,22 +36,28 @@ class UsersController extends BaseController
     protected $userProfileForm;
 
     /**
-     * @var RegistrationForm
+     * @var UserForm
      */
-    private $registrationForm;
+    private $userForm;
+
+    /**
+     * @var GroupRepository
+     */
+    private $groupRepository;
 
     /**
      * @param UserRepository $userRepository 
      * @param UserForm       $userForm
-     * @param RegistrationForm $registrationForm
+     * @param UserForm $userForm
      */
-    public function __construct(UserRepository $userRepository, UserForm $userForm, RoleRepository $roleRepository, RegistrationForm $registrationForm) {
+    public function __construct(UserRepository $userRepository, UserForm $userForm, RoleRepository $roleRepository, UserForm $userForm, GroupRepository $groupRepository) {
         parent::__construct();
 
         $this->userRepository = $userRepository;
         $this->roleRepository = $roleRepository;
+        $this->groupRepository = $groupRepository;
         $this->userProfileForm = $userForm;
-        $this->registrationForm = $registrationForm;
+        $this->userForm = $userForm;
     }
     
     /**
@@ -73,14 +79,16 @@ class UsersController extends BaseController
      * @return Response
      */
     public function create() {
-        $roles = $this->roleRepository->getToArrayList();
+        $roles = $this->roleRepository->getList('name', 'id');
+
+        $groups = $this->groupRepository->getList('name', 'id');
 
         // TODO : refactoring  and must be modified
         $countries = Location::where('parent_id', 0)->lists('name', 'id');
         $states = Location::whereIn('parent_id', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])->lists('name', 'id');
         $cities = Location::whereIn('parent_id', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20])->lists('name', 'id');
         
-        return View::make('admin.pages.users.create', compact('roles', 'countries', 'states', 'cities'));
+        return View::make('admin.pages.users.create', compact('roles', 'countries', 'states', 'cities', 'groups'));
     }
     
     /**
@@ -90,13 +98,13 @@ class UsersController extends BaseController
      * @return Response
      */
     public function store() {
-        $this->registrationForm->validate(Input::all());
+        $this->userForm->validForAdminCreate(Input::all());
         
-        $user = $this->execute(RegisterUserCommand::class);
+        $user = $this->execute(UserCreateCommand::class);
         
         Flash::success('User Succesfully created.');
         
-        return Redirect::route('manage.users.index');
+        return Redirect::route('admin.users.index');
     }
     
     /**
@@ -120,14 +128,19 @@ class UsersController extends BaseController
      * @return Response
      */
     public function edit($username) {
-        
+
         $user = $this->userRepository->findByUsername($username);
+        
+        $roles = $this->roleRepository->getList('name', 'id');
+
+        $groups = $this->groupRepository->getList('name', 'id');
+
         // TODO : refactoring  and must be modified
         $countries = Location::where('parent_id', 0)->lists('name', 'id');
         $states = Location::whereIn('parent_id', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])->lists('name', 'id');
         $cities = Location::whereIn('parent_id', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20])->lists('name', 'id');
         
-        return View::make('admin.pages.users.edit', compact('user', 'countries', 'states', 'cities'));
+        return View::make('admin.pages.users.edit', compact('user', 'roles', 'countries', 'states', 'cities', 'groups'));
     }
     
     /**
@@ -143,7 +156,7 @@ class UsersController extends BaseController
         $user = $this->userRepository->findByUsername($username);
 
         // TODO:: Validate
-        $this->userProfileForm->validForProfileUpdate($user->id, $input = Input::all());
+        $this->userForm->validForAdminUpdate($user->id, $input = Input::all());
 
         // TODO:: refactoring
         //$user = $this->execute(UserProfileUpdateCommand::class);
@@ -154,18 +167,29 @@ class UsersController extends BaseController
         $user->last_name         = $input['last_name'];
         $user->gender            = $input['gender'];
         $user->dob               = $input['dob'];
-        $user->country_id        = $input['country'];
-        $user->state_id          = $input['state'];
-        $user->city_id           = $input['city'];
+        $user->country_id        = isset($input['country']) ? $input['country'] : null;
+        $user->state_id          = isset($input['state']) ? $input['state'] : null;
+        $user->city_id           = isset($input['city']) ? $input['city'] : null;
         $user->school_department = $input['school_department'];
         $user->is_commercial     = isset($input['is_commercial']) ? true : false;
         $user->language_id       = $input['language'];
 
         $user->save();
 
+        $privacy = $user->privacy()->first();
+
+        $privacy->first_name = $input['is_visible_first_name'] ? true : false;
+        $privacy->last_name = $input['is_visible_last_name'] ? true : false;
+        $privacy->gender = $input['is_visible_gender'] ? true : false;
+        $privacy->email = $input['is_visible_email'] ? true : false;
+        $privacy->title = $input['is_visible_title'] ? true : false;
+        $privacy->dob = $input['is_visible_dob'] ? true : false;
+
+        $privacy->save();
+
         Flash::success('Your profile has been successfully updated!');
         
-        return Redirect::route('profile_path', $user->username);
+        return Redirect::route('admin.users.index');
     }
     
     /**
@@ -178,6 +202,10 @@ class UsersController extends BaseController
     public function destroy($id) {
 
         $user = $this->userRepository->findById($id);
+
+        $user->privacy()->delete();
+
+        $user->statuses()->delete();
 
         $user->delete();
         

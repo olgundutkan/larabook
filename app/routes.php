@@ -80,7 +80,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Controllers\Admin', 'before' 
 	// Roles
 	Route::resource('roles', 'RolesController', ['except' => 'show']);
 	// Users
-	Route::resource('locations', 'LocationsController', ['except' => 'create']);
+	Route::resource('locations', 'LocationsController');
 	// Settings
 	Route::resource('settings', 'SettingsController',['only' =>['index', 'edit', 'update']]);
 

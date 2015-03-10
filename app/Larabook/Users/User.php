@@ -71,8 +71,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
         // TODO:: add the Queue ?
         $this->hasAttachedFile('profile_picture', [
             'styles' => [
-                'medium' => '300x300',
-                'thumb' => '100x100'
+                'x-large' => '256x256',
+                'large'   => '128x128',
+                'medium'  => '64x64',
+                'small'   => '32x32',
+                'x-small' => '16x16',
+                'thumb'   => '100x100'
             ],
             'storage' => 's3',
         ]);

@@ -19,36 +19,80 @@
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th class="text-center"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <h4>Groups By Populatios</h4>
+                    <div style="display:flex">
+                      <div class="form-group">
+                        <label for="country">Country</label>
+                        {{ Form::select('country', [], null,['style' => 'max-with:30px;']) }}
+                      </div>
+                      <div class="form-group">
+                        <label for="city">City</label>
+                        {{ Form::select('city', [], null,['style' => 'max-with:30px;']) }}
+                      </div>
+                      <div class="form-group">
+                        <label for="state">State</label>
+                        {{ Form::select('state', [], null,['style' => 'max-with:30px;']) }}
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <ul>
                             @forelse($groups as $group)
-                                <tr>
-                                    <td>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</td>
-                                    <td>
-                                        @if($currentUser->inGroup($group->id))
-                                            <a href="{{ route('quit_the_group_path', $group->id) }}" data-method="post" data-confirm=""><i class="fa fa-minus-square-o"></i> Quit</a>
-                                        @else
-                                            <a href="{{ route('join_the_group_path', $group->id) }}" data-method="post" data-confirm=""><i class="fa fa-plus-square-o"></i> Join</a>
-                                        @endif
-                                        @if($currentUser->isOwner($group->id))
-                                            <a href="{{ route('groups.edit', $group->id) }}"><i class="fa fa-pencil"></i> Edit</a>
-                                            <a href="{{ route('groups.destroy', $group->id) }}" data-method="delete" data-confirm="Are you sure ?"><i class="fa fa-trash"></i> Delete</a>
-                                        @endif
-                                    </td>
-                                </tr>
+                                <li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
                             @empty
-                                <tr>
-                                    <td class="text-center" colspan="4">No group found</td>
-                                </tr>
+                                <li>No group found</li>
                             @endforelse
-                        </tbody>
-                    </table>
+                        </ul>
+                      </div>
+                       <hr>
+                      <h4>Most Active Group</h4>
+                      <div style="display:flex">
+                      <div class="form-group">
+                        <label for="country">Country</label>
+                        {{ Form::select('country', [], null,['style' => 'max-with:30px;']) }}
+                      </div>
+                      <div class="form-group">
+                        <label for="city">City</label>
+                        {{ Form::select('city', [], null,['style' => 'max-with:30px;']) }}
+                      </div>
+                      <div class="form-group">
+                        <label for="state">State</label>
+                        {{ Form::select('state', [], null,['style' => 'max-with:30px;']) }}
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <ul>
+                            @forelse($groups as $group)
+                                <li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
+                            @empty
+                                <li>No group found</li>
+                            @endforelse
+                        </ul>
+                      </div>
+                      <hr>
+                      <h4>Groups By Index (a-z)</h4>
+                      <div style="display:flex">
+                      <div class="form-group">
+                        <label for="country">Country</label>
+                        {{ Form::select('country', [], null,['style' => 'max-with:30px;']) }}
+                      </div>
+                      <div class="form-group">
+                        <label for="city">City</label>
+                        {{ Form::select('city', [], null,['style' => 'max-with:30px;']) }}
+                      </div>
+                      <div class="form-group">
+                        <label for="state">State</label>
+                        {{ Form::select('state', [], null,['style' => 'max-with:30px;']) }}
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <ul>
+                            @forelse($groups as $group)
+                                <li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
+                            @empty
+                                <li>No group found</li>
+                            @endforelse
+                        </ul>
+                      </div>
                 </div>
             </div>
         </div>
@@ -68,10 +112,10 @@
                         <div id="collapse-{{ $group->id }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading-{{ $group->id }}">
                             <div class="panel-body status-body">
                                 @if ($currentUser->inGroup($group->id))
-                                    @include ('groups.partials.publish-status-form')
+                                    @include ('frontend.pages.groups.partials.publish-status-form')
                                 @endif
                             </div>
-                            @include ('groups.partials.statuses', ['statuses' => $group->statuses])
+                            @include ('frontend.pages.groups.partials.statuses', ['statuses' => $group->statuses])
                         </div>
                     </div>
                     @endforeach
@@ -87,7 +131,7 @@
             <div class="panel-body">
                 <div class="col-md-12 text-center">
                     <a href="{{ route('profile_path', e($currentUser->username), $currentUser->username) }}">
-                        <img src="{{ $currentUser->present()->profilePicture('medium') }}" class="img-responsive" alt="{{ $currentUser->username }}" style="margin:0 auto;">
+                        <img src="{{ e($currentUser->present()->profilePicture('medium')) }}" class="img-responsive" alt="{{ $currentUser->username }}" style="margin:0 auto;">
                     </a>
                 </div>                
                 <h4 class="text-center">{{ link_to_route('profile_path', e($currentUser->username), $currentUser->username) }}</h4>

@@ -297,7 +297,7 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding-top:40px;">
                 @yield('content')
             </div>
             <!-- /.container-fluid -->

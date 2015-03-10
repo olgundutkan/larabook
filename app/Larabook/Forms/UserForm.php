@@ -39,4 +39,54 @@ class UserForm extends FormValidator
 
         return $this->validate($input);
     }
+
+    public function validForAdminCreate(array $input)
+    {
+        $profileUpdateRules = [
+            'username'             => 'required|regex:/^([a-zA-Z0-9-_.ğĞçÇşŞüÜöÖıİ ])+$/i|unique:users,username',
+            'email'                => 'required|email|unique:users,email',
+            'password'             => 'required|min:6|confirmed',
+            'title'                => 'regex:/^([a-zA-Z0-9.ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'first_name'           => 'required|regex:/^([a-zA-Z0-9ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'last_name'            => 'required|regex:/^([a-zA-Z0-9ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'gender'               => 'in:not_specified,male,female',
+            'dob'                  => 'date_format:d/m/Y', // TODO::
+            'country'              => 'in:' . implode(',', Location::lists('id')), // TODO::
+            'state'                => 'in:' . implode(',', Location::lists('id')), // TODO::
+            'city'                 => 'in:' . implode(',', Location::lists('id')), // TODO::
+            'school_department'    => 'regex:/^([a-zA-Z0-9-_.ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'language'             => 'in:1,2', // TODO::
+            'groups'               => '',
+            'profile_picture'      => 'mimes:jpeg,jpg,bmp,png', // TODO:: file size,
+        ];
+
+        $this->rules = $profileUpdateRules;
+
+        return $this->validate($input);
+    }
+
+    public function validForAdminUpdate($id, array $input)
+    {
+        $profileUpdateRules = [
+            'username'             => 'required|regex:/^([a-zA-Z0-9-_.ğĞçÇşŞüÜöÖıİ ])+$/i|unique:users,username,' . $id,
+            'email'                => 'required|email|unique:users,email,' . $id,
+            'password'             => 'min:6|confirmed',
+            'title'                => 'regex:/^([a-zA-Z0-9.ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'first_name'           => 'required|regex:/^([a-zA-Z0-9ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'last_name'            => 'required|regex:/^([a-zA-Z0-9ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'gender'               => 'in:not_specified,male,female',
+            'dob'                  => 'date_format:d/m/Y', // TODO::
+            'country'              => 'in:' . implode(',', Location::lists('id')), // TODO::
+            'state'                => 'in:' . implode(',', Location::lists('id')), // TODO::
+            'city'                 => 'in:' . implode(',', Location::lists('id')), // TODO::
+            'school_department'    => 'regex:/^([a-zA-Z0-9-_.ğĞçÇşŞüÜöÖıİ ])+$/i',
+            'language'             => 'in:1,2', // TODO::
+            'groups'               => '',
+            'profile_picture'      => 'mimes:jpeg,jpg,bmp,png', // TODO:: file size,
+        ];
+
+        $this->rules = $profileUpdateRules;
+
+        return $this->validate($input);
+    }
 }

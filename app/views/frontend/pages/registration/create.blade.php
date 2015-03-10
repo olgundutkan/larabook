@@ -16,7 +16,7 @@
 @section('content')
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-8 col-lg-4 col-lg-offset-8">
-	{{ Form::open(['route' => 'register_path', 'class' => '', 'role' => 'form', 'files' => true, 'method' => 'POST']) }}
+	{{ Form::open(['route' => 'register_path', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4>Register!</h4>

@@ -38,10 +38,22 @@ class LocationsController extends BaseController
      */
     public function index() {
         
-		$locations = $this->locationRepository->getAllCountries();
+		$locations = $this->locationRepository->getAllLocations();
 
         return View::make('admin.pages.locations.index', compact('locations'));
         
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create() {
+
+        $locations = withEmpty($this->locationRepository->getList('name', 'id'));
+
+        return View::make('admin::pages.locations.create', compact('locations'));
     }
     
     /**
@@ -51,19 +63,15 @@ class LocationsController extends BaseController
      */
     public function store() {
         
-        $input = Input::only('name', 'parent_id');
+        $input = Input::only('new_location_name', 'parent_id');
         
         $this->locationForm->validForCreate($input);
         
         $location = $this->execute(LocationCommand::class);
         
         Flash::success('Location succesfully created.');
-
-        if ($location->parent_id) {
-            return Redirect::route('manage.locations.show', $location->parent_id);
-        }
         
-        return Redirect::route('manage.locations.index');
+        return Redirect::route('admin.locations.index');
         
     }
     
@@ -90,9 +98,9 @@ class LocationsController extends BaseController
         
         $location = $this->locationRepository->findById($id);
 
-        $parents = $this->locationRepository->getByParentId($location->parent->parent_id)->lists('name', 'id'); // TODO: or all location except itself ?
+        $locations = withEmpty($this->locationRepository->getList('name', 'id'));
         
-        return View::make('admin.pages.locations.edit', compact('location', 'parents')); 
+        return View::make('admin.pages.locations.edit', compact('location', 'locations')); 
     }
     
     /**
@@ -103,23 +111,15 @@ class LocationsController extends BaseController
      */
     public function update($id) {
         
-        $input = Input::only('name', 'parent_id');
+        $input = Input::only('location_name', 'parent_id');
         
         $this->locationForm->validForUpdate($id, $input);
-        
-        $location = $this->execute(LocationCommand::class, [
-            'id' => $id,
-            'name' => $input['name'],
-            'parent_id' => $input['parent_id']
-        ]);
-        
+
+        $location = $this->locationRepository->updateRecord($id, $input['location_name'], $input['parent_id']);
+
         Flash::success('Location succesfully Updated.');
         
-        if ($location->parent_id) {
-            return Redirect::route('manage.locations.show', $location->parent_id);
-        }
-        
-        return Redirect::route('manage.locations.index');
+        return Redirect::route('admin.locations.index');
         
     }
     
@@ -133,7 +133,7 @@ class LocationsController extends BaseController
         
         $location = $this->locationRepository->findById($id);
 
-        $parent_id = $location->parent_id;
+        //$parent_id = $location->parent_id;
 
         // TODO: Check children
 
@@ -141,11 +141,7 @@ class LocationsController extends BaseController
 
         Flash::success('Location succesfully deleted.');
         
-        if ($parent_id) {
-            return Redirect::route('manage.locations.show', $location->parent_id);
-        }
-        
-        return Redirect::route('manage.locations.index');
+        return Redirect::route('admin.locations.index');
         
     }
 }

@@ -10,6 +10,8 @@ class DashboardController extends \BaseController
         parent::__construct();
         
         $this->beforeFilter('auth');
+
+        $this->beforeFilter('activated');
     }
     
     /**

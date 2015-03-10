@@ -4,7 +4,7 @@ namespace Larabook\Groups;
 
 use Larabook\Users\UserRepository;
 
-class GroupsRepository
+class GroupRepository
 {
     
     /**
@@ -25,6 +25,10 @@ class GroupsRepository
      */
     public function findById($id) {
         return Group::findOrFail($id);
+    }
+
+    public function firstFindBySlug($slug) {
+        return Group::whereSlug($slug)->firstOrFail();
     }
 
     public function getList($col1, $col2)

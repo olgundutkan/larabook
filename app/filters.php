@@ -70,6 +70,22 @@ Route::filter('guest', function()
 	if (Auth::check()) return Redirect::to('/');
 });
 
+
+Route::filter('activated', function()
+{
+	if (!Auth::user()->activated)
+	{
+		if (Request::ajax())
+		{
+			return Auth::logout();
+		}
+		else
+		{
+			return Auth::logout();
+		}
+	}
+});
+
 /*
 |--------------------------------------------------------------------------
 | CSRF Protection Filter

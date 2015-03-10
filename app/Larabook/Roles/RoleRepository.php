@@ -34,4 +34,9 @@ class RoleRepository
     public function findById($id) {
         return Role::findOrFail($id);
     }
+
+    public function getList($col1, $col2)
+    {
+        return Role::lists($col1, $col2);
+    }
 }

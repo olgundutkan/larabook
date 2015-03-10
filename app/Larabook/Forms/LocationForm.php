@@ -17,7 +17,7 @@ class LocationForm extends FormValidator
     public function validForCreate(array $input)
 	{
 		$create_rules = [
-	        'name'		=> 'required|unique:locations', // TODO: according to parent id unique
+	        'new_location_name'		=> 'required|unique:locations,name', // TODO: according to parent id unique
 	    ];
 		$this->rules = $create_rules;
     	return $this->validate($input);
@@ -26,7 +26,7 @@ class LocationForm extends FormValidator
 	public function validForUpdate($id, array $input)
 	{
 		$update_rules = [
-	        'name'		=> 'required|unique:locations,name,'.$id,
+	        'location_name'		=> 'required|unique:locations,name,'.$id,
 	    ];
 
 		$this->rules = $update_rules;

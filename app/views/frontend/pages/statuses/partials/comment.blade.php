@@ -1,6 +1,6 @@
 <article class="comments__comment media status-media">
     <div class="pull-left">
-        @include ('frontend.pages.users.partials.avatar', ['user' => $comment->owner, 'class' => 'media-object'])
+        @include ('frontend.pages.users.partials.avatar', ['user' => $comment->owner, 'class' => 'media-object', 'size' => 'x-small'])
     </div>
 
     <div class="media-body">

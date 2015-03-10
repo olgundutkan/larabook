@@ -46,4 +46,9 @@ class Location extends \Eloquent
     public function children() {
         return $this->hasMany('Larabook\Locations\Location', 'parent_id', 'id');
     }
+
+    public function setParentIdAttribute($value) {
+        
+        $this->attributes['parent_id'] = isset($value) ? $value : false;
+    }
 }

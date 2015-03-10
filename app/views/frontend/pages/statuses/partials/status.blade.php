@@ -1,6 +1,6 @@
 <article class="media status-media">
     <div class="pull-left">
-        @include ('frontend.pages.users.partials.avatar', ['user' => $status->user, 'class' => 'status-media-object'])
+        @include ('frontend.pages.users.partials.avatar', ['user' => $status->user, 'class' => 'status-media-object', 'size' => 'x-small'])
     </div>
 
     <div class="media-body status-media-body">

@@ -1,25 +1,24 @@
 <?php
-
-namespace Larabook\Locations;
+namespace Larabook\Groups;
 
 use Laracasts\Commander\CommandHandler;
 
 use Laracasts\Commander\Events\DispatchableTrait;
 
-class LocationCommandHandler implements CommandHandler
+class CreateGroupCommandHandler implements CommandHandler
 {
     
     use DispatchableTrait;
     
     /**
-     * @var LocationRepository
+     * @var GroupRepository
      */
     protected $repository;
     
     /**
-     * @param LocationRepository $repository
+     * @param GroupRepository $repository
      */
-    function __construct(LocationRepository $repository) {
+    function __construct(GroupRepository $repository) {
         $this->repository = $repository;
     }
     
@@ -30,11 +29,11 @@ class LocationCommandHandler implements CommandHandler
      * @return mixed
      */
     public function handle($command) {
+
+        $group = Group::create(['name' => $command->name, 'slug' => $command->slug]);
         
-        $location = Location::create(['name' => $command->name, 'parent_id' => $command->parent_id]);
+        //$this->dispatchEventsFor($group);
         
-        $this->repository->save($location);
-        
-        return $location;
+        return $group;
     }
 }

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -29,7 +29,7 @@
 					<li>{{ link_to_route('profile_path', 'My Profile', e($currentUser->username)) }}</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img class="nav-gravatar" src="{{ e($currentUser->present()->gravatar) }}" alt="{{ e($currentUser->username) }}">
+							<img class="nav-gravatar" src="{{ e($currentUser->present()->profilePicture('small')) }}" alt="{{ e($currentUser->username) }}">
 							{{ e($currentUser->username) }} 
 							<b class="caret"></b>
 						</a>

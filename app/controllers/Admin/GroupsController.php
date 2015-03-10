@@ -2,13 +2,15 @@
 
 namespace Controllers\Admin;
 
-use Larabook\Groups\GroupsRepository;
+use Larabook\Groups\GroupRepository;
+
+use Larabook\Groups\CreateGroupCommand;
 
 use Larabook\Statuses\Status;
 
 use Larabook\Forms\GroupForm;
 
-use View;
+use View, Input, Auth, Flash, Redirect;
 
 class GroupsController extends BaseController
 {
@@ -25,7 +27,7 @@ class GroupsController extends BaseController
      *
      * @param GroupForm $groupForm
      */
-    function __construct(GroupForm $groupForm, GroupsRepository $groupRepository) {
+    function __construct(GroupForm $groupForm, GroupRepository $groupRepository) {
         parent::__construct();
         
         $this->beforeFilter('auth');
@@ -54,7 +56,7 @@ class GroupsController extends BaseController
      */
     public function create() {
         
-        return View::make('groups.create');
+        return View::make('admin::pages.groups.create');
         
     }
     
@@ -66,19 +68,14 @@ class GroupsController extends BaseController
     public function store() {
         
         $this->groupForm->validForCreate($input = Input::only('name', 'slug'));
-        
-        $group = new Group;
 
-        $group->name = $input['name'];
-        $group->slug = $input['slug'];
-
-        $group->save();
+        $group = $this->execute(CreateGroupCommand::class);
 
         $group->users()->attach([Auth::user()->id => ['is_owner' => true]]);
 
         Flash::success('Groups successfully created.');
 
-        return Redirect::route('groups.index');
+        return Redirect::route('admin.groups.index');
 
     }
     
@@ -90,7 +87,7 @@ class GroupsController extends BaseController
      */
     public function show($slug) {
         
-        $group = Group::whereSlug($slug)->firstOrFail();
+        $group = $this->groupRepository->firstFindBySlug($slug);
 
         return View::make('admin::pages.groups.show', compact('group'));
         
@@ -104,9 +101,9 @@ class GroupsController extends BaseController
      */
     public function edit($id) {
         
-        $group = Group::findOrFail($id);
+        $group = $this->groupRepository->findById($id);
 
-        return View::make('groups.edit', compact('group'));
+        return View::make('admin::pages.groups.edit', compact('group'));
         
     }
     
@@ -120,7 +117,7 @@ class GroupsController extends BaseController
         
         $this->groupForm->validForUpdate($id, $input = Input::only('name', 'slug'));
 
-        $group = Group::findOrFail($id);
+        $group = $this->groupRepository->findById($id);
 
         $group->name = $input['name'];
         $group->slug = $input['slug'];
@@ -129,7 +126,7 @@ class GroupsController extends BaseController
 
         Flash::success('Groups successfully updated.');
 
-        return Redirect::route('groups.index');
+        return Redirect::route('admin.groups.index');
         
     }
     
@@ -141,7 +138,7 @@ class GroupsController extends BaseController
      */
     public function destroy($id) {
         
-        $group = Group::findOrFail($id);
+        $group = $this->groupRepository->findById($id);
 
         $user = Auth::user();
 
@@ -156,6 +153,6 @@ class GroupsController extends BaseController
 
         Flash::success('Groups successfully deleted.');
         
-        return Redirect::route('groups.index');
+        return Redirect::route('admin.groups.index');
     }
 }

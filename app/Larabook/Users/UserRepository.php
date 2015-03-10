@@ -2,6 +2,8 @@
 
 namespace Larabook\Users;
 
+use Larabook\Privacies\Privacy;
+
 class UserRepository
 {
     
@@ -84,6 +86,32 @@ class UserRepository
      */
     public function setUserRole($roleId, User $user) {
         return $user->roles = $roleId;
+    }
+
+    /**
+     * Add Privacy a larabook user
+     * @param integer $roleId 
+     * @param User   $user    
+     */
+    public function setUserPrivacy(User $user, array $confidentiality) {
+
+        $privacy = new Privacy;
+
+        $privacy->user_id = $user->id;
+        
+        $privacy->first_name = isset($confidentiality['first_name']) ? $confidentiality['first_name'] : false;
+
+        $privacy->last_name = isset($confidentiality['last_name']) ? $confidentiality['first_name'] : false;
+
+        $privacy->gender = isset($confidentiality['gender']) ? $confidentiality['first_name'] : false;
+
+        $privacy->email = isset($confidentiality['email']) ? $confidentiality['first_name'] : false;
+
+        $privacy->title = isset($confidentiality['title']) ? $confidentiality['first_name'] : false;
+
+        $privacy->dob = isset($confidentiality['dob']) ? $confidentiality['first_name'] : false;
+
+        return $privacy->save();
     }
 
     /**

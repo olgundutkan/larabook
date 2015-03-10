@@ -29,7 +29,7 @@
 					<li>{{ link_to_route('profile_path', 'My Profile', e($currentUser->username)) }}</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img class="nav-gravatar" src="{{ e($currentUser->present()->gravatar) }}" alt="{{ e($currentUser->username) }}">
+							<img class="nav-gravatar" src="{{ e(currentUser->present()->profilePicture('x-small')) }}" alt="{{ e($currentUser->username) }}">
 							{{ e($currentUser->username) }} 
 							<b class="caret"></b>
 						</a>

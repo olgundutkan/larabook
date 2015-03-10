@@ -30,3 +30,21 @@ if (!function_exists('get_random_string')) {
         return $random_string;
     }
 }
+
+/**
+ * Function to add empty option to select lists
+ */
+if (!function_exists('withEmpty')) 
+{
+    /**
+     * Function to add empty option to select lists
+     *
+     * @param $selectList array
+     * @param $emptyLabel string to use as label for empty option
+     * @author rtconner
+     */
+    function withEmpty($selectList, $emptyLabel = 'Please Select')
+    {
+        return ['' => $emptyLabel] + $selectList;
+    }
+}

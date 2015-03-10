@@ -51,6 +51,6 @@ class UserPresenter extends Presenter
 
     public function profilePicture($size)
     {
-        return $this->profile_picture_file_name ? $this->profile_picture->url($size) : Theme::asset('img/user128x128.png');
+        return $this->profile_picture_file_name ? $this->profile_picture->url($size) : Theme::asset('img/user-' . $size . '.png');
     }
 }
