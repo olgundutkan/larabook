@@ -169,4 +169,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
     {
         $this->groups()->sync((array) $groups);
     }
+
+    public function country()
+    {
+        return $this->hasOne('Larabook\Locations\Location', 'id', 'country_id');
+    }
+
+    public function state()
+    {
+        return $this->hasOne('Larabook\Locations\Location', 'id', 'state_id');
+    }
+
+    public function city()
+    {
+        return $this->hasOne('Larabook\Locations\Location', 'id', 'city_id');
+    }
 }

@@ -130,9 +130,7 @@
 @section('script')
 	<script>
 		$(function() {
-			$( "#dob" ).datepicker({
-				format: 'dd/mm/yyyy'
-			});
+			$('#dob').inputmask('99/99/9999');
 			/* Initialize your widget via javascript as follows */
 			$("#profile-profile_picture").fileinput({
 				initialPreview: [

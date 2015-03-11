@@ -52,9 +52,14 @@
 				</div>
 			</div>
 			<div class="panel-footer">
-				<div class="form-group">
+				<div class="form-group pull-left">
 					{{ Form::submit('Sign Up!', ['class' => 'btn btn-primary']) }}
 				</div>
+
+				<div class="form-group pull-right">
+	                {{ link_to_route('home', 'Sign in') }}
+	            </div>
+	            <div class="clearfix"></div>
 			</div>
 		</div>
 	{{ Form::close() }}
@@ -80,37 +85,4 @@
 @stop
 
 @section('script')
-	<script>
-		$(function() {
-			$( "#dob" ).datepicker({
-				format: 'dd/mm/yyyy'
-			});
-			/* Initialize your widget via javascript as follows */
-			$("#profile-profile_picture").fileinput({
-				browseClass: "btn btn-primary btn-block",
-				showCaption: false,
-				showRemove: false,
-				showUpload: false,
-				browseLabel: 'Upload Profile Photo',
-				browseIcon: '<i class="glyphicon glyphicon-profile_picture"></i> ',
-				maxFilesNum: 1,
-    			allowedFileExtensions: ["jpeg", "jpg", "gif", "png"],
-        		msgInvalidFileExtension: 'Invalid extension for file "{name}". Only "{extensions}" files are supported.',
-			});
-		});
-		$('.privacy').click(function() {
-	    	var input = $(this).data('input');
-			var privacy = $(this).data('privacy');
-
-			if (privacy) {
-				$("input[name="+input+"]").val(true);
-				$(this).text('be seen');
-				$(this).data('privacy', false);
-			} else {				
-				$("input[name="+input+"]").val(false);
-				$(this).text('not be seen');
-				$(this).data('privacy', true);
-			}
-	    });
-	</script>
 @stop

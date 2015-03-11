@@ -30,17 +30,17 @@
 
 <div class="form-group">
     {{ Form::label('country', 'Country:', ['for' => 'country', 'class' => 'control-label']) }}
-    {{ e($user->country_id) }}
+    {{ e($user->country->name) }}
 </div>
 
 <div class="form-group">
     {{ Form::label('state', 'State:', ['for' => 'state', 'class' => 'control-label']) }}
-    {{ e($user->state_id) }}
+    {{ e($user->state->name) }}
 </div>
 
 <div class="form-group">
     {{ Form::label('city', 'City:', ['for' => 'city', 'class' => 'control-label']) }}
-    {{ e($user->city_id) }}
+    {{ e($user->city->name) }}
 </div>
 
 <div class="form-group">
@@ -50,7 +50,7 @@
 
 <div class="form-group">
     {{ Form::label('is_commercial', 'Is Commercial:', ['for' => 'is_commercial', 'class' => 'control-label']) }}
-    {{ e($user->is_commercial) }}
+    {{ e($user->is_commercial ? 'Yes' : 'No') }}
 </div>
 
 <div class="form-group">

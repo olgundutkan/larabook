@@ -52,6 +52,11 @@ Route::post('groups/{id}/join', ['as' => 'join_the_group_path', 'uses' => 'Group
 Route::post('groups/{id}/quit', ['as' => 'quit_the_group_path', 'uses' => 'GroupsController@quitTheGroup']);
 Route::post('groups/{id}/statuses', ['as' => 'group_statuses_path', 'uses' => 'GroupsController@postStatus']);
 
+/*
+* Location
+ */
+Route::post('locations/children', ['as' => 'locations.get_child_list', 'uses' => 'LocationsController@getChildList']);
+
 /**
  * Follows
  */

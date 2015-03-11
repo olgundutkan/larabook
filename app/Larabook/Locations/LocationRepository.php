@@ -19,6 +19,10 @@ class LocationRepository
     {
         return Location::all();
     }
+
+    public function getChildrenList($parent_id) {
+        return Location::where('parent_id', $parent_id)->lists('name', 'id');
+    }
     
     /**
      * Get all countries.

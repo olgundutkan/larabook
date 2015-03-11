@@ -11,7 +11,8 @@
     "bootstrap-timepicker": "~0.2.6",
     "bootstrap-datepicker": "~1.3.1",
     "bootstrap-fileinput": "~4.1.7",
-    "ckeditor": "#full/stable"
+    "ckeditor": "#full/stable",
+    "jquery.inputmask": "~3.1.61"
   },
   "private": true
 }

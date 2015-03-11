@@ -8,53 +8,51 @@ module.exports = function(grunt) {
                 separator: ';'
             },
             backend: {
-                src: ['./vendor/bower_components/jquery/dist/jquery.js', 
-                      './vendor/bower_components/bootstrap/dist/js/bootstrap.js',
-                      './vendor/bower_components/jquery-ui/jquery-ui.js',
-                      './vendor/bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js', 
-                      './vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
-                      './app/assets/backend/js/jquery.slugger.js',
-                      './vendor/bower_components/jquery-ujs/src/rails.js', 
-                      './app/assets/backend/js/metisMenu.js',
-                      './app/assets/backend/js/sb-admin-2.js'
-                      ],
+                src: [' ./vendor/bower_components/jquery/dist/jquery.js', 
+                        './vendor/bower_components/bootstrap/dist/js/bootstrap.js', 
+                        './vendor/bower_components/jquery-ui/jquery-ui.js', 
+                        './vendor/bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js', 
+                        './vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js', 
+                        './app/assets/backend/js/jquery.slugger.js', 
+                        './vendor/bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask.js', 
+                        './vendor/bower_components/jquery-ujs/src/rails.js', 
+                        './app/assets/backend/js/metisMenu.js', 
+                        './app/assets/backend/js/sb-admin-2.js'],
                 dest: './public/themes/admin/js/backend.js'
             },
             main: {
-                src: ['./vendor/bower_components/jquery/dist/jquery.js', 
-                      './vendor/bower_components/bootstrap/dist/js/bootstrap.js',
-                      './vendor/bower_components/jquery-ui/jquery-ui.js',
-                      './vendor/bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js', 
-                      './vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
-                      './vendor/bower_components/bootstrap-fileinput/js/fileinput.min.js',
-                      './app/assets/frontend/js/jquery.slugger.js',
-                      './app/assets/frontend/js/main.js',
-                      './vendor/bower_components/jquery-ujs/src/rails.js', 
-                      ],
+                src: [' ./vendor/bower_components/jquery/dist/jquery.js', 
+                        './vendor/bower_components/bootstrap/dist/js/bootstrap.js', 
+                        './vendor/bower_components/jquery-ui/jquery-ui.js', 
+                        './vendor/bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js', 
+                        './vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js', 
+                        './vendor/bower_components/bootstrap-fileinput/js/fileinput.min.js', 
+                        './app/assets/frontend/js/jquery.slugger.js', 
+                        './vendor/bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask.js', 
+                        './app/assets/frontend/js/main.js', 
+                        './vendor/bower_components/jquery-ujs/src/rails.js', ],
                 dest: './public/themes/frontend/js/main.js'
             },
         },
         concat_css: {
             options: {},
             backend: {
-                src: ['./vendor/bower_components/bootstrap/dist/css/bootstrap.css',
-                      './vendor/bower_components/jquery-ui/themes/smoothness/jquery-ui.css',
-                      './vendor/bower_components/font-awesome/css/font-awesome.css',
-                      './app/assets/backend/css/style.css',
-                      './app/assets/backend/css/metisMenu.css',
-                      './app/assets/backend/css/sb-admin-2.css',
-                      ],
+                src: [' ./vendor/bower_components/bootstrap/dist/css/bootstrap.css', 
+                        './vendor/bower_components/jquery-ui/themes/smoothness/jquery-ui.css', 
+                        './vendor/bower_components/font-awesome/css/font-awesome.css', 
+                        './app/assets/backend/css/style.css', 
+                        './app/assets/backend/css/metisMenu.css', 
+                        './app/assets/backend/css/sb-admin-2.css', ],
                 dest: './public/themes/admin/css/backend.css'
             },
             main: {
-                src: ['./vendor/bower_components/bootstrap/dist/css/bootstrap.css',
-                      './vendor/bower_components/jquery-ui/themes/smoothness/jquery-ui.css',
-                      './vendor/bower_components/font-awesome/css/font-awesome.css', 
-                      './vendor/bower_components/bootstrap-timepicker/css/bootstrap-timepicker.css',
-                      './vendor/bower_components/bootstrap-datepicker/css/datepicker.css',
-                      './vendor/bower_components/bootstrap-fileinput/css/fileinput.min.css',
-                      './app/assets/frontend/css/main.css',
-                      ],
+                src: [' ./vendor/bower_components/bootstrap/dist/css/bootstrap.css', 
+                        './vendor/bower_components/jquery-ui/themes/smoothness/jquery-ui.css', 
+                        './vendor/bower_components/font-awesome/css/font-awesome.css', 
+                        './vendor/bower_components/bootstrap-timepicker/css/bootstrap-timepicker.css', 
+                        './vendor/bower_components/bootstrap-datepicker/css/datepicker.css', 
+                        './vendor/bower_components/bootstrap-fileinput/css/fileinput.min.css', 
+                        './app/assets/frontend/css/main.css', ],
                 dest: './public/themes/frontend/css/main.css'
             },
         },
@@ -85,35 +83,50 @@ module.exports = function(grunt) {
         },
         copy: {
             backend: {
-                files: [
-                    { src: './vendor/bower_components/font-awesome/fonts/**',
-                      dest: './public/themes/admin/fonts/',
-                      expand: true, flatten: true, filter: 'isFile' },
-                    { src: './vendor/bower_components/bootstrap/dist/fonts/**',
-                      dest: './public/themes/admin/fonts/',
-                      expand: true, flatten: true, filter: 'isFile' },
-                    { cwd: './vendor/bower_components/ckeditor/',
-                      src: ['**'],
-                      dest: './public/themes/admin/js/ckeditor/',
-                      expand: true },
-                    { cwd: './app/assets/backend/img/',
-                      src: ['**'],
-                      dest: './public/themes/admin/img/',
-                      expand: true }
-                ]
+                files: [{
+                    src: './vendor/bower_components/font-awesome/fonts/**',
+                    dest: './public/themes/admin/fonts/',
+                    expand: true,
+                    flatten: true,
+                    filter: 'isFile'
+                }, {
+                    src: './vendor/bower_components/bootstrap/dist/fonts/**',
+                    dest: './public/themes/admin/fonts/',
+                    expand: true,
+                    flatten: true,
+                    filter: 'isFile'
+                }, {
+                    cwd: './vendor/bower_components/ckeditor/',
+                    src: ['**'],
+                    dest: './public/themes/admin/js/ckeditor/',
+                    expand: true
+                }, {
+                    cwd: './app/assets/backend/img/',
+                    src: ['**'],
+                    dest: './public/themes/admin/img/',
+                    expand: true
+                }]
             },
             main: {
-                files: [
-                    { src: './vendor/bower_components/font-awesome/fonts/**',
-                      dest: './public/themes/frontend/fonts/',
-                      expand: true, flatten: true, filter: 'isFile' },
-                    { src: './vendor/bower_components/bootstrap/dist/fonts/**',
-                      dest: './public/themes/frontend/fonts/',
-                      expand: true, flatten: true, filter: 'isFile' },
-                    { src: './app/assets/frontend/img/**',
-                      dest: './public/themes/frontend/img/',
-                      expand: true, flatten: true, filter: 'isFile' },
-                ]
+                files: [{
+                    src: './vendor/bower_components/font-awesome/fonts/**',
+                    dest: './public/themes/frontend/fonts/',
+                    expand: true,
+                    flatten: true,
+                    filter: 'isFile'
+                }, {
+                    src: './vendor/bower_components/bootstrap/dist/fonts/**',
+                    dest: './public/themes/frontend/fonts/',
+                    expand: true,
+                    flatten: true,
+                    filter: 'isFile'
+                }, {
+                    src: './app/assets/frontend/img/**',
+                    dest: './public/themes/frontend/img/',
+                    expand: true,
+                    flatten: true,
+                    filter: 'isFile'
+                }, ]
             }
         }
     });

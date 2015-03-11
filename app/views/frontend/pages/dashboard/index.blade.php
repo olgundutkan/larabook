@@ -23,15 +23,15 @@
                     <div style="display:flex">
                       <div class="form-group">
                         <label for="country">Country</label>
-                        {{ Form::select('country', [], null,['style' => 'max-with:30px;']) }}
-                      </div>
-                      <div class="form-group">
-                        <label for="city">City</label>
-                        {{ Form::select('city', [], null,['style' => 'max-with:30px;']) }}
+                        {{ Form::select('country', $countries, null,['class' =>'country', 'style' => 'max-width:70px;']) }}
                       </div>
                       <div class="form-group">
                         <label for="state">State</label>
-                        {{ Form::select('state', [], null,['style' => 'max-with:30px;']) }}
+                        {{ Form::select('state', $states, null,['style' => 'max-width:70px;']) }}
+                      </div>
+                      <div class="form-group">
+                        <label for="city">City</label>
+                        {{ Form::select('city', $cities, null,['style' => 'max-width:70px;']) }}
                       </div>
                       </div>
                       <div class="form-group">
@@ -158,4 +158,30 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('script')
+<script type="text/javascript">
+jQuery(document).ready(function() {
+  jQuery('.country').change(function() {
+    //console.log($(this).val());
+    jQuery.post( "{{ route('locations.get_child_list') }}", { _token: '{{ csrf_token() }}', id: jQuery(this).val() } )
+    .done(function(data) {
+      console.log(data);
+        jQuery(this).append(jQuery("<option></option>").attr("value", '').text('Please select'));
+        jQuery.map(data, function( id, name ) {
+          console.log(id);
+            //$(this).append($("<option></option>").attr("value", id).text(name)); 
+        });
+    })
+    .fail(function(data) {
+      console.log(data);
+    })
+    .always(function() {
+      alert( "finished" );
+    });
+    
+  });
+});
+</script>
 @stop
