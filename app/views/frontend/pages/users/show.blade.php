@@ -36,7 +36,7 @@
                 <div class="panel-body">
                     <div class="col-md-12 text-center">
                         <a href="{{ route('profile_path', e($user->username), $user->username) }}">
-                            <img src="{{  $user->present()->profilePicture('medium') }}" class="img-responsive" alt="{{ $user->username }}" style="margin:0 auto;">
+                            <img src="{{  $user->present()->profilePicture('x-large') }}" class="img-responsive" alt="{{ $user->username }}" style="margin:0 auto;">
                         </a>
                     </div>
                     <h4 class="text-center">{{ link_to_route('profile_path', e($user->username), $user->username) }}</h4>
