@@ -186,7 +186,7 @@
 			 @if(isset($currentUser) && $currentUser)
 			<div class="panel-body">
 				<div class="col-md-12 text-center">
-					<a href="{{ route('profile_path', e($currentUser->username), $currentUser->username) }}"> <img src="{{ e($currentUser->present()->profilePicture('medium')) }}" class="img-responsive" alt="{{ $currentUser->username }}" style="margin:0 auto;"> </a>
+					<a href="{{ route('profile_path', e($currentUser->username), $currentUser->username) }}"> <img src="{{ e($currentUser->present()->profilePicture('x-large')) }}" class="img-responsive" alt="{{ $currentUser->username }}" style="margin:0 auto;"> </a>
 				</div>
 				<h4 class="text-center">{{ link_to_route('profile_path', e($currentUser->username), $currentUser->username) }}</h4>
 				<div class="col-md-4 text-center">
