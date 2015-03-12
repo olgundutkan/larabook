@@ -43,8 +43,6 @@ class RegisterUserCommandHandler implements CommandHandler
         $userRole = Role::where('name', 'User')->firstOrFail();
         
         $this->repository->setUserRole($userRole->id, $user);
-
-        $this->repository->setUserPrivacy($user, []);
         
         $this->dispatchEventsFor($user);
         

@@ -25,7 +25,7 @@ class LocationsController extends \BaseController
         
         if (Request::ajax()) {
 
-        	return $this->locationRepository->getChildrenList(Input::get('id'));
+        	return json_encode($this->locationRepository->getChildrenList(Input::get('id')));
         }
         
     }

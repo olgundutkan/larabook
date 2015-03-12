@@ -1,11 +1,6 @@
 @extends('frontend.layouts.default')
 
 @section('content')
-    <style type="text/css">
-        .right-to-left { margin-top: 30px; }
-
-        .right-to-left li { float: right; }
-    </style>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
             @if(isset($user) && $user)
@@ -52,6 +47,11 @@
                         {{ e($user->present()->statusCount) }}
                     </div>
                     <div class="col-md-4 text-center">
+                    </div>
+                    <div class="col-md-12">
+                        @unless ($user->is($currentUser))
+                            @include ('frontend.pages.users.partials.follow-form')
+                        @endif
                     </div>
                 </div>
                 @endif

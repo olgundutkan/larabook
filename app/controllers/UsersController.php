@@ -6,6 +6,8 @@ use Larabook\Users\Exceptions\UserAuthenticationException;
 
 use Larabook\Locations\Location;
 
+use Larabook\Groups\GroupRepository;
+
 use Larabook\Forms\UserForm;
 
 class UsersController extends \BaseController
@@ -20,17 +22,23 @@ class UsersController extends \BaseController
      * @var UserForm
      */
     protected $userProfileForm;
+
+    /**
+     * @var GroupRepository
+     */
+    private $groupRepository;
     
     /**
      * @param UserRepository $userRepository 
      * @param UserForm       $userForm       
      */
-    function __construct(UserRepository $userRepository, UserForm $userForm) {
+    function __construct(UserRepository $userRepository, UserForm $userForm, GroupRepository $groupRepository) {
         
         parent::__construct();
         
         $this->beforeFilter('auth', ['except' => ['getActivate']]);
         $this->userRepository = $userRepository;
+        $this->groupRepository = $groupRepository;
         $this->userProfileForm = $userForm;
     }
     
@@ -70,12 +78,14 @@ class UsersController extends \BaseController
         if ($user->username !== Auth::user()->username) {
             throw new UserAuthenticationException("User Not Found!", 1);
         }
+        $groups = $this->groupRepository->getList('name', 'id');
+
         // TODO : refactoring  and must be modified
         $countries = Location::where('parent_id', 0)->lists('name', 'id');
         $states = Location::where('parent_id', key($countries))->lists('name', 'id');
         $cities = Location::where('parent_id', key($states))->lists('name', 'id');
 
-        return View::make('frontend::pages.users.edit', compact('countries', 'states', 'cities'))->withUser($user);
+        return View::make('frontend::pages.users.edit', compact('countries', 'states', 'cities', 'groups'))->withUser($user);
     }
 
     public function update($username)

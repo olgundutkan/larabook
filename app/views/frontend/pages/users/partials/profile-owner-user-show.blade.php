@@ -28,20 +28,26 @@
     {{ e($user->present()->birthday) }}
 </div>
 
+@unless(!$user->country)
 <div class="form-group">
     {{ Form::label('country', 'Country:', ['for' => 'country', 'class' => 'control-label']) }}
     {{ e($user->country->name) }}
 </div>
+@endunless
 
+@unless(!$user->state)
 <div class="form-group">
     {{ Form::label('state', 'State:', ['for' => 'state', 'class' => 'control-label']) }}
     {{ e($user->state->name) }}
 </div>
+@endunless
 
+@unless(!$user->city)
 <div class="form-group">
     {{ Form::label('city', 'City:', ['for' => 'city', 'class' => 'control-label']) }}
     {{ e($user->city->name) }}
 </div>
+@endunless
 
 <div class="form-group">
     {{ Form::label('school_department', 'School / Department:', ['for' => 'school_department', 'class' => 'control-label']) }}

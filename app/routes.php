@@ -43,6 +43,12 @@ Route::get('users', ['as' => 'users_path', 'uses' => 'UsersController@index']);
 Route::get('@{username}', ['as' => 'profile_path', 'uses' => 'UsersController@show']);
 Route::get('@{username}/edit', ['as' => 'profile_path.edit', 'uses' => 'UsersController@edit']);
 Route::put('@{username}/edit', ['as' => 'profile_path.update', 'uses' => 'UsersController@update']);
+Route::get('close-alert', ['as' => 'incomplete_information.close_alert']);
+Route::get('close-alert', function()
+{
+    Session::forget('incomplete_information');
+    return Redirect::back();
+});
 
 /**
  * Groups

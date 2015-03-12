@@ -38,10 +38,15 @@ class SessionsController extends \BaseController
         
         if (!Auth::attempt(['email' => $input['email'], 'password' => $input['password'], 'activated' => 1], isset($input['remember_me']))) {
             Flash::message('We were unable to sign you in. Please check your credentials and try again!');
-            
+
             return Redirect::back()->withInput();
         }
         
+        if(empty(Auth::user()->first_name) || empty(Auth::user()->last_name) || empty(Auth::user()->dob) || empty(Auth::user()->country_id) || empty(Auth::user()->state_id) || empty(Auth::user()->$user->city_id) || empty(Auth::user()->school_department)) {
+            
+            Session::put('incomplete_information', 'Do you have incomplete information.');
+        }
+
         Flash::message('Welcome back!');
         
         return Redirect::intended('/');
@@ -55,6 +60,8 @@ class SessionsController extends \BaseController
      */
     public function destroy($id = null) {
         Auth::logout();
+
+        Session::forget('incomplete_information');
         
         Flash::message('You have now been logged out.');
         
