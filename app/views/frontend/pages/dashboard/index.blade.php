@@ -64,26 +64,28 @@
 					{{ Form::close() }}
 					<hr>
 					<h4>Most Active Group</h4>
+					{{ Form::open(['url' => '']) }}
+					{{ Form::hidden('active', true) }}
 					<div style="display:flex">
 						<div class="form-group">
 							<label for="country">Country</label>
-							{{ Form::select('country', [], null,['style' => 'max-with:30px;']) }}
-						</div>
-						<div class="form-group">
-							<label for="city">City</label>
-							{{ Form::select('city', [], null,['style' => 'max-with:30px;']) }}
+							{{ Form::select('country', $countries, null,['class' =>'country', 'style' => 'max-width:70px;', 'data-input' => '#state-by-population']) }}
 						</div>
 						<div class="form-group">
 							<label for="state">State</label>
-							{{ Form::select('state', [], null,['style' => 'max-with:30px;']) }}
+							{{ Form::select('state', $states, null,['id' => 'state-by-population', 'class' => 'state', 'style' => 'max-width:70px;', 'data-input' => '#city-by-population']) }}
+						</div>
+						<div class="form-group">
+							<label for="city">City</label>
+							{{ Form::select('city', $cities, null,['id' => 'city-by-population', 'style' => 'max-width:70px;']) }}
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="min-height:50px;">
 						<ul>
-							@if(isset($groupsByActive) AND $groupsByActive->count() > 0)
+							@if(isset($groupsByActive))
 								<ul>
-									 @forelse($groupsByActive as $aGroup)
-									<li>{{ link_to_route('groups.show', e($aGroup->name), [e($aGroup->slug)]) }} ( {{ $aGroup->users->count() }} )</li>
+									 @forelse($groupsByActive as $activeGroup)
+									<li>{{ link_to_route('groups.show', e($activeGroup->name), [e($activeGroup->slug)]) }} ( {{ $activeGroup->users_count }} )</li>
 									 @empty
 									<li>No group found</li>
 									 @endforelse
@@ -91,7 +93,7 @@
 							@else
 								<ul>
 									 @forelse($groups as $group)
-									<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
+									<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users_count }} )</li>
 									 @empty
 									<li>No group found</li>
 									 @endforelse
@@ -99,28 +101,35 @@
 							@endif
 						</ul>
 					</div>
+					<div class="form-group pull-right">
+						{{ Form::submit('Search', ['class' => 'btn btn-primary btn-xs']) }}
+					</div>
+					<div class="clearfix"></div>
+					{{ Form::close() }}
 					<hr>
 					<h4>Groups By Index (a-z)</h4>
+					{{ Form::open(['url' => '']) }}
+					{{ Form::hidden('alphabetical', true) }}
 					<div style="display:flex">
 						<div class="form-group">
 							<label for="country">Country</label>
-							{{ Form::select('country', [], null,['style' => 'max-with:30px;']) }}
-						</div>
-						<div class="form-group">
-							<label for="city">City</label>
-							{{ Form::select('city', [], null,['style' => 'max-with:30px;']) }}
+							{{ Form::select('country', $countries, null,['class' =>'country', 'style' => 'max-width:70px;', 'data-input' => '#state-by-population']) }}
 						</div>
 						<div class="form-group">
 							<label for="state">State</label>
-							{{ Form::select('state', [], null,['style' => 'max-with:30px;']) }}
+							{{ Form::select('state', $states, null,['id' => 'state-by-population', 'class' => 'state', 'style' => 'max-width:70px;', 'data-input' => '#city-by-population']) }}
+						</div>
+						<div class="form-group">
+							<label for="city">City</label>
+							{{ Form::select('city', $cities, null,['id' => 'city-by-population', 'style' => 'max-width:70px;']) }}
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="min-height:50px;">
 						<ul>
-							@if(isset($groupsByAlphabetical) AND $groupsByAlphabetical->count() > 0)
+							@if(isset($groupsByAlphabetical))
 								<ul>
-									 @forelse($groupsByAlphabetical as $alGroup)
-									<li>{{ link_to_route('groups.show', e($alGroup->name), [e($alGroup->slug)]) }} ( {{ $alGroup->users->count() }} )</li>
+									 @forelse($groupsByAlphabetical as $alphabeticalGroup)
+									<li>{{ link_to_route('groups.show', e($alphabeticalGroup->name), [e($alphabeticalGroup->slug)]) }} ( {{ $alphabeticalGroup->users_count }} )</li>
 									 @empty
 									<li>No group found</li>
 									 @endforelse
@@ -128,7 +137,7 @@
 							@else
 								<ul>
 									 @forelse($groups as $group)
-									<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
+									<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users_count }} )</li>
 									 @empty
 									<li>No group found</li>
 									 @endforelse
@@ -136,6 +145,11 @@
 							@endif
 						</ul>
 					</div>
+					<div class="form-group pull-right">
+						{{ Form::submit('Search', ['class' => 'btn btn-primary btn-xs']) }}
+					</div>
+					<div class="clearfix"></div>
+					{{ Form::close() }}
 				</div>
 			</div>
 		</div>
