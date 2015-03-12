@@ -55,7 +55,7 @@ class DashboardController extends \BaseController
             })->get();
         }
 
-        if (Input::has('populations')) {
+        if (Input::has('active')) {
             
             $groupsByActive = Group::whereHas('users', function($p) use ($input)
             {
@@ -74,7 +74,7 @@ class DashboardController extends \BaseController
             })->get();
         }
 
-        if (Input::has('populations')) {
+        if (Input::has('alphabetical')) {
             
             $groupsByAlphabetical = Group::whereHas('users', function($p) use ($input)
             {
