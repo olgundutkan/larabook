@@ -22,6 +22,11 @@ class Group extends \Eloquent
      * @var string
      */
     protected $presenter = 'Larabook\Groups\GroupPresenter';
+
+    /**
+     * @var array
+     */
+    protected $appends = ['users_count'];
     
     /**
      * A status belongs to a user.
@@ -29,7 +34,7 @@ class Group extends \Eloquent
     public function users() {
         return $this->belongsToMany('Larabook\Users\User', 'groups_users')->withPivot('is_owner');
     }
-
+    
     /**
      * A group has many statuses.
      *
@@ -37,5 +42,13 @@ class Group extends \Eloquent
      */
     public function statuses() {
         return $this->hasMany('Larabook\Statuses\Status')->latest();
+    }
+    
+    public function usersCount() {
+        return $this->belongsToMany('Larabook\Users\User', 'groups_users')->selectRaw('count(users.id) as aggregate')->groupBy('pivot_group_id');
+    }
+    
+    public function getUsersCountAttribute() {        
+        return $this->users->count();
     }
 }

@@ -12,7 +12,9 @@ class DatabaseSeeder extends Seeder
 		'statuses',
 		'locations',
 		'roles',
-		'roles_users'
+		'roles_users',
+		'groups',
+		'groups_users'
 	];
 
 	/**
@@ -22,9 +24,10 @@ class DatabaseSeeder extends Seeder
 	 */
 	protected $seeders = [
 		'RolesTableSeeder',
-		'UsersTableSeeder',
+		'LocationsTableSeeder',
+		'UsersTableSeeder',		
+		'GroupsTableSeeder',
 		'StatusesTableSeeder',
-		'LocationsTableSeeder'
 	];
 
 	/**

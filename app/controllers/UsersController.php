@@ -118,19 +118,21 @@ class UsersController extends \BaseController
         $user->is_commercial     = isset($input['is_commercial']) ? true : false;
         $user->language_id       = $input['language'];
         $user->profile_picture   = Input::file('profile_picture');
-        //$user->groups            = $input['groups'];
+        $user->groups            = isset($input['groups']) ? $input['groups'] : null;
 
         $user->save();
-        /*
-        // TODO:: başka bir methoda taşı
-        $user->privacy->email      = $input['is_visible_email'] ? true : false;
-        $user->privacy->title      = $input['is_visible_title'] ? true : false;
-        $user->privacy->first_name = $input['is_visible_first_name'] ? true : false;
-        $user->privacy->last_name  = $input['is_visible_last_name'] ? true : false;
-        $user->privacy->gender     = $input['is_visible_gender'] ? true : false;
-        $user->privacy->dob        = $input['is_visible_dob'] ? true : false;
-        $user->privacy->save();
-        */
+        
+        $privacy = $user->privacy()->first();
+
+        $privacy->first_name = $input['is_visible_first_name'] ? true : false;
+        $privacy->last_name = $input['is_visible_last_name'] ? true : false;
+        $privacy->gender = $input['is_visible_gender'] ? true : false;
+        $privacy->email = $input['is_visible_email'] ? true : false;
+        $privacy->title = $input['is_visible_title'] ? true : false;
+        $privacy->dob = $input['is_visible_dob'] ? true : false;
+
+        $privacy->save();
+
         Flash::success('Your profile has been successfully updated!');
         
         return Redirect::route('profile_path', $user->username);

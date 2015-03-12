@@ -114,7 +114,7 @@
 						
 						<div class="form-group">
 							{{ Form::label('groups', 'Choose Group:', ['for' => 'groups', 'class' => 'control-label']) }}
-							{{ Form::select('groups[]', $groups, null, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
+							{{ Form::select('groups[]', $groups, $user->join_groups_ids, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
 						</div>
 					</div>
 					<div class="col-md-4">

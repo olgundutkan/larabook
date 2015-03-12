@@ -20,6 +20,8 @@
 			<div class="panel-body">
 				<div class="table-responsive">
 					<h4>Groups By Populations</h4>
+					{{ Form::open(['url' => '']) }}
+					{{ Form::hidden('populations', true) }}
 					<div style="display:flex">
 						<div class="form-group">
 							<label for="country">Country</label>
@@ -34,15 +36,32 @@
 							{{ Form::select('city', $cities, null,['id' => 'city-by-population', 'style' => 'max-width:70px;']) }}
 						</div>
 					</div>
-					<div class="form-group">
+					<div class="form-group" style="min-height:50px;">
 						<ul>
-							 @forelse($groups as $group)
-							<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
-							 @empty
-							<li>No group found</li>
-							 @endforelse
+							@if(isset($groupsByPopulations))
+								<ul>
+									 @forelse($groupsByPopulations as $pGroup)
+									<li>{{ link_to_route('groups.show', e($pGroup->name), [e($pGroup->slug)]) }} ( {{ $pGroup->users_count }} )</li>
+									 @empty
+									<li>No group found</li>
+									 @endforelse
+								</ul>
+							@else
+								<ul>
+									 @forelse($groups as $group)
+									<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users_count }} )</li>
+									 @empty
+									<li>No group found</li>
+									 @endforelse
+								</ul>
+							@endif
 						</ul>
 					</div>
+					<div class="form-group pull-right">
+						{{ Form::submit('Search', ['class' => 'btn btn-primary btn-xs']) }}
+					</div>
+					<div class="clearfix"></div>
+					{{ Form::close() }}
 					<hr>
 					<h4>Most Active Group</h4>
 					<div style="display:flex">
@@ -61,11 +80,23 @@
 					</div>
 					<div class="form-group">
 						<ul>
-							 @forelse($groups as $group)
-							<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
-							 @empty
-							<li>No group found</li>
-							 @endforelse
+							@if(isset($groupsByActive) AND $groupsByActive->count() > 0)
+								<ul>
+									 @forelse($groupsByActive as $aGroup)
+									<li>{{ link_to_route('groups.show', e($aGroup->name), [e($aGroup->slug)]) }} ( {{ $aGroup->users->count() }} )</li>
+									 @empty
+									<li>No group found</li>
+									 @endforelse
+								</ul>
+							@else
+								<ul>
+									 @forelse($groups as $group)
+									<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
+									 @empty
+									<li>No group found</li>
+									 @endforelse
+								</ul>
+							@endif
 						</ul>
 					</div>
 					<hr>
@@ -86,11 +117,23 @@
 					</div>
 					<div class="form-group">
 						<ul>
-							 @forelse($groups as $group)
-							<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
-							 @empty
-							<li>No group found</li>
-							 @endforelse
+							@if(isset($groupsByAlphabetical) AND $groupsByAlphabetical->count() > 0)
+								<ul>
+									 @forelse($groupsByAlphabetical as $alGroup)
+									<li>{{ link_to_route('groups.show', e($alGroup->name), [e($alGroup->slug)]) }} ( {{ $alGroup->users->count() }} )</li>
+									 @empty
+									<li>No group found</li>
+									 @endforelse
+								</ul>
+							@else
+								<ul>
+									 @forelse($groups as $group)
+									<li>{{ link_to_route('groups.show', e($group->name), [e($group->slug)]) }} ( {{ $group->users->count() }} )</li>
+									 @empty
+									<li>No group found</li>
+									 @endforelse
+								</ul>
+							@endif
 						</ul>
 					</div>
 				</div>
@@ -177,7 +220,7 @@ jQuery(document).ready(function() {
 		  console.log(data);
 		})
 		.always(function() {
-		  alert( "finished" );
+		  //alert( "finished" );
 		});
 	});
 
@@ -198,28 +241,7 @@ jQuery(document).ready(function() {
 		  console.log(data);
 		})
 		.always(function() {
-		  alert( "finished" );
-		});
-	});
-
-	$('.state').change(function() {
-		var state = $(this).data('input');
-		$.post( "{{ route('locations.get_child_list') }}", { _token: '{{ csrf_token() }}', id: $(this).val() } )
-		.done(function(data) {
-		    $(state).empty();
-		    $(state).prop('disabled', true);
-		    $(state).append($("<option></option>").attr("value", '').text('Please select'));
-		    var response = JSON.parse(data);
-		    $.each( response, function( id, name ) {
-			  $(state).append($("<option></option>").attr("value", id).text(name));
-			});
-			$(state).prop('disabled', false);
-		})
-		.fail(function(data) {
-		  console.log(data);
-		})
-		.always(function() {
-		  alert( "finished" );
+		  //alert( "finished" );
 		});
 	});
 

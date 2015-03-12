@@ -40,6 +40,8 @@
 							<li>{{ link_to_route('admin.dashboard', 'Admin Panel') }}</li>
 							@endif
 							<li class="divider"></li>
+							<li>{{ link_to_route('groups-sponsorship.index', 'Groups Sponsorship') }}</li>
+							<li class="divider"></li>
 							<li>{{ link_to_route('logout_path', 'Log out') }}</li>
 						</ul>
 					</li>

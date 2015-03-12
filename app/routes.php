@@ -12,6 +12,8 @@ Route::get('/', ['as' => 'home', 'uses' => 'DashboardController@index']);
 
 }
 
+Route::post('/', ['as' => 'filter_group_path', 'uses' => 'DashboardController@filter']);
+
 /**
 * Register
 */
@@ -73,6 +75,11 @@ Route::delete('follows/{id}', ['as' => 'follow_path', 'uses' => 'FollowsControll
  * Password
  */
 Route::controller('password', 'RemindersController');
+
+/**
+ * Larabook Ads
+ */
+Route::resource('groups-sponsorship', 'GroupsSponsorshipController');
 
 /**
  * Get Activate

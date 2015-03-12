@@ -1,6 +1,7 @@
 <?php
 
 use Larabook\Groups\Group;
+use Larabook\Users\User;
 use Larabook\Locations\Location;
 
 class DashboardController extends \BaseController
@@ -24,10 +25,64 @@ class DashboardController extends \BaseController
         $groups = Group::all();
         
         // TODO : refactoring  and must be modified
-        $countries = Location::where('parent_id', 0)->lists('name', 'id');
-        $states = Location::where('parent_id', key($countries))->lists('name', 'id');
-        $cities = Location::where('parent_id', key($states))->lists('name', 'id');
+        $countries = withEmpty(Location::where('parent_id', 0)->lists('name', 'id'));
+        $states = withEmpty(Location::where('parent_id', key($countries))->lists('name', 'id'));
+        $cities = withEmpty(Location::where('parent_id', key($states))->lists('name', 'id'));
         
         return View::make('frontend::pages.dashboard.index', compact('groups', 'countries', 'states', 'cities'));
+    }
+
+    public function filter()
+    {
+        $input = Input::all();
+
+        if (Input::has('populations')) {
+
+            $users = new User;
+
+            if (isset($input['country']) AND !empty($input['country'])) {
+                $users = $users->where('country_id', $input['country']);
+            }
+
+            if (isset($input['state']) AND !empty($input['state'])) {
+                $users = $users->where('state_id', $input['state']);
+            }
+
+            if (isset($input['city']) AND !empty($input['city'])) {
+                $users = $users->where('city_id', $input['city']);
+            }
+
+            $userList = $users->lists('username', 'id');
+
+            echo '<pre>';
+            print_r ($userList);
+            exit();
+
+            
+            $groupsByPopulations = Group::whereHas('users', function($p) use ($input)
+            {
+                if (isset($input['country']) AND !empty($input['country'])) {
+                    $p = $p->where('users.country_id', $input['country']);
+                }
+
+                if (isset($input['state']) AND !empty($input['state'])) {
+                    $p = $p->where('users.state_id', $input['state']);
+                }
+
+                if (isset($input['city']) AND !empty($input['city'])) {
+                    $p = $p->where('users.city_id', $input['city']);
+                }
+
+            })->get();
+        }
+
+        $groups = Group::all();
+
+        // TODO : refactoring  and must be modified
+        $countries = withEmpty(Location::where('parent_id', 0)->lists('name', 'id'));
+        $states = withEmpty(Location::where('parent_id', key($countries))->lists('name', 'id'));
+        $cities = withEmpty(Location::where('parent_id', key($states))->lists('name', 'id'));
+        
+        return View::make('frontend::pages.dashboard.index', compact('groups', 'countries', 'states', 'cities', 'groupsByPopulations', 'input'));
     }
 }
