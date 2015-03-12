@@ -151,7 +151,7 @@
 				showCaption: false,
 				showRemove: false,
 				showUpload: false,
-				browseLabel: 'Upload Profile Photo',
+				browseLabel: 'Select Photo',
 				browseIcon: '<i class="glyphicon glyphicon-profile_picture"></i> ',
 				maxFilesNum: 1,
     			allowedFileExtensions: ["jpeg", "jpg", "gif", "png"],
