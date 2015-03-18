@@ -19,7 +19,7 @@
 
             <div class="panel panel-default">
             	<div class="panel-heading">
-			        <h4 class="panel-title pull-left">Groups</h4>
+			        <h4 class="panel-title pull-left">Edit Profile</h4>
 			        <div class="pull-right">
 			            <a href="{{ route('profile_path', e($currentUser->username), $currentUser->username) }}" type="button" class="btn btn-default tooltips" data-toggle="tooltip" data-placement="top" title="Back"><i class="glyphicon glyphicon-chevron-left"></i></a>
 			        </div>
@@ -114,7 +114,7 @@
 						
 						<div class="form-group">
 							{{ Form::label('groups', 'Choose Group:', ['for' => 'groups', 'class' => 'control-label']) }}
-							{{ Form::select('groups[]', $groups, $user->join_groups_ids, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
+							{{ Form::select('groups[]', $groups, $user->selected_groups, ['id' => 'groups', 'class' => 'form-control', 'multiple'=>'multiple']) }}
 						</div>
 					</div>
 					<div class="col-md-4">

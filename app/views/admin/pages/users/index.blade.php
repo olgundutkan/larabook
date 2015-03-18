@@ -20,21 +20,17 @@
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
-                    <th>Avatar</th>
                     <th>Username</th>
                     <th class="text-center"></th>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td>
-                                <a href="{{ route('profile_path', $user->username) }}">
-                                    <img class="media-object" src="{{ $user->present()->profilePicture('x-small') }}" alt="{{ e($user->username) }}">
-                                </a>
+                            <td style="display:inline;">
+                                <img class="media-object" src="{{ $user->present()->profilePicture('x-small') }}" alt="{{ e($user->username) }}"> {{ link_to_route('profile_path', e($user->username), $user->username) }}
                             </td>
-                            <td>{{ link_to_route('profile_path', e($user->username), $user->username) }}</td>
                             <td>
-                                <a href="{{ route('admin.users.edit', e($user->username)) }}"><i class="fa fa-pencil"></i> Edit</a>
+                                <a href="{{ route('admin.users.edit', e($user->id)) }}"><i class="fa fa-pencil"></i> Edit</a>
                                 <a href="{{ route('admin.users.destroy', $user->id) }}" data-method="delete" data-confirm="Are you sure ?"><i class="fa fa-trash"></i> Delete</a>
                             </td>
                         </tr>
