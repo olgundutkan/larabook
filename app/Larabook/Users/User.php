@@ -63,6 +63,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
      */
     protected $dates = ['dob'];
 
+    protected$appends = ['selected_groups'];
+
     /**
      * User profile photo update AWS S3 bucket
      * @param array $attributes
@@ -168,6 +170,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
     public function setGroupsAttribute($groups)
     {
         $this->groups()->sync((array) $groups);
+    }
+
+    public function getSelectedGroupsAttribute($groups)
+    {
+        return $this->groups->lists('id');
     }
 
     public function country()

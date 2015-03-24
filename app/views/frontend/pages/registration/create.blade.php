@@ -15,7 +15,14 @@
 
 @section('content')
 <div class="row">
-	<div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-8 col-lg-4 col-lg-offset-8">
+	<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		<h4>Register With</h4>
+		<div class="text-left">
+			<a href="#" class="btn btn-primary btn-block text-left"><i class="fa fa-facebook"></i> Facebook</a>
+        	<a href="#" class="btn btn-info btn-block text-left" ><i class="fa fa-twitter"></i> Twitter</a>
+        </div>
+	</div>
+	<div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
 	{{ Form::open(['route' => 'register_path', 'class' => '', 'role' => 'form', 'method' => 'POST']) }}
 		<div class="panel panel-default">
 			<div class="panel-heading">

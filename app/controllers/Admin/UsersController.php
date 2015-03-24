@@ -104,6 +104,8 @@ class UsersController extends BaseController
         
         $user = $this->execute(UserCreateCommand::class);
 
+        $user->groups = isset($input['groups']) ? $input['groups'] : null;
+
         $privacy = new Privacy;
 
         $privacy->user_id = $user->id;
@@ -142,9 +144,9 @@ class UsersController extends BaseController
      * @param  int  $id
      * @return Response
      */
-    public function edit($username) {
+    public function edit($id) {
 
-        $user = $this->userRepository->findByUsername($username);
+        $user = $this->userRepository->findById($id);
         
         $roles = $this->roleRepository->getList('name', 'id');
 
@@ -165,10 +167,10 @@ class UsersController extends BaseController
      * @param  int  $id
      * @return Response
      */
-    public function update($username)
+    public function update($id)
     {
         // TODO:: user check refactorign
-        $user = $this->userRepository->findByUsername($username);
+        $user = $this->userRepository->findById($id);
 
         // TODO:: Validate
         $this->userForm->validForAdminUpdate($user->id, $input = Input::all());
@@ -188,6 +190,7 @@ class UsersController extends BaseController
         $user->school_department = $input['school_department'];
         $user->is_commercial     = isset($input['is_commercial']) ? true : false;
         $user->language_id       = $input['language'];
+        $user->groups            = isset($input['groups']) ? $input['groups'] : null;
 
         $user->save();
 
