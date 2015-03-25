@@ -18,7 +18,8 @@
         <h4>Login With</h4>
         <div class="text-left">
             <a href="{{ route('login.with.facebook') }}" class="btn btn-primary btn-block text-left"><i class="fa fa-facebook"></i> Facebook</a>
-            <a href="#" class="btn btn-info btn-block text-left" ><i class="fa fa-twitter"></i> Twitter</a>
+            <a href="{{ route('login.with.google') }}" class="btn btn-danger btn-block text-left"><i class="fa fa-google"></i> Google</a>
+            <a href="{{ route('login.with.twitter') }}" class="btn btn-info btn-block text-left" ><i class="fa fa-twitter"></i> Twitter</a>
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">

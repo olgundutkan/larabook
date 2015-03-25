@@ -149,6 +149,11 @@ class SessionsController extends \BaseController
                 Auth::loginUsingId($user->id);
             }
 
+            if(empty(Auth::user()->first_name) || empty(Auth::user()->last_name) || empty(Auth::user()->dob) || empty(Auth::user()->country_id) || empty(Auth::user()->state_id) || empty(Auth::user()->city_id) || empty(Auth::user()->school_department)) {
+            
+                Session::put('incomplete_information', 'Missing information in your profile!');
+            }
+
             return Redirect::intended('/');
         }
         // if not ask for permission first
@@ -160,5 +165,175 @@ class SessionsController extends \BaseController
              return Redirect::to( (string)$url );
         }
 
+    }
+
+    public function loginWithGoogle() {
+
+        // get data from input
+        $code = Input::get( 'code' );
+
+        // get google service
+        $googleService = OAuth::consumer( 'Google' );
+
+        // check if code is valid
+
+        // if code is provided get user data and sign in
+        if ( !empty( $code ) ) {
+
+            // This was a callback request from google, get the token
+            $token = $googleService->requestAccessToken( $code );
+
+            // Send a request with it
+            $result = json_decode( $googleService->request( 'https://www.googleapis.com/oauth2/v1/userinfo' ), true );
+
+            try {
+                $twitter = SocialNetwork::where('twitter_id', $result['id'])->firstOrFail();
+
+                Auth::loginUsingId($twitter->user_id);
+            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                $user = new User;
+
+                $user->first_name = $result['name'];
+                $user->gender =  $result['gender'];
+                $user->last_name =  $result['name'];
+
+                $user->activated = true;
+
+                $user->save();
+
+                $user->username = 'user' . $user->id;
+
+                $userRole = Role::where('name', 'User')->firstOrFail();
+
+                $user->roles = $userRole->id;
+
+                $privacy = new Privacy;
+
+                $privacy->user_id = $user->id;
+
+                $privacy->first_name = false;
+                $privacy->last_name = false;
+                $privacy->gender = false;
+                $privacy->email = false;
+                $privacy->title = false;
+                $privacy->dob = false;
+
+                $privacy->save();
+
+                $social_network = new SocialNetwork;
+
+                $social_network->user_id = $user->id;
+
+                $social_network->facebook_id = $result['id'];
+
+                $social_network->facebook_link = $result['link'];                
+
+                $social_network->save();
+
+                Auth::loginUsingId($user->id);
+            }
+
+            if(empty(Auth::user()->first_name) || empty(Auth::user()->last_name) || empty(Auth::user()->dob) || empty(Auth::user()->country_id) || empty(Auth::user()->state_id) || empty(Auth::user()->city_id) || empty(Auth::user()->school_department)) {
+            
+                Session::put('incomplete_information', 'Missing information in your profile!');
+            }
+
+            return Redirect::intended('/');
+
+        }
+        // if not ask for permission first
+        else {
+            // get googleService authorization
+            $url = $googleService->getAuthorizationUri();
+
+            // return to google login url
+            return Redirect::to( (string)$url );
+        }
+    }
+
+    public function loginWithTwitter() {
+
+        // get data from input
+        $token = Input::get( 'oauth_token' );
+        $verify = Input::get( 'oauth_verifier' );
+
+        // get twitter service
+        $tw = OAuth::consumer( 'Twitter' );
+
+        // check if code is valid
+
+        // if code is provided get user data and sign in
+        if ( !empty( $token ) && !empty( $verify ) ) {
+
+            // This was a callback request from twitter, get the token
+            $token = $tw->requestAccessToken( $token, $verify );
+
+            // Send a request with it
+            $result = json_decode( $tw->request( 'account/verify_credentials.json' ), true );
+
+            try {
+                $twitter = SocialNetwork::where('twitter_id', $result['id'])->firstOrFail();
+
+                Auth::loginUsingId($twitter->user_id);
+            } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+                $user = new User;
+
+                $user->username = $result['name'];
+                $user->first_name = $result['name'];
+                $user->last_name =  $result['name'];
+
+                $user->activated = true;
+
+                $user->save();
+
+                $userRole = Role::where('name', 'User')->firstOrFail();
+
+                $user->roles = $userRole->id;
+
+                $privacy = new Privacy;
+
+                $privacy->user_id = $user->id;
+
+                $privacy->first_name = false;
+                $privacy->last_name = false;
+                $privacy->gender = false;
+                $privacy->email = false;
+                $privacy->title = false;
+                $privacy->dob = false;
+
+                $privacy->save();
+
+                $social_network = new SocialNetwork;
+
+                $social_network->user_id = $user->id;
+
+                $social_network->twitter_id = $result['id'];
+
+                $social_network->twitter_screen_name = $result['screen_name'];                
+
+                $social_network->save();
+
+                Auth::loginUsingId($user->id);
+            }
+
+            if(empty(Auth::user()->first_name) || empty(Auth::user()->last_name) || empty(Auth::user()->dob) || empty(Auth::user()->country_id) || empty(Auth::user()->state_id) || empty(Auth::user()->city_id) || empty(Auth::user()->school_department)) {
+            
+                Session::put('incomplete_information', 'Missing information in your profile!');
+            }
+
+            return Redirect::intended('/');
+
+        }
+        // if not ask for permission first
+        else {
+            // get request token
+            $reqToken = $tw->requestRequestToken();
+
+            // get Authorization Uri sending the request token
+            $url = $tw->getAuthorizationUri(array('oauth_token' => $reqToken->getRequestToken()));
+
+            // return to twitter login url
+            return Redirect::to( (string)$url );
+        }
     }
 }

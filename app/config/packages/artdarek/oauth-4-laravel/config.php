@@ -30,16 +30,16 @@ return array(
 		 * Google
 		 */
 		'Google' => array(
-			'client_id' => 'Your Google client ID',
-			'client_secret' => 'Your Google Client Secret',
+			'client_id' => '536445865773-n524h8t2vsr3rud88kt8hm9gn5bf1atg.apps.googleusercontent.com',
+			'client_secret' => 'uPMgvL_73fcIfwrGu8XEx2Wh',
 			'scope' => array('userinfo_email', 'userinfo_profile'),
 		),
 		/**
 		 * Twitter
 		 */
 		'Twitter' => array(
-			'client_id' => 'Your Twitter client ID',
-			'client_secret' => 'Your Twitter Client Secret',
+			'client_id' => 'fUYLt6FSmSMv465FyvXfOIdTi',
+			'client_secret' => 'edU4iFpPvYoLEWJ5GhTrRNHj4a73qMVUCma1HQL9yzmUVjqNqO',
 		),
 		/**
 		 * Linkedin
