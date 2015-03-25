@@ -1,24 +1,24 @@
 <?php
-namespace Larabook\Groups;
+namespace Larabook\Languages;
 
 use Laracasts\Commander\CommandHandler;
 
 use Laracasts\Commander\Events\DispatchableTrait;
 
-class CreateGroupCommandHandler implements CommandHandler
+class CreateLanguageCommandHandler implements CommandHandler
 {
     
     use DispatchableTrait;
     
     /**
-     * @var GroupRepository
+     * @var LanguageRepository
      */
     protected $repository;
     
     /**
-     * @param GroupRepository $repository
+     * @param LanguageRepository $repository
      */
-    function __construct(GroupRepository $repository) {
+    function __construct(LanguageRepository $repository) {
         $this->repository = $repository;
     }
     
@@ -30,10 +30,10 @@ class CreateGroupCommandHandler implements CommandHandler
      */
     public function handle($command) {
 
-        $group = Group::create(['name' => $command->name, 'slug' => $command->slug, 'translations' => $command->translations]);
+        $language = Language::create(['name' => $command->name, 'slug' => $command->slug]);
         
-        //$this->dispatchEventsFor($group);
+        //$this->dispatchEventsFor($language);
         
-        return $group;
+        return $language;
     }
 }

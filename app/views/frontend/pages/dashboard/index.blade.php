@@ -186,9 +186,9 @@
 			 @if(isset($currentUser) && $currentUser)
 			<div class="panel-body">
 				<div class="col-md-12 text-center">
-					<a href="{{ route('profile_path', e($currentUser->username), $currentUser->username) }}"> <img src="{{ e($currentUser->present()->profilePicture('medium')) }}" class="img-responsive" alt="{{ $currentUser->username }}" style="margin:0 auto;"> </a>
+					<a href="{{ route('profile_path', $currentUser->username ? e($currentUser->username) : e($currentUser->full_name), $currentUser->username ? e($currentUser->username) : $currentUser->id) }}"> <img src="{{ e($currentUser->present()->profilePicture('medium')) }}" class="img-responsive" alt="{{ $currentUser->username }}" style="margin:0 auto;"> </a>
 				</div>
-				<h4 class="text-center">{{ link_to_route('profile_path', e($currentUser->username), $currentUser->username) }}</h4>
+				<h4 class="text-center">{{ link_to_route('profile_path', $currentUser->username ? e($currentUser->username) : e($currentUser->full_name), $currentUser->username ? e($currentUser->username) : $currentUser->id) }}</h4>
 				<div class="col-md-4 text-center">
 					 {{ e($currentUser->present()->followerCount) }}
 				</div>

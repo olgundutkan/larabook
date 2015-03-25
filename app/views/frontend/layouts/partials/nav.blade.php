@@ -26,7 +26,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				@if(isset($currentUser) && $currentUser)
 					<li>{{ link_to_route('home', 'Main Page') }}</li>
-					<li>{{ link_to_route('profile_path', 'My Profile', e($currentUser->username)) }}</li>
+					<li>{{ link_to_route('profile_path', 'My Profile', $currentUser->username ? e($currentUser->username) : $currentUser->id) }}</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<img class="nav-gravatar" src="{{ e($currentUser->present()->profilePicture('small')) }}" alt="{{ e($currentUser->username) }}">
@@ -34,7 +34,7 @@
 							<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li>{{ link_to_route('profile_path', 'Your Profile', e($currentUser->username)) }}</li>
+							<li>{{ link_to_route('profile_path', 'Your Profile', $currentUser->username ? e($currentUser->username) : $currentUser->id) }}</li>
 							@if($currentUser->hasRole('Admin'))
 							<li class="divider"></li>
 							<li>{{ link_to_route('admin.dashboard', 'Admin Panel') }}</li>

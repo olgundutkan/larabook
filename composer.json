@@ -13,7 +13,8 @@
 		"laracasts/presenter": "0.1.*",
 		"pda/pheanstalk":"2.0.*",
 		"aws/aws-sdk-php": "2.4.*@dev",
-		"codesleeve/laravel-stapler": "1.0.*"
+		"codesleeve/laravel-stapler": "1.0.*",
+		"artdarek/oauth-4-laravel": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

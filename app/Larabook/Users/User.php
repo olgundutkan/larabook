@@ -85,6 +85,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
 
         parent::__construct($attributes);
     }
+
+    public function getFullNameAttribute()
+    {
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
     
     /**
      * Passwords must always be hashed.
@@ -190,5 +195,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface, Stapl
     public function city()
     {
         return $this->hasOne('Larabook\Locations\Location', 'id', 'city_id');
+    }
+
+    public function socialNetwork()
+    {
+        return $this->belongsTo('Larabook\SocialNetworks\SocialNetwork');
     }
 }

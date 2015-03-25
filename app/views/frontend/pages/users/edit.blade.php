@@ -15,13 +15,13 @@
         	
         	@include('frontend.layouts.partials.errors')
         	
-        	{{ Form::model($currentUser, ['route' => ['profile_path.update', $currentUser->username], 'class' => '', 'role' => 'form', 'files' => true, 'method' => 'PUT']) }}
+        	{{ Form::model($currentUser, ['route' => ['profile_path.update', $currentUser->username ? e($currentUser->username) : $currentUser->id], 'class' => '', 'role' => 'form', 'files' => true, 'method' => 'PUT']) }}
 
             <div class="panel panel-default">
             	<div class="panel-heading">
 			        <h4 class="panel-title pull-left">Edit Profile</h4>
 			        <div class="pull-right">
-			            <a href="{{ route('profile_path', e($currentUser->username), $currentUser->username) }}" type="button" class="btn btn-default tooltips" data-toggle="tooltip" data-placement="top" title="Back"><i class="glyphicon glyphicon-chevron-left"></i></a>
+			            <a href="{{ route('profile_path', $currentUser->username ? e($currentUser->username) : e($currentUser->id), $currentUser->username ? e($currentUser->username) : $currentUser->full_name) }}" type="button" class="btn btn-default tooltips" data-toggle="tooltip" data-placement="top" title="Back"><i class="glyphicon glyphicon-chevron-left"></i></a>
 			        </div>
 			        <div class="clearfix"></div>
 				</div>

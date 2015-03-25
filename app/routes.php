@@ -27,6 +27,8 @@ Route::get('login', ['as' => 'login_path', 'uses' => 'SessionsController@create'
 Route::post('login', ['as' => 'login_path', 'uses' => 'SessionsController@store']);
 Route::get('logout', ['as' => 'logout_path', 'uses' => 'SessionsController@destroy']);
 
+Route::get('login-with-facebook', ['as' => 'login.with.facebook', 'uses' => 'SessionsController@loginWithFacebook']);
+
 /**
  * Statuses
  */
@@ -97,8 +99,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Controllers\Admin', 'before' 
 	Route::resource('groups', 'GroupsController');
 	// Roles
 	Route::resource('roles', 'RolesController', ['except' => 'show']);
-	// Users
+	// Locations
 	Route::resource('locations', 'LocationsController');
+	// Languages
+	Route::resource('languages', 'LanguagesController');
 	// Settings
 	Route::resource('settings', 'SettingsController',['only' =>['index', 'edit', 'update']]);
 

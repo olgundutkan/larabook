@@ -11,7 +11,7 @@
                     </div>
                     <div class="pull-right">
                         @if ($currentUser->is($user))
-                            <a href="{{ route('profile_path.edit', $user->username) }}" class="btn btn-default">Edit</a>
+                            <a href="{{ route('profile_path.edit', $user->username ? e($user->username) : $user->id) }}" class="btn btn-default">Edit</a>
                         @endif
                     </div>
                 </div>
@@ -35,11 +35,11 @@
                 @if(isset($user) && $user)
                 <div class="panel-body">
                     <div class="col-md-12 text-center">
-                        <a href="{{ route('profile_path', e($user->username), $user->username) }}">
+                        <a href="{{ route('profile_path', $user->username ? e($user->username) : $user->id, $user->username ? e($user->username) : e($user->full_name)) }}">
                             <img src="{{  $user->present()->profilePicture('medium') }}" class="img-responsive" alt="{{ $user->username }}" style="margin:0 auto;">
                         </a>
                     </div>
-                    <h4 class="text-center">{{ link_to_route('profile_path', e($user->username), $user->username) }}</h4>
+                    <h4 class="text-center">{{ link_to_route('profile_path', $user->username ? e($user->username) : $user->id, $user->username ? e($user->username) : e($user->full_name)) }}</h4>
                     <div class="col-md-4 text-center">
                         {{ e($user->present()->followerCount) }}
                     </div>

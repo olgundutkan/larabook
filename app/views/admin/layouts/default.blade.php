@@ -79,28 +79,28 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.users.index') }}"><i class="fa fa-users fa-fw"></i> Users</a>
+                            <a href="{{ route('admin.users.index') }}"><i class="fa fa-user"></i> Users</a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.groups.index') }}"><i class="fa fa-users fa-fw"></i> Groups</a>
+                            <a href="{{ route('admin.groups.index') }}"><i class="fa fa-users"></i> Groups</a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.locations.index') }}"><i class="fa fa-map-marker fa-fw"></i> Locations</a>
+                            <a href="{{ route('admin.locations.index') }}"><i class="fa fa-map-marker"></i> Locations</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-map-marker fa-fw"></i> Language</a>
+                            <a href="{{ route('admin.languages.index') }}"><i class="fa fa-language"></i> Language</a>
                         </li>
                         <li>
-                            <a href="{{ route('admin.pages.index') }}"><i class="fa fa-map-marker fa-fw"></i> Pages</a>
+                            <a href="{{ route('admin.pages.index') }}"><i class="fa fa-map-marker"></i> Pages</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-map-marker fa-fw"></i> Ads</a>
+                            <a href="#"><i class="fa fa-map-marker"></i> Ads</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-map-marker fa-fw"></i> Settings</a>
+                            <a href="#"><i class="fa fa-map-marker"></i> Settings</a>
                         </li>
                     </ul>
                 </div>
