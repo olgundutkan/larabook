@@ -10,7 +10,7 @@
         <div class="form-group status-post-submit">
             {{ Form::submit('Inform', ['class' => 'btn btn-default btn-xs']) }}
             <div class="popover-markup"> 
-			    <a href="#" class="trigger btn btn-default btn-xs" style="margin-right:15px;">Inform and Share</a> 
+			    <a href="javascript:void(0);" class="trigger btn btn-default btn-xs" style="margin-right:15px;" data-html="true">Inform and Share</a> 
 			    <div class="head hide">Share With</div>
 			    <div class="content hide" style="width: 150px;">
 			        <div class="form-group">
@@ -29,6 +29,7 @@
 @section('script')
 	<script type="text/javascript">
         jQuery(document).ready(function($) {
+        	$('#share-and-inform').css('background-color', 'red');
         	$('.popover-markup>.trigger').popover({
 			    html: true,
 			    title: function () {
@@ -38,10 +39,6 @@
 			        return $(this).parent().find('.content').html();
 			    },
 			    container: 'body'
-			});
-			$('#share-and-inform').click(function() {
-				alert('click');
-				$('#information').submit();
 			});
         });	
     </script>
