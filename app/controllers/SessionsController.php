@@ -52,7 +52,7 @@ class SessionsController extends \BaseController
         
         if(empty(Auth::user()->first_name) || empty(Auth::user()->last_name) || empty(Auth::user()->dob) || empty(Auth::user()->country_id) || empty(Auth::user()->state_id) || empty(Auth::user()->city_id) || empty(Auth::user()->school_department)) {
             
-            Session::put('incomplete_information', 'Do you have incomplete information.');
+            Session::put('incomplete_information', 'Missing information in your profile!');
         }
 
         Flash::message('Welcome back!');
