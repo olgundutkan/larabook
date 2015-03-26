@@ -36,7 +36,7 @@ class FunctionalHelper extends \Codeception\Module {
         $I = $this->getModule('Laravel4');
 
         $I->fillField('body', $body);
-        $I->click('Post Status');
+        $I->click('Inform');
     }
 
     /**

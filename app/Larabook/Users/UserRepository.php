@@ -33,7 +33,7 @@ class UserRepository
      * @return mixed
      */
     public function findByUsername($username) {
-        return User::with('statuses')->whereUsername($username)->first();
+        return User::with('statuses')->whereUsername($username)->orWhere('id', $username)->first();
     }
     
     /**

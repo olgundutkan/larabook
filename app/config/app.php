@@ -128,6 +128,7 @@ return array(
 		'Larabook\Providers\EventServiceProvider',
 		'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider',
 		'Larabook\Theme\ThemeServiceProvider',
+		'Artdarek\OAuth\OAuthServiceProvider',
 	),
 
 	/*
@@ -196,7 +197,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Flash'			  => 'Laracasts\Flash\Flash',
 		'Theme'           => 'Larabook\Theme\ThemeFacade',
-
+		'OAuth'			  => 'Artdarek\OAuth\Facade\OAuth',
 	),
 
 );

@@ -4,7 +4,7 @@
     </div>
 
     <div class="media-body status-media-body">
-        <h4 class="media-heading status-media-heading">{{ link_to_route('profile_path', e($status->user->username), e($status->user->username)) }}</h4>
+        <h4 class="media-heading status-media-heading">{{ link_to_route('profile_path', $status->user->username ? e($status->user->username) : e($status->user->id), $status->user->username ? e($status->user->username) : $status->user->full_name) }}</h4>
         <p><small class="status-media-time">{{ e($status->present()->timeSincePublished()) }}</small></p>
 
         {{ e($status->body) }}

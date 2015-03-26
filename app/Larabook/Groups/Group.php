@@ -14,7 +14,7 @@ class Group extends \Eloquent
      *
      * @var array
      */
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'translations'];
     
     /**
      * Path to the presenter for a status.
@@ -50,5 +50,15 @@ class Group extends \Eloquent
     
     public function getUsersCountAttribute() {        
         return $this->users->count();
+    }
+
+    public function setTranslationsAttribute($translations) {        
+        if (!empty($translations) AND !is_null($translations)) {
+            $this->attributes['translations'] = json_encode($translations);
+        }
+    }
+
+    public function getTranslationsAttribute($translations) {        
+        return $this->attributes['translations'] ? json_decode($this->attributes['translations']) : null;
     }
 }

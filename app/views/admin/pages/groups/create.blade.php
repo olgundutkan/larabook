@@ -23,6 +23,13 @@
 			{{ Form::label('slug', 'Slug:', ['for' => 'slug']) }}
 			{{ Form::text('slug', null, ['id' => 'slug', 'class' => 'form-control']) }}
 		</div>
+
+        @foreach($languages as $slug => $language)
+            <div class="form-group">
+                {{ Form::label('translations', $language . ' :', ['for' => 'translations']) }}
+                {{ Form::text('translations[' . $slug . ']', null, ['id' => 'translations-slug', 'class' => 'form-control']) }}
+            </div>
+        @endforeach
     </div>
     <div class="panel-footer">
         <div class="form-group">

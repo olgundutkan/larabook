@@ -16,7 +16,7 @@
 <div style="width:100%;margin-bottom: 15px;margin-top: -30px;position:relative;z-index:100;height:52px;">
     <div class="alert alert-danger" style="width:100%;margin-bottom:0px;border-radius:0px;text-align:center;position:fixed;">
         {{{Session::get('incomplete_information')}}}
-        <a href="{{ route('profile_path.edit', $currentUser->username) }}" style="color:#a94442;text-decoration:underline;font-weight:bold;">Fix this</a>
+        <a href="{{ route('profile_path.edit', $currentUser->username ? e($currentUser->username) : $currentUser->id) }}" style="color:#a94442;text-decoration:underline;font-weight:bold;">Fix this</a>
         <a href="{{ url('close-alert') }}" class="close">×</button>
     </div>
 </div>

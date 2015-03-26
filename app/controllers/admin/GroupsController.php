@@ -10,6 +10,8 @@ use Larabook\Statuses\Status;
 
 use Larabook\Forms\GroupForm;
 
+use Larabook\Languages\LanguageRepository;
+
 use View, Input, Auth, Flash, Redirect;
 
 class GroupsController extends BaseController
@@ -21,13 +23,15 @@ class GroupsController extends BaseController
     private $groupForm;
 
     private $groupRepository;
+
+    private $languageRepository;
     
     /**
      * Constructor
      *
      * @param GroupForm $groupForm
      */
-    function __construct(GroupForm $groupForm, GroupRepository $groupRepository) {
+    function __construct(GroupForm $groupForm, GroupRepository $groupRepository, LanguageRepository $languageRepository) {
         parent::__construct();
         
         $this->beforeFilter('auth');
@@ -35,6 +39,8 @@ class GroupsController extends BaseController
         $this->groupForm = $groupForm;
 
         $this->groupRepository = $groupRepository;
+
+        $this->languageRepository = $languageRepository;
     }
     
     /**
@@ -55,8 +61,10 @@ class GroupsController extends BaseController
      * @return Response
      */
     public function create() {
+
+        $languages = $this->languageRepository->getList('name', 'slug');
         
-        return View::make('admin::pages.groups.create');
+        return View::make('admin::pages.groups.create', compact('languages'));
         
     }
     
@@ -103,7 +111,9 @@ class GroupsController extends BaseController
         
         $group = $this->groupRepository->findById($id);
 
-        return View::make('admin::pages.groups.edit', compact('group'));
+        $languages = $this->languageRepository->getList('name', 'slug');
+
+        return View::make('admin::pages.groups.edit', compact('group', 'languages'));
         
     }
     
@@ -115,12 +125,13 @@ class GroupsController extends BaseController
      */
     public function update($id) {
         
-        $this->groupForm->validForUpdate($id, $input = Input::only('name', 'slug'));
+        $this->groupForm->validForUpdate($id, $input = Input::only('name', 'slug', 'translations'));
 
         $group = $this->groupRepository->findById($id);
 
         $group->name = $input['name'];
         $group->slug = $input['slug'];
+        $group->translations = $input['translations'];
 
         $group->save();
 
