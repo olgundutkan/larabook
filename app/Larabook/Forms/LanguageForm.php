@@ -28,7 +28,7 @@ class LanguageForm extends FormValidator
 	{
 		$update_rules = [
 	        'name'		=> 'required',
-	        'slug'		=> 'required|unique:languages,slug,'.$id,
+	        'slug'		=> 'required|unique:languages,slug,'. $id,
 	    ];
 
 		$this->rules = $update_rules;

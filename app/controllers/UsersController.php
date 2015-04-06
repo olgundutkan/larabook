@@ -56,11 +56,11 @@ class UsersController extends \BaseController
     /**
      * Display a user's profile.
      *
-     * @param $username
+     * @param $id
      * @return mixed
      */
-    public function show($username) {
-        $user = $this->userRepository->findByUsername($username);
+    public function show($id) {
+        $user = $this->userRepository->findById($id);
         
         return View::make('frontend::pages.users.show')->withUser($user);
     }

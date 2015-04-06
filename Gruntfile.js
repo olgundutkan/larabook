@@ -8,16 +8,18 @@ module.exports = function(grunt) {
                 separator: ';'
             },
             backend: {
-                src: [' ./vendor/bower_components/jquery/dist/jquery.js', 
-                        './vendor/bower_components/bootstrap/dist/js/bootstrap.js', 
-                        './vendor/bower_components/jquery-ui/jquery-ui.js', 
-                        './vendor/bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js', 
-                        './vendor/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js', 
-                        './app/assets/backend/js/jquery.slugger.js', 
-                        './vendor/bower_components/jquery.inputmask/dist/inputmask/jquery.inputmask.js', 
-                        './vendor/bower_components/jquery-ujs/src/rails.js', 
-                        './app/assets/backend/js/metisMenu.js', 
-                        './app/assets/backend/js/sb-admin-2.js'],
+                src: [  './vendor/bower_components/jquery/dist/jquery.min.js',
+                        './vendor/bower_components/jquery-migrate/jquery-migrate.min.js',
+                        './vendor/bower_components/bootstrap/dist/js/bootstrap.min.js', 
+                        './vendor/bower_components/modernizr/modernizr.js',
+                        './app/assets/backend/js/jquery.sparkline.min.js',
+                        './vendor/bower_components/jquery-toggles/toggles.min.js',
+                        './app/assets/backend/js/retina.min.js',
+                        './vendor/bower_components/chosen-build/chosen.jquery.min.js',
+                        './app/assets/backend/js/custom.js',
+                        './app/assets/backend/js/jquery.slugger.js',
+                        './vendor/bower_components/jquery-ujs/src/rails.js',
+                    ],
                 dest: './public/themes/admin/js/backend.js'
             },
             main: {
@@ -37,12 +39,19 @@ module.exports = function(grunt) {
         concat_css: {
             options: {},
             backend: {
-                src: [' ./vendor/bower_components/bootstrap/dist/css/bootstrap.css', 
-                        './vendor/bower_components/jquery-ui/themes/smoothness/jquery-ui.css', 
-                        './vendor/bower_components/font-awesome/css/font-awesome.css', 
-                        './app/assets/backend/css/style.css', 
-                        './app/assets/backend/css/metisMenu.css', 
-                        './app/assets/backend/css/sb-admin-2.css', ],
+                src: [' ./vendor/bower_components/bootstrap/dist/css/bootstrap.css',
+                        './app/assets/backend/css/bootstrap-override.css',
+                        './vendor/bower_components/weather-icons/css/weather-icons.min.css',
+                        './vendor/bower_components/jquery-ui/themes/base/all.css',
+                        './vendor/bower_components/font-awesome/css/font-awesome.css',
+                        './app/assets/backend/css/animate.min.css',
+                        './app/assets/backend/css/animate.delay.css',
+                        './vendor/bower_components/jquery-toggles/css/toggles-full.css',
+                        './vendor/bower_components/chosen-build/chosen.min.css',
+                        './app/assets/backend/css/lato.css',
+                        './app/assets/backend/css/roboto.css',
+                        './app/assets/backend/css/style.default.css'
+                    ],
                 dest: './public/themes/admin/css/backend.css'
             },
             main: {
@@ -85,6 +94,12 @@ module.exports = function(grunt) {
             backend: {
                 files: [{
                     src: './vendor/bower_components/font-awesome/fonts/**',
+                    dest: './public/themes/admin/fonts/',
+                    expand: true,
+                    flatten: true,
+                    filter: 'isFile'
+                }, {
+                    src: './app/assets/backend/fonts/**',
                     dest: './public/themes/admin/fonts/',
                     expand: true,
                     flatten: true,

@@ -15,7 +15,7 @@
     <div class="panel-heading clearfix">
         <h4 class="panel-title pull-left">Pages</h4>
         <div class="pull-right">
-            <a href="{{ route('admin.pages.create') }}" type="button" class="btn btn-white tooltips" data-original-title="Add New Page"><i class="glyphicon glyphicon-plus-sign"></i></a>
+            <a href="{{ route('admin.pages.create') }}" type="button" class="btn btn-white tooltips" data-original-title="Add New Page"><i class="fa fa-plus"></i></a>
         </div>
     </div>
     @if($pages->count() > 0)

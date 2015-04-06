@@ -72,7 +72,7 @@ class PagesController extends BaseController
         
         Flash::success('Page was successfully added.');
         
-        return Redirect::route('manage.pages.index');
+        return Redirect::route('admin.pages.index');
     }
     
     /**
@@ -119,7 +119,7 @@ class PagesController extends BaseController
 
         Flash::success('Page was successfully updated.');
         
-        return Redirect::route('manage.pages.index');
+        return Redirect::route('admin.pages.index');
     }
     
     /**
@@ -136,6 +136,6 @@ class PagesController extends BaseController
 
         Flash::success('Page was successfully deleted.');
         
-        return Redirect::route('manage.pages.index');
+        return Redirect::route('admin.pages.index');
     }
 }

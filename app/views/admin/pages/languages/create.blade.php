@@ -1,37 +1,55 @@
 @extends('admin.layouts.default')
 
 @section('content')
-<div class="row">
-<div class="col-lg-12">
-{{ Form::open(['route' => 'admin.languages.store', 'role' => 'form', 'method' => 'POST']) }}
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title pull-left">Languages</h4>
-        <div class="pull-right">
-            <a href="{{ route('admin.languages.index') }}" type="button" class="btn btn-default tooltips" data-toggle="tooltip" data-placement="top" title="Add New Language"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-    <div class="panel-body">
-    	@include('admin.layouts.partials.errors')
 
-    	<div class="form-group">
-			{{ Form::label('name', 'Language Name:', ['for' => 'name']) }}
-			{{ Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) }}
-		</div>
-		<div class="form-group">
-			{{ Form::label('slug', 'Slug:', ['for' => 'slug']) }}
-			{{ Form::text('slug', null, ['id' => 'slug', 'class' => 'form-control']) }}
-		</div>
-    </div>
-    <div class="panel-footer">
-        <div class="form-group">
-			{{ Form::submit('Create Language!', ['class' => 'btn btn-primary']) }}
-		</div>
+@include('admin.layouts.partials.errors')
+
+<div class="row">
+    <div class="col-sm-12">
+        {{ Form::open(['route' => 'admin.languages.store', 'id' => 'basicForm', 'class' => 'form-horizontal', 'files' => true, 'role' => 'form', 'method' => 'POST']) }}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-btns">
+                    <a href="{{ route('admin.languages.index') }}" type="button" class="btn btn-default tooltips" data-toggle="tooltip" data-placement="top" title="Back"><i class="fa fa-chevron-left"></i></a>
+                </div>
+                <!-- panel-btns -->
+                <h3 class="panel-title">Add New Language</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="name">Language Name: <span class="asterisk">*</span></label>
+                    <div class="col-sm-6">
+                        {{ Form::text('name', null, ['id' => 'name', 'class' => 'form-control']) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="slug">Slug: <span class="asterisk">*</span></label>
+                    <div class="col-sm-6">
+                        {{ Form::text('slug', null, ['id' => 'slug', 'class' => 'form-control']) }}
+                    </div>
+                </div>
+            </div>
+            <!-- panel-body -->
+            <div class="panel-footer">
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-10">
+                        {{ Form::submit('Create Language!', ['class' => 'btn btn-primary']) }}
+                    </div>
+                </div>
+            </div>
+            <!-- panel-footer -->
+        </div>
+        {{ Form::close() }}
     </div>
 </div>
-{{ Form::close() }}
 @stop
 
 @section('script')
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        $("#name").slugger({
+            slugInput: $("#slug")
+        });
+    });
+</script>
 @stop

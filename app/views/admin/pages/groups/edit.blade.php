@@ -1,42 +1,55 @@
 @extends('admin.layouts.default')
 
 @section('content')
-<div class="row">
-<div class="col-lg-12">
-{{ Form::open(['route' => ['admin.groups.update', $group->id], 'role' => 'form', 'method' => 'PUT']) }}
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h4 class="panel-title pull-left">Groups</h4>
-        <div class="pull-right">
-            <a href="{{ route('admin.groups.index') }}" type="button" class="btn btn-default tooltips" data-toggle="tooltip" data-placement="top" title="Add New Group"><i class="glyphicon glyphicon-chevron-left"></i></a>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-    <div class="panel-body">
-    	@include('admin.layouts.partials.errors')
 
-    	<div class="form-group">
-			{{ Form::label('name', 'Group Name:', ['for' => 'name']) }}
-			{{ Form::text('name', $group->name, ['id' => 'name', 'class' => 'form-control']) }}
-		</div>
-		<div class="form-group">
-			{{ Form::label('slug', 'Slug:', ['for' => 'slug']) }}
-			{{ Form::text('slug', $group->slug, ['id' => 'slug', 'class' => 'form-control']) }}
-		</div>
-        @foreach($languages as $slug => $language)
-            <div class="form-group">
-                {{ Form::label('translations', $language . ' :', ['for' => 'translations']) }}
-                {{ Form::text('translations[' . $slug . ']', property_exists($group->translations, $slug) ? $group->translations->$slug : null, ['id' => 'translations-slug', 'class' => 'form-control']) }}
+@include('admin.layouts.partials.errors')
+
+<div class="row">
+    <div class="col-sm-12">
+        {{ Form::open(['route' => ['admin.groups.update', $group->id], 'id' => 'basicForm', 'class' => 'form-horizontal', 'files' => true, 'role' => 'form', 'method' => 'PUT']) }}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-btns">
+                    <a href="{{ route('admin.groups.index') }}" type="button" class="btn btn-default tooltips" data-toggle="tooltip" data-placement="top" title="Back"><i class="fa fa-chevron-left"></i></a>
+                </div>
+                <!-- panel-btns -->
+                <h3 class="panel-title">Edit Group</h3>
             </div>
-        @endforeach
-    </div>
-    <div class="panel-footer">
-        <div class="form-group">
-			{{ Form::submit('Update Group!', ['class' => 'btn btn-primary']) }}
-		</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="name">Group Name: <span class="asterisk">*</span></label>
+                    <div class="col-sm-6">
+                        {{ Form::text('name', $group->name, ['id' => 'name', 'class' => 'form-control']) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="slug">Slug: <span class="asterisk">*</span></label>
+                    <div class="col-sm-6">
+                        {{ Form::text('slug', $group->slug, ['id' => 'slug', 'class' => 'form-control']) }}
+                    </div>
+                </div>
+                @foreach($languages as $slug => $language)
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="translations">{{ $language }}: <span class="asterisk">*</span></label>
+                        <div class="col-sm-6">
+                            {{ Form::text('translations[' . $slug . ']', property_exists($group->translations, $slug) ? $group->translations->$slug : null, ['id' => 'translations-slug', 'class' => 'form-control']) }}
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <!-- panel-body -->
+            <div class="panel-footer">
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-10">
+                        {{ Form::submit('Update Group!', ['class' => 'btn btn-primary']) }}
+                    </div>
+                </div>
+            </div>
+            <!-- panel-footer -->
+        </div>
+        {{ Form::close() }}
     </div>
 </div>
-{{ Form::close() }}
 @stop
 
 @section('script')
